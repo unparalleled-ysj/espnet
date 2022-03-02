@@ -28,7 +28,7 @@ CSJVER=dvd  ## Set your CSJ format (dvd or usb).
             ## Case USB : Necessary directory is MORPH/SDB and WAV
             ##            e.g. $ ls $CSJDATATOP(USB) => 00README.txt DOC MORPH ... WAV fileList.csv
             ## Case merl :MERL setup. Necessary directory is WAV and sdb
-CSMSC=downloads
+CSMSC=/work/ysj/TTS_Data
 CSS10=
 HKUST1=
 HKUST2=
@@ -44,7 +44,7 @@ MINI_LIBRISPEECH=downloads
 MISP2021=
 LIBRIMIX=downloads
 LIBRITTS=
-LJSPEECH=downloads
+LJSPEECH=/work/ysj/TTS_Data
 NSC=
 JMD=downloads
 JSSS=downloads

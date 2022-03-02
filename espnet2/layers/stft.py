@@ -38,7 +38,7 @@ class Stft(torch.nn.Module, InversibleInterface):
         else:
             self.win_length = win_length
         self.hop_length = hop_length
-        self.center = center
+        self.center = False
         self.normalized = normalized
         self.onesided = onesided
         if window is not None and not hasattr(torch, f"{window}_window"):

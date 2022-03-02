@@ -139,9 +139,15 @@ def tokenize(
     # ======= write_vocabulary mode from here =======
     # Sort by the number of occurrences in descending order
     # and filter lower frequency words than cutoff value
-    words_and_counts = list(
-        filter(lambda x: x[1] > cutoff, sorted(counter.items(), key=lambda x: -x[1]))
-    )
+    if token_type == 'phn' and g2p == None:
+        import sys
+        sys.path.append("../../../espnet2")
+        from text.bilingual import BilingualG2P
+        words_and_counts = [(symbol, 1) for symbol in BilingualG2P().get_symbols()]
+    else:
+        words_and_counts = list(
+            filter(lambda x: x[1] > cutoff, sorted(counter.items(), key=lambda x: -x[1]))
+        )
     # Restrict the vocabulary size
     if vocabulary_size > 0:
         if vocabulary_size < len(add_symbol):

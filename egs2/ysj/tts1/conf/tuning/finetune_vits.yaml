@@ -1,11 +1,10 @@
-# This configuration is for ESPnet2 to train VITS, which
+# This configuration is for ESPnet2 to finetune VITS, which
 # is truely end-to-end text-to-waveform model. To run
 # this config, you need to specify "--tts_task gan_tts"
 # option for tts.sh at least and use 22050 hz audio as
-# the training data (mainly tested on LJspeech).
-# This configuration tested on 4 GPUs (V100) with 32GB GPU
-# memory. It takes around 2 weeks to finish the training
-# but 100k iters model should generate reasonable results.
+# the training data (mainly tested on JVS).
+# This configuration tested on 1 GPU (V100) with 32GB GPU
+# memory. It takes around 1 day to finish the training.
 
 ##########################################################
 #                  TTS MODEL SETTING                     #
@@ -136,7 +135,7 @@ tts_conf:
 # optimizer setting for generator
 optim: adamw
 optim_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -146,7 +145,7 @@ scheduler_conf:
 # optimizer setting for discriminator
 optim2: adamw
 optim2_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -159,9 +158,9 @@ generator_first: false # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 100            # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 3000000       # batch bins (feats_type=raw)
+batch_bins: 5000000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

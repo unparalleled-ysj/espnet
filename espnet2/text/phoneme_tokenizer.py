@@ -40,6 +40,7 @@ g2p_choices = [
     "g2pk_no_space",
     "korean_jaso",
     "korean_jaso_no_space",
+    "bilingual",
 ]
 
 
@@ -477,6 +478,9 @@ class PhonemeTokenizer(AbsTokenizer):
             self.g2p = Jaso(space_symbol=space_symbol, no_space=False)
         elif g2p_type == "korean_jaso_no_space":
             self.g2p = Jaso(no_space=True)
+        elif g2p_type == "bilingual":
+            from text.bilingual import BilingualG2P
+            self.g2p = BilingualG2P().text2tokens()
         else:
             raise NotImplementedError(f"Not supported: g2p_type={g2p_type}")
 
