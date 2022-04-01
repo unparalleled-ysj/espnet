@@ -151,7 +151,7 @@ tts_conf:
     lambda_feat_match: 2.0 # loss scaling coefficient for feat match loss
 
     # others
-    sampling_rate: 22050          # needed in the inference for saving wav
+    sampling_rate: 16000          # needed in the inference for saving wav
     segment_size: 32              # segment size for random windowed discriminator
     cache_generator_outputs: true # whether to cache generator outputs in the training
 
@@ -194,7 +194,7 @@ generator_first: true # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 200           # number of epochs
 accum_grad: 1             # gradient accumulation
 batch_bins: 5000000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
