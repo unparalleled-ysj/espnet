@@ -1,11 +1,12 @@
 import os
+import soundfile as sf
+from espnet2.bin.tts_inference import Text2Speech
 
-webm_dir = "/Users/ysj/资料/音乐/webm"
-mp3_dir = "/Users/ysj/资料/音乐/mp3"
-for name in os.listdir(webm_dir):
-    name = name.replace(' ', '\ ')
-    webm_path = os.path.join(webm_dir, name)
-    mp3_path = os.path.join(mp3_dir, name.split('.')[0] + '.mp3')
-    if not os.path.isfile(mp3_path.replace('\ ', ' ')):
-        print(mp3_path)
-#         os.system(f"ffmpeg -i {webm_path} -acodec libmp3lame {mp3_path}")
+
+save_dir = "synthesis_sentences"
+os.makedirs(save_dir, exist_ok=True)
+tts = Text2Speech.from_pretrained(model_file="exp/CustomerService/tts_vits/latest.pth")
+wav = tts("今天，天气真好呀！")["wav"]
+sf.write(os.path.join(save_dir, f"test.wav"), wav.numpy(), tts.fs, "PCM_16")
+
+
