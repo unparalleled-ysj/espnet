@@ -30,7 +30,7 @@ class BilingualG2P():
     def text2tokens(self, line: str) -> List[str]:
         pinyin = self.text2pinyin(line)
         phoneme = [self.get_phoneme(self.thchsdict, cn) for cn in pinyin.split(' ')]
-        phoneme = [self.get_arpabet(self.cmudict, en) for en in phoneme]
+        phoneme = ' '.join([self.get_arpabet(self.cmudict, en) for en in phoneme])
         phoneme = self.punctuation2silence(phoneme)
         return phoneme
 
@@ -47,7 +47,7 @@ class BilingualG2P():
 
     def punctuation2silence(self, phoneme):
         result = []
-        for p in phoneme:
+        for p in phoneme.split(' '):
             sil = self.pause_punctuation.get(p) 
             p = sil if sil is not None else p
             if self.should_keep_symbol(p):

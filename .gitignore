@@ -83,3 +83,4 @@ tools/._*
 espnet2/gan_tts/vits/monotonic_align
 tools/subtools
 tools/extract_xvector_model
+egs2/ysj/tts1/synthesis_sentences

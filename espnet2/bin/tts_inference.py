@@ -109,6 +109,7 @@ class Text2Speech:
         self.normalize = model.normalize
         self.feats_extract = model.feats_extract
         self.duration_calculator = DurationCalculator()
+        train_args.g2p = "bilingual"
         self.preprocess_fn = TTSTask.build_preprocess_fn(train_args, False)
         self.use_teacher_forcing = use_teacher_forcing
         self.seed = seed

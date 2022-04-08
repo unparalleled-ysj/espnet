@@ -12,6 +12,7 @@ import jamo
 from typeguard import check_argument_types
 
 from espnet2.text.abs_tokenizer import AbsTokenizer
+from espnet2.text.bilingual import BilingualG2P
 
 
 g2p_choices = [
@@ -479,8 +480,7 @@ class PhonemeTokenizer(AbsTokenizer):
         elif g2p_type == "korean_jaso_no_space":
             self.g2p = Jaso(no_space=True)
         elif g2p_type == "bilingual":
-            from text.bilingual import BilingualG2P
-            self.g2p = BilingualG2P().text2tokens()
+            self.g2p = BilingualG2P().text2tokens
         else:
             raise NotImplementedError(f"Not supported: g2p_type={g2p_type}")
 
