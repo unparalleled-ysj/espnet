@@ -987,7 +987,7 @@ if ! "${skip_eval}"; then
 
             # Add X-vector to the inputs if needed
             if "${use_xvector}"; then
-                _xvector_dir="${dumpdir}/xvector_fbank/${dset}"
+                _xvector_dir="${dumpdir}/xvector/${dset}"
                 _ex_opts+="--data_path_and_name_and_type ${_xvector_dir}/xvector.scp,spembs,kaldi_ark "
             fi
 

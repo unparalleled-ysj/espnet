@@ -18,8 +18,8 @@ train_set=tr_no_dev
 train_dev=dev
 recog_set=eval1
 
-# dst_dir=data/msp/$(basename $dataset)
-# [ ! -e $dst_dir/train ] && mkdir -p $dst_dir/train
+dst_dir=data/$(basename $dataset)
+[ ! -e $dst_dir/train ] && mkdir -p $dst_dir/train
 
 if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then 
     log "stage 0: local/data_prep.sh"
@@ -30,19 +30,19 @@ if [ ${stage} -le 0 ] && [ ${stop_stage} -ge 0 ]; then
     python pyscripts/utils/get_durations.py --durations_dir /work/ysj/TTS_TrainData/$dataset/durations --save_file $dst_dir/train/durations
 fi
 
-# if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
-#     log "stage 2: utils/subset_data_dir.sh"
-#     # make evaluation and devlopment sets
-#     # utils/subset_data_dir.sh --last data/$dataset/train 5 data/$dataset/deveval
-#     # utils/subset_data_dir.sh --last data/$dataset/deveval 2 data/$dataset/${recog_set}
-#     # utils/subset_data_dir.sh --first data/$dataset/deveval 3 data/$dataset/${train_dev}
-#     # n=$(( $(wc -l < data/$dataset/train/wav.scp) - 5 ))
-#     # utils/subset_data_dir.sh --first data/$dataset/train ${n} data/$dataset/${train_set}
+if [ ${stage} -le 1 ] && [ ${stop_stage} -ge 1 ]; then
+    log "stage 2: utils/subset_data_dir.sh"
+    # make evaluation and devlopment sets
+    utils/subset_data_dir.sh --last data/$dataset/train 50 data/$dataset/deveval
+    utils/subset_data_dir.sh --last data/$dataset/deveval 20 data/$dataset/${recog_set}
+    utils/subset_data_dir.sh --first data/$dataset/deveval 30 data/$dataset/${train_dev}
+    n=$(( $(wc -l < data/$dataset/train/wav.scp) - 50 ))
+    utils/subset_data_dir.sh --first data/$dataset/train ${n} data/$dataset/${train_set}
 
-#     # cat data/$dataset/train/durations | tail -5 > data/$dataset/deveval/durations
-#     # cat data/$dataset/deveval/durations | tail -2 > data/$dataset/${recog_set}/durations
-#     # cat data/$dataset/deveval/durations | head -3 > data/$dataset/${train_dev}/durations
-#     # cat data/$dataset/train/durations | head -${n} >  data/$dataset/${train_set}/durations
-# fi
+    cat data/$dataset/train/durations | tail -50 > data/$dataset/deveval/durations
+    cat data/$dataset/deveval/durations | tail -20 > data/$dataset/${recog_set}/durations
+    cat data/$dataset/deveval/durations | head -30 > data/$dataset/${train_dev}/durations
+    cat data/$dataset/train/durations | head -${n} >  data/$dataset/${train_set}/durations
+fi
 
 log "Successfully finished. [elapsed=${SECONDS}s]"

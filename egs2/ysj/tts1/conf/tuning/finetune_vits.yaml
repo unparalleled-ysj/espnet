@@ -112,9 +112,9 @@ tts_conf:
         include_final_outputs: true      # whether to include final outputs for loss calculation
     mel_loss_params:
         fs: 16000          # must be the same as the training data
-        n_fft: 1024        # fft points
+        n_fft: 400        # fft points
         hop_length: 160    # hop size
-        win_length: 400   # window length
+        win_length: null   # window length
         window: hann       # window type
         n_mels: 80         # number of Mel basis
         fmin: 0            # minimum frequency for Mel basis
