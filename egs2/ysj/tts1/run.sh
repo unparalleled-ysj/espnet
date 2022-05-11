@@ -18,7 +18,7 @@ else
     opts="--audio_format flac "
 fi
 
-dataset="gather"
+dataset="gather_clean"
 train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
