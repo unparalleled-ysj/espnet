@@ -1,8 +1,8 @@
 # This configuration is for ESPnet2 to train multi-speaker
-# VITS with x-vector instead of sepeaker ID embedding.
+# VITS, which is truely end-to-end text-to-waveform model.
 # To run this config, you need to specify "--tts_task gan_tts"
-# and "--use_xvector true" options for tts.sh at least and use
-# 22khz audio as the training data (mainly tested on LibriTTS).
+# and "--use_sid true" options for tts.sh at least and use
+# 22050 hz audio as the training data (mainly tested on VCTK).
 # This configuration tested on 4 GPUs (V100) with 32GB GPU
 # memory. It takes around 2 weeks to finish the training
 # but 100k iters model should generate reasonable results.
@@ -16,9 +16,7 @@ tts_conf:
     generator_type: vits_generator
     generator_params:
         hidden_channels: 192
-        spks: -1
-        langs: 3
-        spk_embed_dim: 256
+        spks: 512
         global_channels: 256
         segment_size: 32
         text_encoder_attention_heads: 2
@@ -115,7 +113,7 @@ tts_conf:
         include_final_outputs: true      # whether to include final outputs for loss calculation
     mel_loss_params:
         fs: 16000          # must be the same as the training data
-        n_fft: 400         # fft points
+        n_fft: 400        # fft points
         hop_length: 160    # hop size
         win_length: null   # window length
         window: hann       # window type
@@ -132,13 +130,16 @@ tts_conf:
     sampling_rate: 16000          # needed in the inference for saving wav
     cache_generator_outputs: true # whether to cache generator outputs in the training
 
+init_param:
+- exp/msp_id/tts_vits/train.total_count.best.pth:tts:tts
+
 ##########################################################
 #            OPTIMIZER & SCHEDULER SETTING               #
 ##########################################################
 # optimizer setting for generator
 optim: adamw
 optim_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -148,7 +149,7 @@ scheduler_conf:
 # optimizer setting for discriminator
 optim2: adamw
 optim2_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -161,9 +162,9 @@ generator_first: false # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 10           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 5000000       # batch bins (feats_type=raw)
+batch_bins: 500000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

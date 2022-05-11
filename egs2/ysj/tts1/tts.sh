@@ -48,8 +48,8 @@ dataset="" #dataset to be passed to local/data.sh.
 # Feature extraction related
 feats_type=raw             # Input feature type.
 audio_format=flac          # Audio format: wav, flac, wav.ark, flac.ark  (only in feats_type=raw).
-min_wav_duration=0.1       # Minimum duration in second.
-max_wav_duration=25        # Maximum duration in second.
+min_wav_duration=1       # Minimum duration in second.
+max_wav_duration=20        # Maximum duration in second.
 use_xvector=false          # Whether to use x-vector (Require Kaldi).
 use_sid=false              # Whether to use speaker id as the inputs (Need utt2spk in data directory).
 use_lid=false              # Whether to use language id as the inputs (Need utt2lang in data directory).
@@ -460,6 +460,7 @@ if ! "${skip_data_prep}"; then
                 else
                     _suf=""
                 fi
+                cp data/$dataset/"${dset}"/utt2lang "${data_feats}${_suf}/${dset}"/
                 if [ "${dset}" = "${train_set}" ]; then
                     # Make lang2lid
                     # NOTE(kan-bayashi): 0 is reserved for unknown languages
@@ -612,8 +613,8 @@ if ! "${skip_train}"; then
         fi
 
         if "${use_xvector}"; then
-            _xvector_train_dir="${dumpdir}/xvector_fbank/${train_set}"
-            _xvector_valid_dir="${dumpdir}/xvector_fbank/${valid_set}"
+            _xvector_train_dir="${dumpdir}/xvector/${train_set}"
+            _xvector_valid_dir="${dumpdir}/xvector/${valid_set}"
             _opts+="--train_data_path_and_name_and_type ${_xvector_train_dir}/xvector.scp,spembs,kaldi_ark "
             _opts+="--valid_data_path_and_name_and_type ${_xvector_valid_dir}/xvector.scp,spembs,kaldi_ark "
         fi
@@ -854,8 +855,8 @@ if ! "${skip_train}"; then
 
         # Add X-vector to the inputs if needed
         if "${use_xvector}"; then
-            _xvector_train_dir="${dumpdir}/xvector_fbank/${train_set}"
-            _xvector_valid_dir="${dumpdir}/xvector_fbank/${valid_set}"
+            _xvector_train_dir="${dumpdir}/xvector/${train_set}"
+            _xvector_valid_dir="${dumpdir}/xvector/${valid_set}"
             _opts+="--train_data_path_and_name_and_type ${_xvector_train_dir}/xvector.scp,spembs,kaldi_ark "
             _opts+="--valid_data_path_and_name_and_type ${_xvector_valid_dir}/xvector.scp,spembs,kaldi_ark "
         fi

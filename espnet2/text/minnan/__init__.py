@@ -1,0 +1,1 @@
+from espnet2.text.minnan.minnandict import minnan_phoneme

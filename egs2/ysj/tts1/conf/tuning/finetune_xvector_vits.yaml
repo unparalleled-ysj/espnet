@@ -17,7 +17,6 @@ tts_conf:
     generator_params:
         hidden_channels: 192
         spks: -1
-        langs: 3
         spk_embed_dim: 256
         global_channels: 256
         segment_size: 32
@@ -132,13 +131,16 @@ tts_conf:
     sampling_rate: 16000          # needed in the inference for saving wav
     cache_generator_outputs: true # whether to cache generator outputs in the training
 
+init_param:
+- exp/msp_xv/tts_xv_cn_vits/train.total_count.best.pth:tts:tts
+
 ##########################################################
 #            OPTIMIZER & SCHEDULER SETTING               #
 ##########################################################
 # optimizer setting for generator
 optim: adamw
 optim_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -148,7 +150,7 @@ scheduler_conf:
 # optimizer setting for discriminator
 optim2: adamw
 optim2_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -161,9 +163,9 @@ generator_first: false # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 10           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 5000000       # batch bins (feats_type=raw)
+batch_bins: 500000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

@@ -18,28 +18,33 @@ else
     opts="--audio_format flac "
 fi
 
-dataset="Originbeat-female"
+dataset="gather"
 train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
 
 # train_config=conf/tuning/finetune_joint_conformer_fastspeech2_hifigan.yaml
 # train_config=conf/tuning/train_conformer_fastspeech2.yaml
-train_config=conf/tuning/train_vits.yaml
+train_config=conf/tuning/train_xvector_vits.yaml
+# train_config=conf/tuning/finetune_multi_spk_vits.yaml
+# train_config=conf/tuning/train_vits.yaml
 inference_config=conf/tuning/decode_vits.yaml
-# train_config=conf/tuning/train_xvector_vits.yaml
+
 
 g2p=none
 
 # # train vits
 ./tts.sh \
     --tts_task gan_tts \
-    --ngpu 2 \
+    --ngpu 1 \
     --dataset $dataset \
     --dumpdir dump/$dataset \
     --expdir exp/$dataset \
-    --tag vits \
-    --use_xvector false \
+    --tts_stats_dir exp/$dataset/tts_stats_xv_vits \
+    --tts_exp exp/$dataset/tts_xv_vits \
+    --use_xvector true \
+    --use_sid false \
+    --use_lid true \
     --lang zh \
     --feats_type raw \
     --fs "${fs}" \
