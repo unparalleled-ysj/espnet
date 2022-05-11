@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>espnet2.text.bilingual.text_normalization.cn_tn &mdash; ESPnet 202204 documentation</title><link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> ESPnet
+          </a>
+              <div class="version">
+                202204
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Tutorial:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../parallelization.html">Using Job scheduling system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../docker.html">Docker</a></li>
+</ul>
+<p><span class="caption-text">ESPnet2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../espnet2_tutorial.html">ESPnet2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../espnet2_tutorial.html#instruction-for-run-sh">Instruction for run.sh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../espnet2_training_option.html">Change the configuration for training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../espnet2_task.html">Task class and data input system for training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../espnet2_distributed.html">Distributed training</a></li>
+</ul>
+<p><span class="caption-text">Notebook:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/asr_cli.html">Speech Recognition (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/asr_library.html">Speech Recognition (Library)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_asr_realtime_demo.html">ESPnet2-ASR realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_asr_transfer_learning_demo.html"><strong>Use transfer learning for ASR in ESPnet2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_asr_transfer_learning_demo.html#Abstract">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_asr_transfer_learning_demo.html#ESPnet-installation-(about-10-minutes-in-total)">ESPnet installation (about 10 minutes in total)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_asr_transfer_learning_demo.html#mini_an4-recipe-as-a-transfer-learning-example">mini_an4 recipe as a transfer learning example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_streaming_asr_demo.html">ESPnet2 real streaming Transformer demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_tts_realtime_demo.html">ESPnet2-TTS realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html">CMU 11751/18781 2021: ESPnet Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-an-inference-example">Run an inference example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Full-installation">Full installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-a-recipe-example">Run a recipe example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#Contents">Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#(1)-Tutorials-on-the-Basic-Usage">(1) Tutorials on the Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#(2)-Tutorials-on-Contributing-to-ESPNet-SE-Project">(2) Tutorials on Contributing to ESPNet-SE Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/pretrained.html">Pretrained Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/se_demo.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/st_demo.html">ESPnet Speech Translation Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/tts_cli.html">Text-to-Speech (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebook/tts_realtime_demo.html">ESPnet real time E2E-TTS demonstration</a></li>
+</ul>
+<p><span class="caption-text">Package Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.transform.html">espnet.transform package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.vc.html">espnet.vc package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.mt.html">espnet.mt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.scheduler.html">espnet.scheduler package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.tts.html">espnet.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.optimizer.html">espnet.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.asr.html">espnet.asr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.lm.html">espnet.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.st.html">espnet.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.nets.html">espnet.nets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.bin.html">espnet.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet.utils.html">espnet.utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.fileio.html">espnet2.fileio package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.fst.html">espnet2.fst package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.text.html">espnet2.text package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.iterators.html">espnet2.iterators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.mt.html">espnet2.mt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.schedulers.html">espnet2.schedulers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.tasks.html">espnet2.tasks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.tts.html">espnet2.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.hubert.html">espnet2.hubert package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.asr.html">espnet2.asr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.layers.html">espnet2.layers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.enh.html">espnet2.enh package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.train.html">espnet2.train package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.lm.html">espnet2.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.st.html">espnet2.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.gan_tts.html">espnet2.gan_tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.diar.html">espnet2.diar package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.bin.html">espnet2.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.optimizers.html">espnet2.optimizers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.main_funcs.html">espnet2.main_funcs package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.samplers.html">espnet2.samplers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../_gen/espnet2.utils.html">espnet2.utils package</a></li>
+</ul>
+<p><span class="caption-text">Tool Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apis/espnet_bin.html">core tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apis/espnet2_bin.html">core tools (espnet2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apis/utils_py.html">python utility tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../apis/utils_sh.html">bash utility tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">ESPnet</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+      <li>espnet2.text.bilingual.text_normalization.cn_tn</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for espnet2.text.bilingual.text_normalization.cn_tn</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># coding=utf-8</span>
+<span class="c1"># Authors:</span>
+<span class="c1">#   2019.5 Zhiyang Zhou (https://github.com/Joee1995/chn_text_norm.git)</span>
+<span class="c1">#   2019.9 Jiayu DU</span>
+<span class="c1">#</span>
+<span class="c1"># requirements:</span>
+<span class="c1">#   - python 3.X</span>
+<span class="c1"># notes: python 2.X WILL fail or produce misleading results</span>
+
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">argparse</span><span class="o">,</span> <span class="nn">codecs</span><span class="o">,</span> <span class="nn">string</span><span class="o">,</span> <span class="nn">re</span>
+
+<span class="c1"># ================================================================================ #</span>
+<span class="c1">#                                    basic constant</span>
+<span class="c1"># ================================================================================ #</span>
+<span class="n">CHINESE_DIGIS</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;零一二三四五六七八九&#39;</span>
+<span class="n">BIG_CHINESE_DIGIS_SIMPLIFIED</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;零壹贰叁肆伍陆柒捌玖&#39;</span>
+<span class="n">BIG_CHINESE_DIGIS_TRADITIONAL</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;零壹貳參肆伍陸柒捌玖&#39;</span>
+<span class="n">SMALLER_BIG_CHINESE_UNITS_SIMPLIFIED</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;十百千万&#39;</span>
+<span class="n">SMALLER_BIG_CHINESE_UNITS_TRADITIONAL</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;拾佰仟萬&#39;</span>
+<span class="n">LARGER_CHINESE_NUMERING_UNITS_SIMPLIFIED</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;亿兆京垓秭穰沟涧正载&#39;</span>
+<span class="n">LARGER_CHINESE_NUMERING_UNITS_TRADITIONAL</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;億兆京垓秭穰溝澗正載&#39;</span>
+<span class="n">SMALLER_CHINESE_NUMERING_UNITS_SIMPLIFIED</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;十百千万&#39;</span>
+<span class="n">SMALLER_CHINESE_NUMERING_UNITS_TRADITIONAL</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;拾佰仟萬&#39;</span>
+
+<span class="n">ZERO_ALT</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;〇&#39;</span>
+<span class="n">ONE_ALT</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;幺&#39;</span>
+<span class="n">TWO_ALTS</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;两&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;兩&#39;</span><span class="p">]</span>
+
+<span class="n">POSITIVE</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;正&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;正&#39;</span><span class="p">]</span>
+<span class="n">NEGATIVE</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;负&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;負&#39;</span><span class="p">]</span>
+<span class="n">POINT</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;点&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;點&#39;</span><span class="p">]</span>
+<span class="c1"># PLUS = [u&#39;加&#39;, u&#39;加&#39;]</span>
+<span class="c1"># SIL = [u&#39;杠&#39;, u&#39;槓&#39;]</span>
+
+<span class="c1"># 中文数字系统类型</span>
+<span class="n">NUMBERING_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;mid&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">]</span>
+
+<span class="n">CURRENCY_NAMES</span> <span class="o">=</span> <span class="s1">&#39;(人民币|美元|日元|英镑|欧元|马克|法郎|加拿大元|澳元|港币|先令|芬兰马克|爱尔兰镑|&#39;</span> \
+                 <span class="s1">&#39;里拉|荷兰盾|埃斯库多|比塞塔|印尼盾|林吉特|新西兰元|比索|卢布|新加坡元|韩元|泰铢)&#39;</span>
+<span class="n">CURRENCY_UNITS</span> <span class="o">=</span> <span class="s1">&#39;((亿|千万|百万|万|千|百)|(亿|千万|百万|万|千|百|)元|(亿|千万|百万|万|千|百|)块|角|毛|分)&#39;</span>
+<span class="n">COM_QUANTIFIERS</span> <span class="o">=</span> <span class="s1">&#39;(匹|张|座|回|场|尾|条|个|首|阙|阵|网|炮|顶|丘|棵|只|支|袭|辆|挑|担|颗|壳|窠|曲|墙|群|腔|&#39;</span> \
+                  <span class="s1">&#39;砣|座|客|贯|扎|捆|刀|令|打|手|罗|坡|山|岭|江|溪|钟|队|单|双|对|出|口|头|脚|板|跳|枝|件|贴|&#39;</span> \
+                  <span class="s1">&#39;针|线|管|名|位|身|堂|课|本|页|家|户|层|丝|毫|厘|分|钱|两|斤|担|铢|石|钧|锱|忽|(千|毫|微)克|&#39;</span> \
+                  <span class="s1">&#39;毫|厘|分|寸|尺|丈|里|寻|常|铺|程|(千|分|厘|毫|微)米|撮|勺|合|升|斗|石|盘|碗|碟|叠|桶|笼|盆|&#39;</span> \
+                  <span class="s1">&#39;盒|杯|钟|斛|锅|簋|篮|盘|桶|罐|瓶|壶|卮|盏|箩|箱|煲|啖|袋|钵|年|月|日|季|刻|时|周|天|秒|分|旬|&#39;</span> \
+                  <span class="s1">&#39;纪|岁|世|更|夜|春|夏|秋|冬|代|伏|辈|丸|泡|粒|颗|幢|堆|条|根|支|道|面|片|张|颗|块)&#39;</span>
+
+<span class="c1"># punctuation information are based on Zhon project (https://github.com/tsroten/zhon.git)</span>
+<span class="n">CHINESE_PUNC_STOP</span> <span class="o">=</span> <span class="s1">&#39;！？｡。&#39;</span>
+<span class="n">CHINESE_PUNC_NON_STOP</span> <span class="o">=</span> <span class="s1">&#39;＂＃＄％＆＇（）＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃《》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘’‛“”„‟…‧﹏&#39;</span>
+<span class="n">CHINESE_PUNC_OTHER</span> <span class="o">=</span> <span class="s1">&#39;·〈〉-&#39;</span>
+<span class="n">CHINESE_PUNC_LIST</span> <span class="o">=</span> <span class="n">CHINESE_PUNC_STOP</span> <span class="o">+</span> <span class="n">CHINESE_PUNC_NON_STOP</span> <span class="o">+</span> <span class="n">CHINESE_PUNC_OTHER</span>
+
+<span class="c1"># ================================================================================ #</span>
+<span class="c1">#                                    basic class</span>
+<span class="c1"># ================================================================================ #</span>
+<div class="viewcode-block" id="ChineseChar"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar">[docs]</a><span class="k">class</span> <span class="nc">ChineseChar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    中文字符</span>
+<span class="sd">    每个字符对应简体和繁体,</span>
+<span class="sd">    e.g. 简体 = &#39;负&#39;, 繁体 = &#39;負&#39;</span>
+<span class="sd">    转换时可转换为简体或繁体</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simplified</span> <span class="o">=</span> <span class="n">simplified</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traditional</span> <span class="o">=</span> <span class="n">traditional</span>
+        <span class="c1">#self.__repr__ = self.__str__</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">simplified</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">traditional</span> <span class="ow">or</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ChineseNumberUnit"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit">[docs]</a><span class="k">class</span> <span class="nc">ChineseNumberUnit</span><span class="p">(</span><span class="n">ChineseChar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    中文数字/数位字符</span>
+<span class="sd">    每个字符除繁简体外还有一个额外的大写字符</span>
+<span class="sd">    e.g. &#39;陆&#39; 和 &#39;陸&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">,</span> <span class="n">big_s</span><span class="p">,</span> <span class="n">big_t</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChineseNumberUnit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="n">power</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_s</span> <span class="o">=</span> <span class="n">big_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_t</span> <span class="o">=</span> <span class="n">big_t</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;10^</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ChineseNumberUnit.create"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit.create">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">numbering_type</span><span class="o">=</span><span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">small_unit</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">small_unit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ChineseNumberUnit</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                     <span class="n">simplified</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traditional</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big_s</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big_t</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">numbering_type</span> <span class="o">==</span> <span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">ChineseNumberUnit</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="n">index</span> <span class="o">+</span> <span class="mi">8</span><span class="p">,</span>
+                                     <span class="n">simplified</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traditional</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big_s</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">big_t</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">numbering_type</span> <span class="o">==</span> <span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">ChineseNumberUnit</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+                                     <span class="n">simplified</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traditional</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big_s</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">big_t</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">numbering_type</span> <span class="o">==</span> <span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">ChineseNumberUnit</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">3</span><span class="p">),</span>
+                                     <span class="n">simplified</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">traditional</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big_s</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">big_t</span><span class="o">=</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Counting type should be in </span><span class="si">{0}</span><span class="s1"> (</span><span class="si">{1}</span><span class="s1"> provided).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">NUMBERING_TYPES</span><span class="p">,</span> <span class="n">numbering_type</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="ChineseNumberDigit"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit">[docs]</a><span class="k">class</span> <span class="nc">ChineseNumberDigit</span><span class="p">(</span><span class="n">ChineseChar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    中文数字字符</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">,</span> <span class="n">big_s</span><span class="p">,</span> <span class="n">big_t</span><span class="p">,</span> <span class="n">alt_s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alt_t</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChineseNumberDigit</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_s</span> <span class="o">=</span> <span class="n">big_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_t</span> <span class="o">=</span> <span class="n">big_t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alt_s</span> <span class="o">=</span> <span class="n">alt_s</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alt_t</span> <span class="o">=</span> <span class="n">alt_t</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ChineseNumberDigit.create"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit.create">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ChineseNumberDigit</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></div></div>
+
+
+<div class="viewcode-block" id="ChineseMath"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath">[docs]</a><span class="k">class</span> <span class="nc">ChineseMath</span><span class="p">(</span><span class="n">ChineseChar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    中文数位字符</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">expression</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChineseMath</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">simplified</span><span class="p">,</span> <span class="n">traditional</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expression</span> <span class="o">=</span> <span class="n">expression</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_s</span> <span class="o">=</span> <span class="n">simplified</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">big_t</span> <span class="o">=</span> <span class="n">traditional</span></div>
+
+
+<span class="n">CC</span><span class="p">,</span> <span class="n">CNU</span><span class="p">,</span> <span class="n">CND</span><span class="p">,</span> <span class="n">CM</span> <span class="o">=</span> <span class="n">ChineseChar</span><span class="p">,</span> <span class="n">ChineseNumberUnit</span><span class="p">,</span> <span class="n">ChineseNumberDigit</span><span class="p">,</span> <span class="n">ChineseMath</span>
+
+
+<div class="viewcode-block" id="NumberSystem"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.NumberSystem">[docs]</a><span class="k">class</span> <span class="nc">NumberSystem</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    中文数字系统</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="MathSymbol"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.MathSymbol">[docs]</a><span class="k">class</span> <span class="nc">MathSymbol</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    用于中文数字系统的数学符号 (繁/简体), e.g.</span>
+<span class="sd">    positive = [&#39;正&#39;, &#39;正&#39;]</span>
+<span class="sd">    negative = [&#39;负&#39;, &#39;負&#39;]</span>
+<span class="sd">    point = [&#39;点&#39;, &#39;點&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positive</span> <span class="o">=</span> <span class="n">positive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">negative</span> <span class="o">=</span> <span class="n">negative</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">point</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">v</span></div>
+
+
+<span class="c1"># class OtherSymbol(object):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     其他符号</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#     def __init__(self, sil):</span>
+<span class="c1">#         self.sil = sil</span>
+<span class="c1">#</span>
+<span class="c1">#     def __iter__(self):</span>
+<span class="c1">#         for v in self.__dict__.values():</span>
+<span class="c1">#             yield v</span>
+
+
+<span class="c1"># ================================================================================ #</span>
+<span class="c1">#                                    basic utils</span>
+<span class="c1"># ================================================================================ #</span>
+<div class="viewcode-block" id="create_system"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.create_system">[docs]</a><span class="k">def</span> <span class="nf">create_system</span><span class="p">(</span><span class="n">numbering_type</span><span class="o">=</span><span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    根据数字系统类型返回创建相应的数字系统，默认为 mid</span>
+<span class="sd">    NUMBERING_TYPES = [&#39;low&#39;, &#39;mid&#39;, &#39;high&#39;]: 中文数字系统类型</span>
+<span class="sd">        low:  &#39;兆&#39; = &#39;亿&#39; * &#39;十&#39; = $10^{9}$,  &#39;京&#39; = &#39;兆&#39; * &#39;十&#39;, etc.</span>
+<span class="sd">        mid:  &#39;兆&#39; = &#39;亿&#39; * &#39;万&#39; = $10^{12}$, &#39;京&#39; = &#39;兆&#39; * &#39;万&#39;, etc.</span>
+<span class="sd">        high: &#39;兆&#39; = &#39;亿&#39; * &#39;亿&#39; = $10^{16}$, &#39;京&#39; = &#39;兆&#39; * &#39;兆&#39;, etc.</span>
+<span class="sd">    返回对应的数字系统</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># chinese number units of &#39;亿&#39; and larger</span>
+    <span class="n">all_larger_units</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">LARGER_CHINESE_NUMERING_UNITS_SIMPLIFIED</span><span class="p">,</span> <span class="n">LARGER_CHINESE_NUMERING_UNITS_TRADITIONAL</span><span class="p">)</span>
+    <span class="n">larger_units</span> <span class="o">=</span> <span class="p">[</span><span class="n">CNU</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">numbering_type</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_larger_units</span><span class="p">)]</span>
+    <span class="c1"># chinese number units of &#39;十, 百, 千, 万&#39;</span>
+    <span class="n">all_smaller_units</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">SMALLER_CHINESE_NUMERING_UNITS_SIMPLIFIED</span><span class="p">,</span> <span class="n">SMALLER_CHINESE_NUMERING_UNITS_TRADITIONAL</span><span class="p">)</span>
+    <span class="n">smaller_units</span> <span class="o">=</span> <span class="p">[</span><span class="n">CNU</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">small_unit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_smaller_units</span><span class="p">)]</span>
+    <span class="c1"># digis</span>
+    <span class="n">chinese_digis</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">CHINESE_DIGIS</span><span class="p">,</span> <span class="n">CHINESE_DIGIS</span><span class="p">,</span>
+                        <span class="n">BIG_CHINESE_DIGIS_SIMPLIFIED</span><span class="p">,</span> <span class="n">BIG_CHINESE_DIGIS_TRADITIONAL</span><span class="p">)</span>
+    <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="n">CND</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chinese_digis</span><span class="p">)]</span>
+    <span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">alt_t</span> <span class="o">=</span> <span class="n">ZERO_ALT</span><span class="p">,</span> <span class="n">ZERO_ALT</span>
+    <span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alt_t</span> <span class="o">=</span> <span class="n">ONE_ALT</span><span class="p">,</span> <span class="n">ONE_ALT</span>
+    <span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">alt_t</span> <span class="o">=</span> <span class="n">TWO_ALTS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">TWO_ALTS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># symbols</span>
+    <span class="n">positive_cn</span> <span class="o">=</span> <span class="n">CM</span><span class="p">(</span><span class="n">POSITIVE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">POSITIVE</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">negative_cn</span> <span class="o">=</span> <span class="n">CM</span><span class="p">(</span><span class="n">NEGATIVE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">NEGATIVE</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">point_cn</span> <span class="o">=</span> <span class="n">CM</span><span class="p">(</span><span class="n">POINT</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">POINT</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
+                  <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+    <span class="c1"># sil_cn = CM(SIL[0], SIL[1], &#39;-&#39;, lambda x, y: float(str(x) + &#39;-&#39; + str(y)))</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">NumberSystem</span><span class="p">()</span>
+    <span class="n">system</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">smaller_units</span> <span class="o">+</span> <span class="n">larger_units</span>
+    <span class="n">system</span><span class="o">.</span><span class="n">digits</span> <span class="o">=</span> <span class="n">digits</span>
+    <span class="n">system</span><span class="o">.</span><span class="n">math</span> <span class="o">=</span> <span class="n">MathSymbol</span><span class="p">(</span><span class="n">positive_cn</span><span class="p">,</span> <span class="n">negative_cn</span><span class="p">,</span> <span class="n">point_cn</span><span class="p">)</span>
+    <span class="c1"># system.symbols = OtherSymbol(sil_cn)</span>
+    <span class="k">return</span> <span class="n">system</span></div>
+
+
+<div class="viewcode-block" id="chn2num"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.chn2num">[docs]</a><span class="k">def</span> <span class="nf">chn2num</span><span class="p">(</span><span class="n">chinese_string</span><span class="p">,</span> <span class="n">numbering_type</span><span class="o">=</span><span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+
+    <span class="k">def</span> <span class="nf">get_symbol</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">units</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">traditional</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">simplified</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">big_s</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">big_t</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">u</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">traditional</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">simplified</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">big_s</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">big_t</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">alt_s</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">alt_t</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">d</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">system</span><span class="o">.</span><span class="n">math</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">traditional</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">simplified</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">m</span>
+
+    <span class="k">def</span> <span class="nf">string2symbols</span><span class="p">(</span><span class="n">chinese_string</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
+        <span class="n">int_string</span><span class="p">,</span> <span class="n">dec_string</span> <span class="o">=</span> <span class="n">chinese_string</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">simplified</span><span class="p">,</span> <span class="n">system</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">traditional</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">chinese_string</span><span class="p">:</span>
+                <span class="n">int_string</span><span class="p">,</span> <span class="n">dec_string</span> <span class="o">=</span> <span class="n">chinese_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_symbol</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">int_string</span><span class="p">],</span> \
+               <span class="p">[</span><span class="n">get_symbol</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dec_string</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">correct_symbols</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">,</span> <span class="n">system</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        一百八 to 一百八十</span>
+<span class="sd">        一亿一千三百万 to 一亿 一千万 三百万</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">integer_symbols</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">CNU</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">integer_symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">integer_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">integer_symbols</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">CND</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">CNU</span><span class="p">):</span>
+                <span class="n">integer_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">CNU</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">power</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">unit_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">integer_symbols</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">CND</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">unit_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">CNU</span><span class="p">):</span>
+                <span class="n">current_unit</span> <span class="o">=</span> <span class="n">CNU</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="n">unit_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">unit_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_unit</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">unit_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">CNU</span><span class="p">)</span> <span class="ow">and</span> <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">power</span> <span class="o">&lt;</span> <span class="n">current_unit</span><span class="o">.</span><span class="n">power</span><span class="p">:</span>
+                        <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">CNU</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">power</span> <span class="o">+</span>
+                                             <span class="n">current_unit</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">compute_value</span><span class="p">(</span><span class="n">integer_symbols</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the value.</span>
+<span class="sd">        When current unit is larger than previous unit, current unit * all previous units will be used as all previous units.</span>
+<span class="sd">        e.g. &#39;两千万&#39; = 2000 * 10000 not 2000 + 10000</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">last_power</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">integer_symbols</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">CND</span><span class="p">):</span>
+                <span class="n">value</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">CNU</span><span class="p">):</span>
+                <span class="n">value</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">power</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">power</span> <span class="o">&gt;</span> <span class="n">last_power</span><span class="p">:</span>
+                    <span class="n">value</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span> <span class="o">*</span>
+                                                    <span class="nb">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">power</span><span class="p">),</span> <span class="n">value</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                    <span class="n">last_power</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">power</span>
+                <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">system</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">(</span><span class="n">numbering_type</span><span class="p">)</span>
+    <span class="n">int_part</span><span class="p">,</span> <span class="n">dec_part</span> <span class="o">=</span> <span class="n">string2symbols</span><span class="p">(</span><span class="n">chinese_string</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span>
+    <span class="n">int_part</span> <span class="o">=</span> <span class="n">correct_symbols</span><span class="p">(</span><span class="n">int_part</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span>
+    <span class="n">int_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">compute_value</span><span class="p">(</span><span class="n">int_part</span><span class="p">))</span>
+    <span class="n">dec_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dec_part</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">dec_part</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">.</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">int_str</span><span class="p">,</span> <span class="n">dec_str</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">int_str</span></div>
+
+
+<div class="viewcode-block" id="num2chn"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.num2chn">[docs]</a><span class="k">def</span> <span class="nf">num2chn</span><span class="p">(</span><span class="n">number_string</span><span class="p">,</span> <span class="n">numbering_type</span><span class="o">=</span><span class="n">NUMBERING_TYPES</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">big</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">traditional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alt_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alt_one</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alt_two</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">use_zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_units</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="n">value_string</span><span class="p">,</span> <span class="n">use_zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="n">striped_string</span> <span class="o">=</span> <span class="n">value_string</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+
+        <span class="c1"># record nothing if all zeros</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">striped_string</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="c1"># record one digits</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">striped_string</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">use_zeros</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value_string</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">striped_string</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">striped_string</span><span class="p">)]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">striped_string</span><span class="p">)]]</span>
+
+        <span class="c1"># recursively record multiple digits</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result_unit</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span>
+                <span class="n">system</span><span class="o">.</span><span class="n">units</span><span class="p">)</span> <span class="k">if</span> <span class="n">u</span><span class="o">.</span><span class="n">power</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">striped_string</span><span class="p">))</span>
+            <span class="n">result_string</span> <span class="o">=</span> <span class="n">value_string</span><span class="p">[:</span><span class="o">-</span><span class="n">result_unit</span><span class="o">.</span><span class="n">power</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">get_value</span><span class="p">(</span><span class="n">result_string</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">result_unit</span><span class="p">]</span> <span class="o">+</span> <span class="n">get_value</span><span class="p">(</span><span class="n">striped_string</span><span class="p">[</span><span class="o">-</span><span class="n">result_unit</span><span class="o">.</span><span class="n">power</span><span class="p">:])</span>
+
+    <span class="n">system</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">(</span><span class="n">numbering_type</span><span class="p">)</span>
+
+    <span class="n">int_dec</span> <span class="o">=</span> <span class="n">number_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_dec</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">int_string</span> <span class="o">=</span> <span class="n">int_dec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dec_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_dec</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">int_string</span> <span class="o">=</span> <span class="n">int_dec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dec_string</span> <span class="o">=</span> <span class="n">int_dec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;invalid input num string with more than one dot: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number_string</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">use_units</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_string</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">result_symbols</span> <span class="o">=</span> <span class="n">get_value</span><span class="p">(</span><span class="n">int_string</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">int_string</span><span class="p">]</span>
+    <span class="n">dec_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dec_string</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">dec_string</span><span class="p">:</span>
+        <span class="n">result_symbols</span> <span class="o">+=</span> <span class="p">[</span><span class="n">system</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">point</span><span class="p">]</span> <span class="o">+</span> <span class="n">dec_symbols</span>
+
+    <span class="k">if</span> <span class="n">alt_two</span><span class="p">:</span>
+        <span class="n">liang</span> <span class="o">=</span> <span class="n">CND</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">,</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">alt_t</span><span class="p">,</span>
+                    <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">big_s</span><span class="p">,</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">big_t</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result_symbols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">CND</span><span class="p">)</span> <span class="ow">and</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">next_symbol</span> <span class="o">=</span> <span class="n">result_symbols</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span>
+                                             <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_symbols</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="n">previous_symbol</span> <span class="o">=</span> <span class="n">result_symbols</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">next_symbol</span><span class="p">,</span> <span class="n">CNU</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">previous_symbol</span><span class="p">,</span> <span class="p">(</span><span class="n">CNU</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))):</span>
+                    <span class="k">if</span> <span class="n">next_symbol</span><span class="o">.</span><span class="n">power</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="p">((</span><span class="n">previous_symbol</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">previous_symbol</span><span class="o">.</span><span class="n">power</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)):</span>
+                        <span class="n">result_symbols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">liang</span>
+
+    <span class="c1"># if big is True, &#39;两&#39; will not be used and `alt_two` has no impact on output</span>
+    <span class="k">if</span> <span class="n">big</span><span class="p">:</span>
+        <span class="n">attr_name</span> <span class="o">=</span> <span class="s1">&#39;big_&#39;</span>
+        <span class="k">if</span> <span class="n">traditional</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">+=</span> <span class="s1">&#39;t&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">+=</span> <span class="s1">&#39;s&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">traditional</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">=</span> <span class="s1">&#39;traditional&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">=</span> <span class="s1">&#39;simplified&#39;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">getattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">result_symbols</span><span class="p">])</span>
+
+    <span class="c1"># if not use_zeros:</span>
+    <span class="c1">#     result = result.strip(getattr(system.digits[0], attr_name))</span>
+
+    <span class="k">if</span> <span class="n">alt_zero</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">attr_name</span><span class="p">),</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">alt_one</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">attr_name</span><span class="p">),</span> <span class="n">system</span><span class="o">.</span><span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alt_s</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">POINT</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">CHINESE_DIGIS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">result</span>
+
+    <span class="c1"># ^10, 11, .., 19</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SMALLER_CHINESE_NUMERING_UNITS_SIMPLIFIED</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                          <span class="n">SMALLER_CHINESE_NUMERING_UNITS_TRADITIONAL</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="ow">and</span> \
+            <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CHINESE_DIGIS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">BIG_CHINESE_DIGIS_SIMPLIFIED</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">BIG_CHINESE_DIGIS_TRADITIONAL</span><span class="p">[</span><span class="mi">1</span><span class="p">]]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<span class="c1"># ================================================================================ #</span>
+<span class="c1">#                          different types of rewriters</span>
+<span class="c1"># ================================================================================ #</span>
+<div class="viewcode-block" id="Cardinal"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal">[docs]</a><span class="k">class</span> <span class="nc">Cardinal</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CARDINAL类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cardinal</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cardinal</span> <span class="o">=</span> <span class="n">cardinal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+<div class="viewcode-block" id="Cardinal.chntext2cardinal"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.chntext2cardinal">[docs]</a>    <span class="k">def</span> <span class="nf">chntext2cardinal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">chn2num</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chntext</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cardinal.cardinal2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.cardinal2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">cardinal2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">num2chn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cardinal</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="Digit"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Digit">[docs]</a><span class="k">class</span> <span class="nc">Digit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DIGIT类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">digit</span> <span class="o">=</span> <span class="n">digit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+    <span class="c1"># def chntext2digit(self):</span>
+    <span class="c1">#     return chn2num(self.chntext)</span>
+
+<div class="viewcode-block" id="Digit.digit2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Digit.digit2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">digit2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">num2chn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">digit</span><span class="p">,</span> <span class="n">alt_two</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_units</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="TelePhone"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.TelePhone">[docs]</a><span class="k">class</span> <span class="nc">TelePhone</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TELEPHONE类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">telephone</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">raw_chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">telephone</span> <span class="o">=</span> <span class="n">telephone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_chntext</span> <span class="o">=</span> <span class="n">raw_chntext</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+    <span class="c1"># def chntext2telephone(self):</span>
+    <span class="c1">#     sil_parts = self.raw_chntext.split(&#39;&lt;SIL&gt;&#39;)</span>
+    <span class="c1">#     self.telephone = &#39;-&#39;.join([</span>
+    <span class="c1">#         str(chn2num(p)) for p in sil_parts</span>
+    <span class="c1">#     ])</span>
+    <span class="c1">#     return self.telephone</span>
+
+<div class="viewcode-block" id="TelePhone.telephone2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.TelePhone.telephone2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">telephone2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">fixed</span><span class="p">:</span>
+            <span class="n">sil_parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">telephone</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_chntext</span> <span class="o">=</span> <span class="s1">&#39;&lt;SIL&gt;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+                <span class="n">num2chn</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">alt_two</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_units</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">sil_parts</span>
+            <span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_chntext</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;SIL&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sp_parts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">telephone</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_chntext</span> <span class="o">=</span> <span class="s1">&#39;&lt;SP&gt;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+                <span class="n">num2chn</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="n">alt_two</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_units</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">sp_parts</span>
+            <span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_chntext</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&lt;SP&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span></div></div>
+
+
+<div class="viewcode-block" id="Fraction"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Fraction">[docs]</a><span class="k">class</span> <span class="nc">Fraction</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    FRACTION类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+<div class="viewcode-block" id="Fraction.chntext2fraction"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Fraction.chntext2fraction">[docs]</a>    <span class="k">def</span> <span class="nf">chntext2fraction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">denominator</span><span class="p">,</span> <span class="n">numerator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;分之&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chn2num</span><span class="p">(</span><span class="n">numerator</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">chn2num</span><span class="p">(</span><span class="n">denominator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Fraction.fraction2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Fraction.fraction2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">fraction2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">num2chn</span><span class="p">(</span><span class="n">denominator</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;分之&#39;</span> <span class="o">+</span> <span class="n">num2chn</span><span class="p">(</span><span class="n">numerator</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Date"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Date">[docs]</a><span class="k">class</span> <span class="nc">Date</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DATE类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+    <span class="c1"># def chntext2date(self):</span>
+    <span class="c1">#     chntext = self.chntext</span>
+    <span class="c1">#     try:</span>
+    <span class="c1">#         year, other = chntext.strip().split(&#39;年&#39;, maxsplit=1)</span>
+    <span class="c1">#         year = Digit(chntext=year).digit2chntext() + &#39;年&#39;</span>
+    <span class="c1">#     except ValueError:</span>
+    <span class="c1">#         other = chntext</span>
+    <span class="c1">#         year = &#39;&#39;</span>
+    <span class="c1">#     if other:</span>
+    <span class="c1">#         try:</span>
+    <span class="c1">#             month, day = other.strip().split(&#39;月&#39;, maxsplit=1)</span>
+    <span class="c1">#             month = Cardinal(chntext=month).chntext2cardinal() + &#39;月&#39;</span>
+    <span class="c1">#         except ValueError:</span>
+    <span class="c1">#             day = chntext</span>
+    <span class="c1">#             month = &#39;&#39;</span>
+    <span class="c1">#         if day:</span>
+    <span class="c1">#             day = Cardinal(chntext=day[:-1]).chntext2cardinal() + day[-1]</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         month = &#39;&#39;</span>
+    <span class="c1">#         day = &#39;&#39;</span>
+    <span class="c1">#     date = year + month + day</span>
+    <span class="c1">#     self.date = date</span>
+    <span class="c1">#     return self.date</span>
+
+<div class="viewcode-block" id="Date.date2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Date.date2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">date2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">year</span><span class="p">,</span> <span class="n">other</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;年&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="n">Digit</span><span class="p">(</span><span class="n">digit</span><span class="o">=</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">digit2chntext</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;年&#39;</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">date</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">month</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;月&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">cardinal</span><span class="o">=</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">cardinal2chntext</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;月&#39;</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">day</span> <span class="o">=</span> <span class="n">date</span>
+                <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">day</span><span class="p">:</span>
+                <span class="n">day</span> <span class="o">=</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">cardinal</span><span class="o">=</span><span class="n">day</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">cardinal2chntext</span><span class="p">()</span> <span class="o">+</span> <span class="n">day</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">month</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">chntext</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="n">day</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span></div></div>
+
+
+<div class="viewcode-block" id="Money"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Money">[docs]</a><span class="k">class</span> <span class="nc">Money</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MONEY类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">money</span> <span class="o">=</span> <span class="n">money</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+    <span class="c1"># def chntext2money(self):</span>
+    <span class="c1">#     return self.money</span>
+
+<div class="viewcode-block" id="Money.money2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Money.money2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">money2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">money</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">money</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+(\.\d+)?)&#39;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">money</span> <span class="o">=</span> <span class="n">money</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">cardinal</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">cardinal2chntext</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">money</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span></div></div>
+
+
+<div class="viewcode-block" id="Percentage"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Percentage">[docs]</a><span class="k">class</span> <span class="nc">Percentage</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    PERCENTAGE类</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chntext</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percentage</span> <span class="o">=</span> <span class="n">percentage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chntext</span> <span class="o">=</span> <span class="n">chntext</span>
+
+<div class="viewcode-block" id="Percentage.chntext2percentage"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Percentage.chntext2percentage">[docs]</a>    <span class="k">def</span> <span class="nf">chntext2percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">chn2num</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chntext</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;百分之&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span></div>
+
+<div class="viewcode-block" id="Percentage.percentage2chntext"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.Percentage.percentage2chntext">[docs]</a>    <span class="k">def</span> <span class="nf">percentage2chntext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;百分之&#39;</span> <span class="o">+</span> <span class="n">num2chn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">percentage</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">))</span></div></div>
+
+
+<span class="c1"># ================================================================================ #</span>
+<span class="c1">#                            NSW Normalizer</span>
+<span class="c1"># ================================================================================ #</span>
+<div class="viewcode-block" id="NSWNormalizer"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer">[docs]</a><span class="k">class</span> <span class="nc">NSWNormalizer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_text</span> <span class="o">=</span> <span class="s1">&#39;^&#39;</span> <span class="o">+</span> <span class="n">raw_text</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_particular</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(([a-zA-Z]+)二([a-zA-Z]+))&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1"># print(&#39;particular&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">matcher</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;2&#39;</span><span class="o">+</span><span class="n">matcher</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span>
+
+<div class="viewcode-block" id="NSWNormalizer.normalize"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_text</span>
+
+        <span class="c1"># 规范化日期</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\D+((([089]\d|(19|20)\d</span><span class="si">{2}</span><span class="s2">)年)?(\d{1,2}月(\d{1,2}[日号])?)?)&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;date&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">date2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化金钱</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\D+((\d+(\.\d+)?)[多余几]?&quot;</span> <span class="o">+</span> <span class="n">CURRENCY_UNITS</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(\d&quot;</span> <span class="o">+</span> <span class="n">CURRENCY_UNITS</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;?)?)&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;money&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Money</span><span class="p">(</span><span class="n">money</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">money2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化固话/手机号码</span>
+        <span class="c1"># 手机</span>
+        <span class="c1"># http://www.jihaoba.com/news/show/13680</span>
+        <span class="c1"># 移动：139、138、137、136、135、134、159、158、157、150、151、152、188、187、182、183、184、178、198</span>
+        <span class="c1"># 联通：130、131、132、156、155、186、185、176</span>
+        <span class="c1"># 电信：133、153、189、180、181、177</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\D((\+?86 ?)?1([38]\d|5[0-35-9]|7[678]|9[89])\d</span><span class="si">{8}</span><span class="s2">)\D&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;telephone&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">TelePhone</span><span class="p">(</span><span class="n">telephone</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">telephone2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 固话</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\D((0(10|2[1-3]|[3-9]\d</span><span class="si">{2}</span><span class="s2">)-?)?[1-9]\d{6,7})\D&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1"># print(&#39;fixed telephone&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">TelePhone</span><span class="p">(</span><span class="n">telephone</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">telephone2chntext</span><span class="p">(</span><span class="n">fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化分数</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+/\d+)&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;fraction&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">,</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">fraction</span><span class="o">=</span><span class="n">matcher</span><span class="p">)</span><span class="o">.</span><span class="n">fraction2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化百分数</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;％&#39;</span><span class="p">,</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+(\.\d+)?%)&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;percentage&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Percentage</span><span class="p">(</span><span class="n">percentage</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">percentage2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化纯数+量词</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+(\.\d+)?)[多余几]?&quot;</span> <span class="o">+</span> <span class="n">COM_QUANTIFIERS</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;cardinal+quantifier&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">cardinal</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">cardinal2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化数字编号</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d{4,32})&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;digit&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">,</span> <span class="n">Digit</span><span class="p">(</span><span class="n">digit</span><span class="o">=</span><span class="n">matcher</span><span class="p">)</span><span class="o">.</span><span class="n">digit2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 规范化纯数</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+(\.\d+)?)&quot;</span><span class="p">)</span>
+        <span class="n">matchers</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matchers</span><span class="p">:</span>
+            <span class="c1">#print(&#39;cardinal&#39;)</span>
+            <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="n">matchers</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Cardinal</span><span class="p">(</span><span class="n">cardinal</span><span class="o">=</span><span class="n">matcher</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">cardinal2chntext</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_particular</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_text</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="nsw_test_case"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.nsw_test_case">[docs]</a><span class="k">def</span> <span class="nf">nsw_test_case</span><span class="p">(</span><span class="n">raw_text</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I:&#39;</span> <span class="o">+</span> <span class="n">raw_text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;O:&#39;</span> <span class="o">+</span> <span class="n">NSWNormalizer</span><span class="p">(</span><span class="n">raw_text</span><span class="p">)</span><span class="o">.</span><span class="n">normalize</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="nsw_test"><a class="viewcode-back" href="../../../../../_gen/espnet2.text.html#espnet2.text.bilingual.text_normalization.cn_tn.nsw_test">[docs]</a><span class="k">def</span> <span class="nf">nsw_test</span><span class="p">():</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;固话：0595-23865596或23880880。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;固话：0595-23865596或23880880。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;手机：+86 19859213959或15659451527。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;分数：32477/76391。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;百分数：80.03%。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;编号：31520181154418。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;纯数：2983.07克或12345.60米。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;日期：1999年2月20日或09年3月15号。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;金钱：12块5，34.5元，20.1万&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;特殊：O2O或B2C。&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;3456万吨&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;2938个&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;938&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;今天吃了115个小笼包231个馒头&#39;</span><span class="p">)</span>
+    <span class="n">nsw_test_case</span><span class="p">(</span><span class="s1">&#39;有62％的概率&#39;</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1">#nsw_test()</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;ifile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;input filename, assume utf-8 encoding&#39;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;ofile&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;output filename&#39;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--to_upper&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;convert to upper case&#39;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--to_lower&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;convert to lower case&#39;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--has_key&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;input text has Kaldi&#39;s key as first field.&quot;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--log_interval&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;log interval in number of processed lines&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">ifile</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ifile</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+    <span class="n">ofile</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">ofile</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">ifile</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">has_key</span><span class="p">:</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1"># cases</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">to_upper</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">to_lower</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;cn_tn.py: to_upper OR to_lower?&#39;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">to_upper</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">to_lower</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1"># NSW(Non-Standard-Word) normalization</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">NSWNormalizer</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+
+        <span class="c1"># Punctuations removal</span>
+        <span class="n">old_chars</span> <span class="o">=</span> <span class="n">CHINESE_PUNC_LIST</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span> <span class="c1"># includes all CN and EN punctuations</span>
+        <span class="n">new_chars</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">old_chars</span><span class="p">)</span>
+        <span class="n">del_chars</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="n">old_chars</span><span class="p">,</span> <span class="n">new_chars</span><span class="p">,</span> <span class="n">del_chars</span><span class="p">))</span>
+
+        <span class="c1">#</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">has_key</span><span class="p">:</span>
+            <span class="n">ofile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="c1"># skip empty line in pure text format(without Kaldi&#39;s utt key)</span>
+                <span class="n">ofile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">args</span><span class="o">.</span><span class="n">log_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;cn_tn.py: </span><span class="si">{}</span><span class="s2"> lines done.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;cn_tn.py: </span><span class="si">{}</span><span class="s2"> lines done in total.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">ifile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">ofile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Shinji Watanabe.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.text package &mdash; ESPnet 0.10.6a1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>espnet2.text package &mdash; ESPnet 202204 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="espnet2.enh package" href="espnet2.enh.html" />
-    <link rel="prev" title="espnet2.schedulers package" href="espnet2.schedulers.html" /> 
+    <link rel="next" title="espnet2.iterators package" href="espnet2.iterators.html" />
+    <link rel="prev" title="espnet2.fst package" href="espnet2.fst.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                0.10.6a1
+                202204
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -58,53 +58,89 @@
 <li class="toctree-l1"><a class="reference internal" href="../espnet2_task.html">Task class and data input system for training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../espnet2_distributed.html">Distributed training</a></li>
 </ul>
+<p><span class="caption-text">Notebook:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/asr_cli.html">Speech Recognition (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/asr_library.html">Speech Recognition (Library)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_asr_realtime_demo.html">ESPnet2-ASR realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_asr_transfer_learning_demo.html"><strong>Use transfer learning for ASR in ESPnet2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_asr_transfer_learning_demo.html#Abstract">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_asr_transfer_learning_demo.html#ESPnet-installation-(about-10-minutes-in-total)">ESPnet installation (about 10 minutes in total)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_asr_transfer_learning_demo.html#mini_an4-recipe-as-a-transfer-learning-example">mini_an4 recipe as a transfer learning example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_streaming_asr_demo.html">ESPnet2 real streaming Transformer demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_tts_realtime_demo.html">ESPnet2-TTS realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_tutorial_2021_CMU_11751_18781.html">CMU 11751/18781 2021: ESPnet Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-an-inference-example">Run an inference example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Full-installation">Full installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-a-recipe-example">Run a recipe example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet_se_demonstration_for_waspaa_2021.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet_se_demonstration_for_waspaa_2021.html#Contents">Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet_se_demonstration_for_waspaa_2021.html#(1)-Tutorials-on-the-Basic-Usage">(1) Tutorials on the Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/espnet_se_demonstration_for_waspaa_2021.html#(2)-Tutorials-on-Contributing-to-ESPNet-SE-Project">(2) Tutorials on Contributing to ESPNet-SE Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/pretrained.html">Pretrained Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/se_demo.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/st_demo.html">ESPnet Speech Translation Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/tts_cli.html">Text-to-Speech (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook/tts_realtime_demo.html">ESPnet real time E2E-TTS demonstration</a></li>
+</ul>
 <p><span class="caption-text">Package Reference:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="espnet.nets.html">espnet.nets package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.transform.html">espnet.transform package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet.bin.html">espnet.bin package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet.optimizer.html">espnet.optimizer package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet.utils.html">espnet.utils package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet.st.html">espnet.st package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.vc.html">espnet.vc package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.mt.html">espnet.mt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.scheduler.html">espnet.scheduler package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.tts.html">espnet.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet.optimizer.html">espnet.optimizer package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.asr.html">espnet.asr package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet.lm.html">espnet.lm package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.iterators.html">espnet2.iterators package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.fst.html">espnet2.fst package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.bin.html">espnet2.bin package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.diar.html">espnet2.diar package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.utils.html">espnet2.utils package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.train.html">espnet2.train package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.layers.html">espnet2.layers package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.tts.html">espnet2.tts package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.hubert.html">espnet2.hubert package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.samplers.html">espnet2.samplers package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.tasks.html">espnet2.tasks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet.st.html">espnet.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet.nets.html">espnet.nets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet.bin.html">espnet.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet.utils.html">espnet.utils package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.fileio.html">espnet2.fileio package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.gan_tts.html">espnet2.gan_tts package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.asr.html">espnet2.asr package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.optimizers.html">espnet2.optimizers package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.lm.html">espnet2.lm package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="espnet2.schedulers.html">espnet2.schedulers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.fst.html">espnet2.fst package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">espnet2.text package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-build-tokenizer">espnet2.text.build_tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-sentencepiece-tokenizer">espnet2.text.sentencepiece_tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-abs-tokenizer">espnet2.text.abs_tokenizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-phoneme-tokenizer">espnet2.text.phoneme_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-word-tokenizer">espnet2.text.word_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-init">espnet2.text.__init__</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-korean-cleaner">espnet2.text.korean_cleaner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-abs-tokenizer">espnet2.text.abs_tokenizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-sentencepiece-tokenizer">espnet2.text.sentencepiece_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-token-id-converter">espnet2.text.token_id_converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-build-tokenizer">espnet2.text.build_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-char-tokenizer">espnet2.text.char_tokenizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-phoneme-tokenizer">espnet2.text.phoneme_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-cleaner">espnet2.text.cleaner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-korean-cleaner">espnet2.text.korean_cleaner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-symbols">espnet2.text.symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-minnan-minnandict">espnet2.text.minnan.minnandict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-minnan-init">espnet2.text.minnan.__init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-cmudict">espnet2.text.bilingual.cmudict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-init">espnet2.text.bilingual.__init__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-g2p">espnet2.text.bilingual.g2p</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-thchsdict">espnet2.text.bilingual.thchsdict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-text-normalization-normalization">espnet2.text.bilingual.text_normalization.normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-bilingual-text-normalization-cn-tn">espnet2.text.bilingual.text_normalization.cn_tn</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.iterators.html">espnet2.iterators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.mt.html">espnet2.mt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.schedulers.html">espnet2.schedulers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.tasks.html">espnet2.tasks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.tts.html">espnet2.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.hubert.html">espnet2.hubert package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.asr.html">espnet2.asr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.layers.html">espnet2.layers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.enh.html">espnet2.enh package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.train.html">espnet2.train package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.lm.html">espnet2.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.st.html">espnet2.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.gan_tts.html">espnet2.gan_tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.diar.html">espnet2.diar package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.bin.html">espnet2.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.optimizers.html">espnet2.optimizers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.main_funcs.html">espnet2.main_funcs package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.samplers.html">espnet2.samplers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.utils.html">espnet2.utils package</a></li>
 </ul>
 <p><span class="caption-text">Tool Reference:</span></p>
 <ul>
@@ -164,72 +200,8 @@
 </style>
 <section id="espnet2-text-package">
 <h1>espnet2.text package<a class="headerlink" href="#espnet2-text-package" title="Permalink to this headline">¶</a></h1>
-<section id="espnet2-text-build-tokenizer">
-<span id="id1"></span><h2>espnet2.text.build_tokenizer<a class="headerlink" href="#espnet2-text-build-tokenizer" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.build_tokenizer"></span><dl class="function">
-<dt id="espnet2.text.build_tokenizer.build_tokenizer">
-<code class="sig-prename descclassname">espnet2.text.build_tokenizer.</code><code class="sig-name descname">build_tokenizer</code><span class="sig-paren">(</span><em class="sig-param">token_type: str</em>, <em class="sig-param">bpemodel: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em>, <em class="sig-param">space_symbol: str = '&lt;space&gt;'</em>, <em class="sig-param">delimiter: str = None</em>, <em class="sig-param">g2p_type: str = None</em><span class="sig-paren">)</span> &#x2192; espnet2.text.abs_tokenizer.AbsTokenizer<a class="reference internal" href="../_modules/espnet2/text/build_tokenizer.html#build_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.build_tokenizer.build_tokenizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>A helper function to instantiate Tokenizer</p>
-</dd></dl>
-
-</section>
-<section id="espnet2-text-word-tokenizer">
-<span id="id2"></span><h2>espnet2.text.word_tokenizer<a class="headerlink" href="#espnet2-text-word-tokenizer" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.word_tokenizer"></span><dl class="class">
-<dt id="espnet2.text.word_tokenizer.WordTokenizer">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.word_tokenizer.</code><code class="sig-name descname">WordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">delimiter: str = None</em>, <em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="espnet2.text.abs_tokenizer.AbsTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.abs_tokenizer.AbsTokenizer</span></code></a></p>
-<dl class="method">
-<dt id="espnet2.text.word_tokenizer.WordTokenizer.text2tokens">
-<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="espnet2.text.word_tokenizer.WordTokenizer.tokens2text">
-<code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="espnet2-text-init">
-<span id="id3"></span><h2>espnet2.text.__init__<a class="headerlink" href="#espnet2-text-init" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.__init__"></span></section>
-<section id="espnet2-text-korean-cleaner">
-<span id="id4"></span><h2>espnet2.text.korean_cleaner<a class="headerlink" href="#espnet2-text-korean-cleaner" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.korean_cleaner"></span><dl class="class">
-<dt id="espnet2.text.korean_cleaner.KoreanCleaner">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.korean_cleaner.</code><code class="sig-name descname">KoreanCleaner</code><a class="reference internal" href="../_modules/espnet2/text/korean_cleaner.html#KoreanCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.korean_cleaner.KoreanCleaner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="espnet2.text.korean_cleaner.KoreanCleaner.normalize_text">
-<em class="property">classmethod </em><code class="sig-name descname">normalize_text</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/korean_cleaner.html#KoreanCleaner.normalize_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.korean_cleaner.KoreanCleaner.normalize_text" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="espnet2-text-abs-tokenizer">
-<span id="id5"></span><h2>espnet2.text.abs_tokenizer<a class="headerlink" href="#espnet2-text-abs-tokenizer" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.abs_tokenizer"></span><dl class="class">
-<dt id="espnet2.text.abs_tokenizer.AbsTokenizer">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.abs_tokenizer.</code><code class="sig-name descname">AbsTokenizer</code><a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
-<dl class="method">
-<dt id="espnet2.text.abs_tokenizer.AbsTokenizer.text2tokens">
-<em class="property">abstract </em><code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="espnet2.text.abs_tokenizer.AbsTokenizer.tokens2text">
-<em class="property">abstract </em><code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="espnet2-text-sentencepiece-tokenizer">
-<span id="id6"></span><h2>espnet2.text.sentencepiece_tokenizer<a class="headerlink" href="#espnet2-text-sentencepiece-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>espnet2.text.sentencepiece_tokenizer<a class="headerlink" href="#espnet2-text-sentencepiece-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.sentencepiece_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.sentencepiece_tokenizer.SentencepiecesTokenizer">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.sentencepiece_tokenizer.</code><code class="sig-name descname">SentencepiecesTokenizer</code><span class="sig-paren">(</span><em class="sig-param">model: Union[pathlib.Path, str]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/sentencepiece_tokenizer.html#SentencepiecesTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.sentencepiece_tokenizer.SentencepiecesTokenizer" title="Permalink to this definition">¶</a></dt>
@@ -247,51 +219,27 @@
 </dd></dl>
 
 </section>
-<section id="espnet2-text-token-id-converter">
-<span id="id7"></span><h2>espnet2.text.token_id_converter<a class="headerlink" href="#espnet2-text-token-id-converter" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.token_id_converter"></span><dl class="class">
-<dt id="espnet2.text.token_id_converter.TokenIDConverter">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.token_id_converter.</code><code class="sig-name descname">TokenIDConverter</code><span class="sig-paren">(</span><em class="sig-param">token_list: Union[pathlib.Path, str, Iterable[str]], unk_symbol: str = '&lt;unk&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<section id="espnet2-text-abs-tokenizer">
+<span id="id2"></span><h2>espnet2.text.abs_tokenizer<a class="headerlink" href="#espnet2-text-abs-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.abs_tokenizer"></span><dl class="class">
+<dt id="espnet2.text.abs_tokenizer.AbsTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.abs_tokenizer.</code><code class="sig-name descname">AbsTokenizer</code><a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <dl class="method">
-<dt id="espnet2.text.token_id_converter.TokenIDConverter.get_num_vocabulary_size">
-<code class="sig-name descname">get_num_vocabulary_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.get_num_vocabulary_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.get_num_vocabulary_size" title="Permalink to this definition">¶</a></dt>
+<dt id="espnet2.text.abs_tokenizer.AbsTokenizer.text2tokens">
+<em class="property">abstract </em><code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="espnet2.text.token_id_converter.TokenIDConverter.ids2tokens">
-<code class="sig-name descname">ids2tokens</code><span class="sig-paren">(</span><em class="sig-param">integers: Union[numpy.ndarray, Iterable[int]]</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.ids2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.ids2tokens" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="espnet2.text.token_id_converter.TokenIDConverter.tokens2ids">
-<code class="sig-name descname">tokens2ids</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.tokens2ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.tokens2ids" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="espnet2-text-char-tokenizer">
-<span id="id8"></span><h2>espnet2.text.char_tokenizer<a class="headerlink" href="#espnet2-text-char-tokenizer" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-espnet2.text.char_tokenizer"></span><dl class="class">
-<dt id="espnet2.text.char_tokenizer.CharTokenizer">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.char_tokenizer.</code><code class="sig-name descname">CharTokenizer</code><span class="sig-paren">(</span><em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">space_symbol: str = '&lt;space&gt;'</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="espnet2.text.abs_tokenizer.AbsTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.abs_tokenizer.AbsTokenizer</span></code></a></p>
-<dl class="method">
-<dt id="espnet2.text.char_tokenizer.CharTokenizer.text2tokens">
-<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="espnet2.text.char_tokenizer.CharTokenizer.tokens2text">
-<code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
+<dt id="espnet2.text.abs_tokenizer.AbsTokenizer.tokens2text">
+<em class="property">abstract </em><code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="espnet2-text-phoneme-tokenizer">
-<span id="id9"></span><h2>espnet2.text.phoneme_tokenizer<a class="headerlink" href="#espnet2-text-phoneme-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>espnet2.text.phoneme_tokenizer<a class="headerlink" href="#espnet2-text-phoneme-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.phoneme_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.phoneme_tokenizer.G2p_en">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.phoneme_tokenizer.</code><code class="sig-name descname">G2p_en</code><span class="sig-paren">(</span><em class="sig-param">no_space: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/phoneme_tokenizer.html#G2p_en"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.phoneme_tokenizer.G2p_en" title="Permalink to this definition">¶</a></dt>
@@ -441,8 +389,82 @@ sequence-to-sequence acoustic modeling for neural TTS</a> with some r9y9’s twe
 <dd></dd></dl>
 
 </section>
+<section id="espnet2-text-word-tokenizer">
+<span id="id4"></span><h2>espnet2.text.word_tokenizer<a class="headerlink" href="#espnet2-text-word-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.word_tokenizer"></span><dl class="class">
+<dt id="espnet2.text.word_tokenizer.WordTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.word_tokenizer.</code><code class="sig-name descname">WordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">delimiter: str = None</em>, <em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="espnet2.text.abs_tokenizer.AbsTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.abs_tokenizer.AbsTokenizer</span></code></a></p>
+<dl class="method">
+<dt id="espnet2.text.word_tokenizer.WordTokenizer.text2tokens">
+<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.word_tokenizer.WordTokenizer.tokens2text">
+<code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-init">
+<span id="id5"></span><h2>espnet2.text.__init__<a class="headerlink" href="#espnet2-text-init" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.__init__"></span></section>
+<section id="espnet2-text-token-id-converter">
+<span id="id6"></span><h2>espnet2.text.token_id_converter<a class="headerlink" href="#espnet2-text-token-id-converter" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.token_id_converter"></span><dl class="class">
+<dt id="espnet2.text.token_id_converter.TokenIDConverter">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.token_id_converter.</code><code class="sig-name descname">TokenIDConverter</code><span class="sig-paren">(</span><em class="sig-param">token_list: Union[pathlib.Path, str, Iterable[str]], unk_symbol: str = '&lt;unk&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="espnet2.text.token_id_converter.TokenIDConverter.get_num_vocabulary_size">
+<code class="sig-name descname">get_num_vocabulary_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.get_num_vocabulary_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.get_num_vocabulary_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.token_id_converter.TokenIDConverter.ids2tokens">
+<code class="sig-name descname">ids2tokens</code><span class="sig-paren">(</span><em class="sig-param">integers: Union[numpy.ndarray, Iterable[int]]</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.ids2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.ids2tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.token_id_converter.TokenIDConverter.tokens2ids">
+<code class="sig-name descname">tokens2ids</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; List[int]<a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter.tokens2ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter.tokens2ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-build-tokenizer">
+<span id="id7"></span><h2>espnet2.text.build_tokenizer<a class="headerlink" href="#espnet2-text-build-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.build_tokenizer"></span><dl class="function">
+<dt id="espnet2.text.build_tokenizer.build_tokenizer">
+<code class="sig-prename descclassname">espnet2.text.build_tokenizer.</code><code class="sig-name descname">build_tokenizer</code><span class="sig-paren">(</span><em class="sig-param">token_type: str</em>, <em class="sig-param">bpemodel: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em>, <em class="sig-param">space_symbol: str = '&lt;space&gt;'</em>, <em class="sig-param">delimiter: str = None</em>, <em class="sig-param">g2p_type: str = None</em><span class="sig-paren">)</span> &#x2192; espnet2.text.abs_tokenizer.AbsTokenizer<a class="reference internal" href="../_modules/espnet2/text/build_tokenizer.html#build_tokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.build_tokenizer.build_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper function to instantiate Tokenizer</p>
+</dd></dl>
+
+</section>
+<section id="espnet2-text-char-tokenizer">
+<span id="id8"></span><h2>espnet2.text.char_tokenizer<a class="headerlink" href="#espnet2-text-char-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.char_tokenizer"></span><dl class="class">
+<dt id="espnet2.text.char_tokenizer.CharTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.char_tokenizer.</code><code class="sig-name descname">CharTokenizer</code><span class="sig-paren">(</span><em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">space_symbol: str = '&lt;space&gt;'</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="espnet2.text.abs_tokenizer.AbsTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.abs_tokenizer.AbsTokenizer</span></code></a></p>
+<dl class="method">
+<dt id="espnet2.text.char_tokenizer.CharTokenizer.text2tokens">
+<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.char_tokenizer.CharTokenizer.tokens2text">
+<code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="espnet2-text-cleaner">
-<span id="id10"></span><h2>espnet2.text.cleaner<a class="headerlink" href="#espnet2-text-cleaner" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>espnet2.text.cleaner<a class="headerlink" href="#espnet2-text-cleaner" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.cleaner"></span><dl class="class">
 <dt id="espnet2.text.cleaner.TextCleaner">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.cleaner.</code><code class="sig-name descname">TextCleaner</code><span class="sig-paren">(</span><em class="sig-param">cleaner_types: Collection[str] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/cleaner.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.cleaner.TextCleaner" title="Permalink to this definition">¶</a></dt>
@@ -457,14 +479,398 @@ sequence-to-sequence acoustic modeling for neural TTS</a> with some r9y9’s twe
 </dd></dl>
 
 </section>
+<section id="espnet2-text-korean-cleaner">
+<span id="id10"></span><h2>espnet2.text.korean_cleaner<a class="headerlink" href="#espnet2-text-korean-cleaner" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.korean_cleaner"></span><dl class="class">
+<dt id="espnet2.text.korean_cleaner.KoreanCleaner">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.korean_cleaner.</code><code class="sig-name descname">KoreanCleaner</code><a class="reference internal" href="../_modules/espnet2/text/korean_cleaner.html#KoreanCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.korean_cleaner.KoreanCleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="espnet2.text.korean_cleaner.KoreanCleaner.normalize_text">
+<em class="property">classmethod </em><code class="sig-name descname">normalize_text</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/korean_cleaner.html#KoreanCleaner.normalize_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.korean_cleaner.KoreanCleaner.normalize_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-symbols">
+<span id="id11"></span><h2>espnet2.text.symbols<a class="headerlink" href="#espnet2-text-symbols" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.symbols"></span><dl class="class">
+<dt id="espnet2.text.symbols.Symbols">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.symbols.</code><code class="sig-name descname">Symbols</code><a class="reference internal" href="../_modules/espnet2/text/symbols.html#Symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.symbols.Symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="espnet2.text.symbols.Symbols.get_symbols">
+<code class="sig-name descname">get_symbols</code><span class="sig-paren">(</span><em class="sig-param">language='bilingual'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/symbols.html#Symbols.get_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.symbols.Symbols.get_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-minnan-minnandict">
+<span id="id12"></span><h2>espnet2.text.minnan.minnandict<a class="headerlink" href="#espnet2-text-minnan-minnandict" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.minnan.minnandict"></span><dl class="class">
+<dt id="espnet2.text.minnan.minnandict.MinNanDcit">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.minnan.minnandict.</code><code class="sig-name descname">MinNanDcit</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/minnan/minnandict.html#MinNanDcit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.minnan.minnandict.MinNanDcit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Thin wrapper around MinNanDcit data to convert chinese word to minnan phoneme</p>
+<dl class="method">
+<dt id="espnet2.text.minnan.minnandict.MinNanDcit.lookup">
+<code class="sig-name descname">lookup</code><span class="sig-paren">(</span><em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/minnan/minnandict.html#MinNanDcit.lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.minnan.minnandict.MinNanDcit.lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of  minnan phoneme of the given chinese word</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-minnan-init">
+<span id="id13"></span><h2>espnet2.text.minnan.__init__<a class="headerlink" href="#espnet2-text-minnan-init" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.minnan.__init__"></span></section>
+<section id="espnet2-text-bilingual-cmudict">
+<span id="id14"></span><h2>espnet2.text.bilingual.cmudict<a class="headerlink" href="#espnet2-text-bilingual-cmudict" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.cmudict"></span><dl class="class">
+<dt id="espnet2.text.bilingual.cmudict.CMUDict">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.cmudict.</code><code class="sig-name descname">CMUDict</code><span class="sig-paren">(</span><em class="sig-param">file_or_path</em>, <em class="sig-param">keep_ambiguous=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/cmudict.html#CMUDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.cmudict.CMUDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Thin wrapper around CMUDict data. <a class="reference external" href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a></p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.cmudict.CMUDict.lookup">
+<code class="sig-name descname">lookup</code><span class="sig-paren">(</span><em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/cmudict.html#CMUDict.lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.cmudict.CMUDict.lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of ARPAbet pronunciations of the given word.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.cmudict.is_upper_alphabet">
+<code class="sig-prename descclassname">espnet2.text.bilingual.cmudict.</code><code class="sig-name descname">is_upper_alphabet</code><span class="sig-paren">(</span><em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/cmudict.html#is_upper_alphabet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.cmudict.is_upper_alphabet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="espnet2-text-bilingual-init">
+<span id="id15"></span><h2>espnet2.text.bilingual.__init__<a class="headerlink" href="#espnet2-text-bilingual-init" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.__init__"></span></section>
+<section id="espnet2-text-bilingual-g2p">
+<span id="id16"></span><h2>espnet2.text.bilingual.g2p<a class="headerlink" href="#espnet2-text-bilingual-g2p" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.g2p"></span><dl class="class">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.g2p.</code><code class="sig-name descname">BilingualG2P</code><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.get_arpabet">
+<code class="sig-name descname">get_arpabet</code><span class="sig-paren">(</span><em class="sig-param">cmudict</em>, <em class="sig-param">word</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.get_arpabet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.get_arpabet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.get_phoneme">
+<code class="sig-name descname">get_phoneme</code><span class="sig-paren">(</span><em class="sig-param">thchsdict</em>, <em class="sig-param">pinyin</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.get_phoneme"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.get_phoneme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.get_symbols">
+<code class="sig-name descname">get_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.get_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.get_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.punctuation2silence">
+<code class="sig-name descname">punctuation2silence</code><span class="sig-paren">(</span><em class="sig-param">phoneme</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.punctuation2silence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.punctuation2silence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.should_keep_symbol">
+<code class="sig-name descname">should_keep_symbol</code><span class="sig-paren">(</span><em class="sig-param">s</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.should_keep_symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.should_keep_symbol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.g2p.BilingualG2P.text2tokens">
+<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P.text2tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-bilingual-thchsdict">
+<span id="id17"></span><h2>espnet2.text.bilingual.thchsdict<a class="headerlink" href="#espnet2-text-bilingual-thchsdict" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.thchsdict"></span><dl class="class">
+<dt id="espnet2.text.bilingual.thchsdict.THCHSDict">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.thchsdict.</code><code class="sig-name descname">THCHSDict</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/thchsdict.html#THCHSDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.thchsdict.THCHSDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Thin wrapper around THCHSDict data to convert pinyin to phoneme</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.thchsdict.THCHSDict.lookup">
+<code class="sig-name descname">lookup</code><span class="sig-paren">(</span><em class="sig-param">pinyin</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/thchsdict.html#THCHSDict.lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.thchsdict.THCHSDict.lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of  phoneme of the given pinyin</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="espnet2-text-bilingual-text-normalization-normalization">
+<span id="id18"></span><h2>espnet2.text.bilingual.text_normalization.normalization<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-normalization" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.text_normalization.normalization"></span><dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.normalization.collapse_whitespace">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">collapse_whitespace</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#collapse_whitespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.collapse_whitespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.normalization.get_pinyin">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">get_pinyin</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#get_pinyin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.get_pinyin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.normalization.special_symbol_clean">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">special_symbol_clean</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#special_symbol_clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.special_symbol_clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.normalization.text2pinyin">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">text2pinyin</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#text2pinyin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.text2pinyin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.normalization.text_segment">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">text_segment</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">position=60</em>, <em class="sig-param">max_len=60</em>, <em class="sig-param">split_text=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#text_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.text_segment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="espnet2-text-bilingual-text-normalization-cn-tn">
+<span id="id19"></span><h2>espnet2.text.bilingual.text_normalization.cn_tn<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-cn-tn" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.bilingual.text_normalization.cn_tn"></span><dl class="attribute">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.CC">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">CC</code><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.CC" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.CM">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">CM</code><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.CM" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.CND">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">CND</code><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.CND" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.CNU">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">CNU</code><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.CNU" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Cardinal">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Cardinal</code><span class="sig-paren">(</span><em class="sig-param">cardinal=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Cardinal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>CARDINAL类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.cardinal2chntext">
+<code class="sig-name descname">cardinal2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Cardinal.cardinal2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.cardinal2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.chntext2cardinal">
+<code class="sig-name descname">chntext2cardinal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Cardinal.chntext2cardinal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Cardinal.chntext2cardinal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">ChineseChar</code><span class="sig-paren">(</span><em class="sig-param">simplified</em>, <em class="sig-param">traditional</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseChar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>中文字符
+每个字符对应简体和繁体,
+e.g. 简体 = ‘负’, 繁体 = ‘負’
+转换时可转换为简体或繁体</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">ChineseMath</code><span class="sig-paren">(</span><em class="sig-param">simplified</em>, <em class="sig-param">traditional</em>, <em class="sig-param">symbol</em>, <em class="sig-param">expression=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseMath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseMath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar</span></code></a></p>
+<p>中文数位字符</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">ChineseNumberDigit</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">simplified</em>, <em class="sig-param">traditional</em>, <em class="sig-param">big_s</em>, <em class="sig-param">big_t</em>, <em class="sig-param">alt_s=None</em>, <em class="sig-param">alt_t=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseNumberDigit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar</span></code></a></p>
+<p>中文数字字符</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">i</em>, <em class="sig-param">v</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseNumberDigit.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberDigit.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">ChineseNumberUnit</code><span class="sig-paren">(</span><em class="sig-param">power</em>, <em class="sig-param">simplified</em>, <em class="sig-param">traditional</em>, <em class="sig-param">big_s</em>, <em class="sig-param">big_t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseNumberUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar" title="espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.bilingual.text_normalization.cn_tn.ChineseChar</span></code></a></p>
+<p>中文数字/数位字符
+每个字符除繁简体外还有一个额外的大写字符
+e.g. ‘陆’ 和 ‘陸’</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">value</em>, <em class="sig-param">numbering_type='mid'</em>, <em class="sig-param">small_unit=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#ChineseNumberUnit.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.ChineseNumberUnit.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Date">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Date</code><span class="sig-paren">(</span><em class="sig-param">date=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DATE类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Date.date2chntext">
+<code class="sig-name descname">date2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Date.date2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Date.date2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Digit">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Digit</code><span class="sig-paren">(</span><em class="sig-param">digit=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Digit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Digit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>DIGIT类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Digit.digit2chntext">
+<code class="sig-name descname">digit2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Digit.digit2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Digit.digit2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Fraction">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Fraction</code><span class="sig-paren">(</span><em class="sig-param">fraction=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>FRACTION类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Fraction.chntext2fraction">
+<code class="sig-name descname">chntext2fraction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Fraction.chntext2fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Fraction.chntext2fraction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Fraction.fraction2chntext">
+<code class="sig-name descname">fraction2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Fraction.fraction2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Fraction.fraction2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.MathSymbol">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">MathSymbol</code><span class="sig-paren">(</span><em class="sig-param">positive</em>, <em class="sig-param">negative</em>, <em class="sig-param">point</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#MathSymbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.MathSymbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>用于中文数字系统的数学符号 (繁/简体), e.g.
+positive = [‘正’, ‘正’]
+negative = [‘负’, ‘負’]
+point = [‘点’, ‘點’]</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Money">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Money</code><span class="sig-paren">(</span><em class="sig-param">money=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Money"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Money" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MONEY类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Money.money2chntext">
+<code class="sig-name descname">money2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Money.money2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Money.money2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">NSWNormalizer</code><span class="sig-paren">(</span><em class="sig-param">raw_text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#NSWNormalizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer.normalize">
+<code class="sig-name descname">normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#NSWNormalizer.normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.NSWNormalizer.normalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.NumberSystem">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">NumberSystem</code><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#NumberSystem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.NumberSystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>中文数字系统</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Percentage">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">Percentage</code><span class="sig-paren">(</span><em class="sig-param">percentage=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Percentage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Percentage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>PERCENTAGE类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Percentage.chntext2percentage">
+<code class="sig-name descname">chntext2percentage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Percentage.chntext2percentage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Percentage.chntext2percentage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.Percentage.percentage2chntext">
+<code class="sig-name descname">percentage2chntext</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#Percentage.percentage2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.Percentage.percentage2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.TelePhone">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">TelePhone</code><span class="sig-paren">(</span><em class="sig-param">telephone=None</em>, <em class="sig-param">raw_chntext=None</em>, <em class="sig-param">chntext=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#TelePhone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.TelePhone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>TELEPHONE类</p>
+<dl class="method">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.TelePhone.telephone2chntext">
+<code class="sig-name descname">telephone2chntext</code><span class="sig-paren">(</span><em class="sig-param">fixed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#TelePhone.telephone2chntext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.TelePhone.telephone2chntext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.chn2num">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">chn2num</code><span class="sig-paren">(</span><em class="sig-param">chinese_string</em>, <em class="sig-param">numbering_type='mid'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#chn2num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.chn2num" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.create_system">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">create_system</code><span class="sig-paren">(</span><em class="sig-param">numbering_type='mid'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#create_system"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.create_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>根据数字系统类型返回创建相应的数字系统，默认为 mid
+NUMBERING_TYPES = [‘low’, ‘mid’, ‘high’]: 中文数字系统类型</p>
+<blockquote>
+<div><p>low:  ‘兆’ = ‘亿’ * ‘十’ = $10^{9}$,  ‘京’ = ‘兆’ * ‘十’, etc.
+mid:  ‘兆’ = ‘亿’ * ‘万’ = $10^{12}$, ‘京’ = ‘兆’ * ‘万’, etc.
+high: ‘兆’ = ‘亿’ * ‘亿’ = $10^{16}$, ‘京’ = ‘兆’ * ‘兆’, etc.</p>
+</div></blockquote>
+<p>返回对应的数字系统</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.nsw_test">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">nsw_test</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#nsw_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.nsw_test" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.nsw_test_case">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">nsw_test_case</code><span class="sig-paren">(</span><em class="sig-param">raw_text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#nsw_test_case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.nsw_test_case" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.text.bilingual.text_normalization.cn_tn.num2chn">
+<code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">num2chn</code><span class="sig-paren">(</span><em class="sig-param">number_string</em>, <em class="sig-param">numbering_type='mid'</em>, <em class="sig-param">big=False</em>, <em class="sig-param">traditional=False</em>, <em class="sig-param">alt_zero=False</em>, <em class="sig-param">alt_one=False</em>, <em class="sig-param">alt_two=True</em>, <em class="sig-param">use_zeros=True</em>, <em class="sig-param">use_units=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/cn_tn.html#num2chn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.num2chn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="espnet2.schedulers.html" class="btn btn-neutral float-left" title="espnet2.schedulers package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="espnet2.enh.html" class="btn btn-neutral float-right" title="espnet2.enh package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="espnet2.fst.html" class="btn btn-neutral float-left" title="espnet2.fst package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="espnet2.iterators.html" class="btn btn-neutral float-right" title="espnet2.iterators package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

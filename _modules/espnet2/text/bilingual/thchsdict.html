@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>espnet2.text.bilingual.thchsdict &mdash; ESPnet 202204 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> ESPnet
+          </a>
+              <div class="version">
+                202204
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">Tutorial:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parallelization.html">Using Job scheduling system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docker.html">Docker</a></li>
+</ul>
+<p><span class="caption-text">ESPnet2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../espnet2_tutorial.html">ESPnet2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../espnet2_tutorial.html#instruction-for-run-sh">Instruction for run.sh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../espnet2_training_option.html">Change the configuration for training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../espnet2_task.html">Task class and data input system for training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../espnet2_distributed.html">Distributed training</a></li>
+</ul>
+<p><span class="caption-text">Notebook:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/asr_cli.html">Speech Recognition (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/asr_library.html">Speech Recognition (Library)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_asr_realtime_demo.html">ESPnet2-ASR realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_asr_transfer_learning_demo.html"><strong>Use transfer learning for ASR in ESPnet2</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_asr_transfer_learning_demo.html#Abstract">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_asr_transfer_learning_demo.html#ESPnet-installation-(about-10-minutes-in-total)">ESPnet installation (about 10 minutes in total)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_asr_transfer_learning_demo.html#mini_an4-recipe-as-a-transfer-learning-example">mini_an4 recipe as a transfer learning example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_streaming_asr_demo.html">ESPnet2 real streaming Transformer demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_tts_realtime_demo.html">ESPnet2-TTS realtime demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html">CMU 11751/18781 2021: ESPnet Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-an-inference-example">Run an inference example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Full-installation">Full installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet2_tutorial_2021_CMU_11751_18781.html#Run-a-recipe-example">Run a recipe example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#Contents">Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#(1)-Tutorials-on-the-Basic-Usage">(1) Tutorials on the Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/espnet_se_demonstration_for_waspaa_2021.html#(2)-Tutorials-on-Contributing-to-ESPNet-SE-Project">(2) Tutorials on Contributing to ESPNet-SE Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/pretrained.html">Pretrained Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/se_demo.html">ESPnet Speech Enhancement Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/st_demo.html">ESPnet Speech Translation Demonstration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/tts_cli.html">Text-to-Speech (Recipe)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebook/tts_realtime_demo.html">ESPnet real time E2E-TTS demonstration</a></li>
+</ul>
+<p><span class="caption-text">Package Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.transform.html">espnet.transform package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.vc.html">espnet.vc package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.mt.html">espnet.mt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.scheduler.html">espnet.scheduler package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.tts.html">espnet.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.optimizer.html">espnet.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.asr.html">espnet.asr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.lm.html">espnet.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.st.html">espnet.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.nets.html">espnet.nets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.bin.html">espnet.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet.utils.html">espnet.utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.fileio.html">espnet2.fileio package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.fst.html">espnet2.fst package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.text.html">espnet2.text package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.iterators.html">espnet2.iterators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.mt.html">espnet2.mt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.schedulers.html">espnet2.schedulers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.tasks.html">espnet2.tasks package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.tts.html">espnet2.tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.hubert.html">espnet2.hubert package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.asr.html">espnet2.asr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.layers.html">espnet2.layers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.enh.html">espnet2.enh package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.train.html">espnet2.train package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.lm.html">espnet2.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.st.html">espnet2.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.gan_tts.html">espnet2.gan_tts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.diar.html">espnet2.diar package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.bin.html">espnet2.bin package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.optimizers.html">espnet2.optimizers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.main_funcs.html">espnet2.main_funcs package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.samplers.html">espnet2.samplers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_gen/espnet2.utils.html">espnet2.utils package</a></li>
+</ul>
+<p><span class="caption-text">Tool Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apis/espnet_bin.html">core tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apis/espnet2_bin.html">core tools (espnet2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apis/utils_py.html">python utility tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apis/utils_sh.html">bash utility tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ESPnet</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>espnet2.text.bilingual.thchsdict</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for espnet2.text.bilingual.thchsdict</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2020 YSJ@TalentedSoft</span>
+
+<span class="n">thchs_phoneme</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;a2&#39;</span><span class="p">,</span> <span class="s1">&#39;a3&#39;</span><span class="p">,</span> <span class="s1">&#39;a4&#39;</span><span class="p">,</span> <span class="s1">&#39;a5&#39;</span><span class="p">,</span> <span class="s1">&#39;aa&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ai1&#39;</span><span class="p">,</span> <span class="s1">&#39;ai2&#39;</span><span class="p">,</span> <span class="s1">&#39;ai3&#39;</span><span class="p">,</span> <span class="s1">&#39;ai4&#39;</span><span class="p">,</span> <span class="s1">&#39;ai5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;an1&#39;</span><span class="p">,</span> <span class="s1">&#39;an2&#39;</span><span class="p">,</span> <span class="s1">&#39;an3&#39;</span><span class="p">,</span> <span class="s1">&#39;an4&#39;</span><span class="p">,</span> <span class="s1">&#39;an5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ang1&#39;</span><span class="p">,</span> <span class="s1">&#39;ang2&#39;</span><span class="p">,</span> <span class="s1">&#39;ang3&#39;</span><span class="p">,</span> <span class="s1">&#39;ang4&#39;</span><span class="p">,</span> <span class="s1">&#39;ang5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ao1&#39;</span><span class="p">,</span> <span class="s1">&#39;ao2&#39;</span><span class="p">,</span> <span class="s1">&#39;ao3&#39;</span><span class="p">,</span> <span class="s1">&#39;ao4&#39;</span><span class="p">,</span> <span class="s1">&#39;ao5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;ch&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="s1">&#39;e2&#39;</span><span class="p">,</span> <span class="s1">&#39;e3&#39;</span><span class="p">,</span> <span class="s1">&#39;e4&#39;</span><span class="p">,</span> <span class="s1">&#39;e5&#39;</span><span class="p">,</span> <span class="s1">&#39;ee&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ei1&#39;</span><span class="p">,</span> <span class="s1">&#39;ei2&#39;</span><span class="p">,</span> <span class="s1">&#39;ei3&#39;</span><span class="p">,</span> <span class="s1">&#39;ei4&#39;</span><span class="p">,</span> <span class="s1">&#39;ei5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;en1&#39;</span><span class="p">,</span> <span class="s1">&#39;en2&#39;</span><span class="p">,</span> <span class="s1">&#39;en3&#39;</span><span class="p">,</span> <span class="s1">&#39;en4&#39;</span><span class="p">,</span> <span class="s1">&#39;en5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;eng1&#39;</span><span class="p">,</span> <span class="s1">&#39;eng2&#39;</span><span class="p">,</span> <span class="s1">&#39;eng3&#39;</span><span class="p">,</span> <span class="s1">&#39;eng4&#39;</span><span class="p">,</span> <span class="s1">&#39;eng5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;er1&#39;</span><span class="p">,</span> <span class="s1">&#39;er2&#39;</span><span class="p">,</span> <span class="s1">&#39;er3&#39;</span><span class="p">,</span> <span class="s1">&#39;er4&#39;</span><span class="p">,</span> <span class="s1">&#39;er5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;i1&#39;</span><span class="p">,</span> <span class="s1">&#39;i2&#39;</span><span class="p">,</span> <span class="s1">&#39;i3&#39;</span><span class="p">,</span> <span class="s1">&#39;i4&#39;</span><span class="p">,</span> <span class="s1">&#39;i5&#39;</span><span class="p">,</span> <span class="s1">&#39;ii&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ia1&#39;</span><span class="p">,</span> <span class="s1">&#39;ia2&#39;</span><span class="p">,</span> <span class="s1">&#39;ia3&#39;</span><span class="p">,</span> <span class="s1">&#39;ia4&#39;</span><span class="p">,</span> <span class="s1">&#39;ia5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ian1&#39;</span><span class="p">,</span> <span class="s1">&#39;ian2&#39;</span><span class="p">,</span> <span class="s1">&#39;ian3&#39;</span><span class="p">,</span> <span class="s1">&#39;ian4&#39;</span><span class="p">,</span> <span class="s1">&#39;ian5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iang1&#39;</span><span class="p">,</span> <span class="s1">&#39;iang2&#39;</span><span class="p">,</span> <span class="s1">&#39;iang3&#39;</span><span class="p">,</span> <span class="s1">&#39;iang4&#39;</span><span class="p">,</span> <span class="s1">&#39;iang5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iao1&#39;</span><span class="p">,</span> <span class="s1">&#39;iao2&#39;</span><span class="p">,</span> <span class="s1">&#39;iao3&#39;</span><span class="p">,</span> <span class="s1">&#39;iao4&#39;</span><span class="p">,</span> <span class="s1">&#39;iao5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ie1&#39;</span><span class="p">,</span> <span class="s1">&#39;ie2&#39;</span><span class="p">,</span> <span class="s1">&#39;ie3&#39;</span><span class="p">,</span> <span class="s1">&#39;ie4&#39;</span><span class="p">,</span> <span class="s1">&#39;ie5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;in1&#39;</span><span class="p">,</span> <span class="s1">&#39;in2&#39;</span><span class="p">,</span> <span class="s1">&#39;in3&#39;</span><span class="p">,</span> <span class="s1">&#39;in4&#39;</span><span class="p">,</span> <span class="s1">&#39;in5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ing1&#39;</span><span class="p">,</span> <span class="s1">&#39;ing2&#39;</span><span class="p">,</span> <span class="s1">&#39;ing3&#39;</span><span class="p">,</span> <span class="s1">&#39;ing4&#39;</span><span class="p">,</span> <span class="s1">&#39;ing5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iong1&#39;</span><span class="p">,</span> <span class="s1">&#39;iong2&#39;</span><span class="p">,</span> <span class="s1">&#39;iong3&#39;</span><span class="p">,</span> <span class="s1">&#39;iong4&#39;</span><span class="p">,</span> <span class="s1">&#39;iong5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iu1&#39;</span><span class="p">,</span> <span class="s1">&#39;iu2&#39;</span><span class="p">,</span> <span class="s1">&#39;iu3&#39;</span><span class="p">,</span> <span class="s1">&#39;iu4&#39;</span><span class="p">,</span> <span class="s1">&#39;iu5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ix1&#39;</span><span class="p">,</span> <span class="s1">&#39;ix2&#39;</span><span class="p">,</span> <span class="s1">&#39;ix3&#39;</span><span class="p">,</span> <span class="s1">&#39;ix4&#39;</span><span class="p">,</span> <span class="s1">&#39;ix5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iy1&#39;</span><span class="p">,</span> <span class="s1">&#39;iy2&#39;</span><span class="p">,</span> <span class="s1">&#39;iy3&#39;</span><span class="p">,</span> <span class="s1">&#39;iy4&#39;</span><span class="p">,</span> <span class="s1">&#39;iy5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;iz1&#39;</span><span class="p">,</span> <span class="s1">&#39;iz2&#39;</span><span class="p">,</span> <span class="s1">&#39;iz3&#39;</span><span class="p">,</span> <span class="s1">&#39;iz4&#39;</span><span class="p">,</span> <span class="s1">&#39;iz5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;o1&#39;</span><span class="p">,</span> <span class="s1">&#39;o2&#39;</span><span class="p">,</span> <span class="s1">&#39;o3&#39;</span><span class="p">,</span> <span class="s1">&#39;o4&#39;</span><span class="p">,</span> <span class="s1">&#39;o5&#39;</span><span class="p">,</span> <span class="s1">&#39;oo&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ong1&#39;</span><span class="p">,</span> <span class="s1">&#39;ong2&#39;</span><span class="p">,</span> <span class="s1">&#39;ong3&#39;</span><span class="p">,</span> <span class="s1">&#39;ong4&#39;</span><span class="p">,</span> <span class="s1">&#39;ong5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ou1&#39;</span><span class="p">,</span> <span class="s1">&#39;ou2&#39;</span><span class="p">,</span> <span class="s1">&#39;ou3&#39;</span><span class="p">,</span> <span class="s1">&#39;ou4&#39;</span><span class="p">,</span> <span class="s1">&#39;ou5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;sh&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;u1&#39;</span><span class="p">,</span> <span class="s1">&#39;u2&#39;</span><span class="p">,</span> <span class="s1">&#39;u3&#39;</span><span class="p">,</span> <span class="s1">&#39;u4&#39;</span><span class="p">,</span> <span class="s1">&#39;u5&#39;</span><span class="p">,</span> <span class="s1">&#39;uu&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ua1&#39;</span><span class="p">,</span> <span class="s1">&#39;ua2&#39;</span><span class="p">,</span> <span class="s1">&#39;ua3&#39;</span><span class="p">,</span> <span class="s1">&#39;ua4&#39;</span><span class="p">,</span> <span class="s1">&#39;ua5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;uai1&#39;</span><span class="p">,</span> <span class="s1">&#39;uai2&#39;</span><span class="p">,</span> <span class="s1">&#39;uai3&#39;</span><span class="p">,</span> <span class="s1">&#39;uai4&#39;</span><span class="p">,</span> <span class="s1">&#39;uai5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;uan1&#39;</span><span class="p">,</span> <span class="s1">&#39;uan2&#39;</span><span class="p">,</span> <span class="s1">&#39;uan3&#39;</span><span class="p">,</span> <span class="s1">&#39;uan4&#39;</span><span class="p">,</span> <span class="s1">&#39;uan5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;uang1&#39;</span><span class="p">,</span> <span class="s1">&#39;uang2&#39;</span><span class="p">,</span> <span class="s1">&#39;uang3&#39;</span><span class="p">,</span> <span class="s1">&#39;uang4&#39;</span><span class="p">,</span> <span class="s1">&#39;uang5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ueng1&#39;</span><span class="p">,</span> <span class="s1">&#39;ueng3&#39;</span><span class="p">,</span> <span class="s1">&#39;ueng4&#39;</span><span class="p">,</span> <span class="s1">&#39;ueng5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ui1&#39;</span><span class="p">,</span> <span class="s1">&#39;ui2&#39;</span><span class="p">,</span> <span class="s1">&#39;ui3&#39;</span><span class="p">,</span> <span class="s1">&#39;ui4&#39;</span><span class="p">,</span> <span class="s1">&#39;ui5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;un1&#39;</span><span class="p">,</span> <span class="s1">&#39;un2&#39;</span><span class="p">,</span> <span class="s1">&#39;un3&#39;</span><span class="p">,</span> <span class="s1">&#39;un4&#39;</span><span class="p">,</span> <span class="s1">&#39;un5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;uo1&#39;</span><span class="p">,</span> <span class="s1">&#39;uo2&#39;</span><span class="p">,</span> <span class="s1">&#39;uo3&#39;</span><span class="p">,</span> <span class="s1">&#39;uo4&#39;</span><span class="p">,</span> <span class="s1">&#39;uo5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;v1&#39;</span><span class="p">,</span> <span class="s1">&#39;v2&#39;</span><span class="p">,</span> <span class="s1">&#39;v3&#39;</span><span class="p">,</span> <span class="s1">&#39;v4&#39;</span><span class="p">,</span> <span class="s1">&#39;v5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;van1&#39;</span><span class="p">,</span> <span class="s1">&#39;van2&#39;</span><span class="p">,</span> <span class="s1">&#39;van3&#39;</span><span class="p">,</span> <span class="s1">&#39;van4&#39;</span><span class="p">,</span> <span class="s1">&#39;van5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;ve1&#39;</span><span class="p">,</span> <span class="s1">&#39;ve2&#39;</span><span class="p">,</span> <span class="s1">&#39;ve3&#39;</span><span class="p">,</span> <span class="s1">&#39;ve4&#39;</span><span class="p">,</span> <span class="s1">&#39;ve5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;vn1&#39;</span><span class="p">,</span> <span class="s1">&#39;vn2&#39;</span><span class="p">,</span> <span class="s1">&#39;vn3&#39;</span><span class="p">,</span> <span class="s1">&#39;vn4&#39;</span><span class="p">,</span> <span class="s1">&#39;vn5&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;vv&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;zh&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="THCHSDict"><a class="viewcode-back" href="../../../../_gen/espnet2.text.html#espnet2.text.bilingual.thchsdict.THCHSDict">[docs]</a><span class="k">class</span> <span class="nc">THCHSDict</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;Thin wrapper around THCHSDict data to convert pinyin to phoneme&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">entries</span> <span class="o">=</span> <span class="n">_parse_thchsdict</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span> <span class="o">=</span> <span class="n">entries</span>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="THCHSDict.lookup"><a class="viewcode-back" href="../../../../_gen/espnet2.text.html#espnet2.text.bilingual.thchsdict.THCHSDict.lookup">[docs]</a>    <span class="k">def</span> <span class="nf">lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pinyin</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Returns list of  phoneme of the given pinyin&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pinyin</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_parse_thchsdict</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">thchsdict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">pinyin</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">phoneme</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">thchsdict</span><span class="p">[</span><span class="n">pinyin</span><span class="p">]</span> <span class="o">=</span> <span class="n">phoneme</span>
+    <span class="k">return</span> <span class="n">thchsdict</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017, Shinji Watanabe.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
