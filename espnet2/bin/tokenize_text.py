@@ -143,7 +143,7 @@ def tokenize(
         import sys
         sys.path.append("../../../espnet2")
         from text.symbols import Symbols
-        words_and_counts = [(symbol, 1) for symbol in Symbols().get_symbols(language="multilingual")]
+        words_and_counts = [(symbol, 1) for symbol in Symbols().get_symbols(language="bilingual")]
     else:
         words_and_counts = list(
             filter(lambda x: x[1] > cutoff, sorted(counter.items(), key=lambda x: -x[1]))

@@ -5,9 +5,9 @@ set -e
 set -u
 set -o pipefail
 
-fs=16000
-n_fft=400
-n_shift=160
+fs=44100
+n_fft=2048
+n_shift=512
 win_length=null
 
 opts=
@@ -18,16 +18,17 @@ else
     opts="--audio_format flac "
 fi
 
-dataset="gather_clean"
+dataset="obm_full_band"
 train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
 
 # train_config=conf/tuning/finetune_joint_conformer_fastspeech2_hifigan.yaml
 # train_config=conf/tuning/train_conformer_fastspeech2.yaml
-train_config=conf/tuning/train_xvector_vits.yaml
+# train_config=conf/tuning/train_xvector_vits.yaml
 # train_config=conf/tuning/finetune_multi_spk_vits.yaml
 # train_config=conf/tuning/train_vits.yaml
+train_config=conf/tuning/train_full_band_vits.yaml
 inference_config=conf/tuning/decode_vits.yaml
 
 
@@ -36,15 +37,15 @@ g2p=none
 # # train vits
 ./tts.sh \
     --tts_task gan_tts \
-    --ngpu 1 \
+    --ngpu 3 \
     --dataset $dataset \
     --dumpdir dump/$dataset \
     --expdir exp/$dataset \
-    --tts_stats_dir exp/$dataset/tts_stats_xv_vits \
-    --tts_exp exp/$dataset/tts_xv_vits \
-    --use_xvector true \
+    --tts_stats_dir exp/$dataset/tts_stats_vits \
+    --tts_exp exp/$dataset/tts_vits \
+    --use_xvector false \
     --use_sid false \
-    --use_lid true \
+    --use_lid false \
     --lang zh \
     --feats_type raw \
     --fs "${fs}" \

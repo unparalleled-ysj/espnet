@@ -86,3 +86,6 @@ espnet2/gan_tts/vits/monotonic_align
 tools/subtools
 tools/extract_xvector_model
 egs2/ysj/tts1/synthesis_sentences
+egs2/ysj/tts1/export2onnx.py
+egs2/ysj/tts1/inference.py
+egs2/ysj/tts1/run.sh
