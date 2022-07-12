@@ -11,28 +11,39 @@ class BilingualG2P():
         cmudict_path = os.path.abspath(r'../../../espnet2/text/bilingual/dictionary/cmudict-0.7b')
         self.cmudict = CMUDict(cmudict_path)
         self.text2pinyin = text2pinyin
-        self.symbols = ["sp", "np", "lp"] + thchs_phoneme + cmu_phoneme
+        self.symbols = ["sp", "np", "lp"] + thchs_phoneme + cmu_phoneme + ["#1", "#2", "#3", "#4"]
         self.pause_punctuation = {
             "？": "np",
             "！": "np",
-            "，": "np",
+            "，": "sp",
             "。": "np",
-            "：": "np",
-            "、": "np",
+            "：": "sp",
+            "、": "sp",
             "；": "np",
-            ",": "np",
+            ",": "sp",
             ".": "np",
             "?": "np",
             "!": "np",
             "~": "sp",
         }
 
-    def text2tokens(self, line: str) -> List[str]:
+    def text2tokens(self, line: str, add_blank: bool=True) -> List[str]:
         pinyin = self.text2pinyin(line)
         phoneme = [self.get_phoneme(self.thchsdict, cn) for cn in pinyin.split(' ')]
         phoneme = ' '.join([self.get_arpabet(self.cmudict, en) for en in phoneme])
         phoneme = self.punctuation2silence(phoneme)
+        if add_blank:
+            phoneme = self.add_blank(' '.join(phoneme))
         return phoneme
+
+    def add_blank(self, line: str) -> List[str]:
+        new_line = []
+        for phoneme in line.split(' '):
+            new_line.append(phoneme)
+            # if phoneme[0]!='#' and phoneme[-1].isdigit():
+            if phoneme not in ["sp", "np", "lp", "#1", "#2", "#3", "#4"]:
+                new_line.append('<blank>')
+        return new_line
 
     def should_keep_symbol(self, s):
         return s in self.symbols

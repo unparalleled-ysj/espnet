@@ -52,13 +52,13 @@ endstage = min(1, args.endstage)
 
 suffix = "params" # Used in saved model file.
 model_blueprint = "subtools/pytorch/model/resnet-se-xvector.py"
-model_dir = "/work/ysj/espnet/tools/extract_xvector_model/Trans_Resnet_34_se_am_train_cnceleb_16k_fbank81_bt256_sgdhu"
+model_dir = "/work/ysj/espnet/tools/extract_xvector_model/res34se_fbank_81_shard_16k_random"
 ##--------------------------------------------------##
 
 #### Extract xvector
 if stage <= 1 <= endstage and utils.is_main_training():
     to_extracted_positions = ["near"] # Define this w.r.t extracted_embedding param of model_blueprint.
-    to_extracted_epochs = ["1"] # It is model's name, such as 10.params or final.params (suffix is w.r.t package).
+    to_extracted_epochs = ["8"] # It is model's name, such as 10.params or final.params (suffix is w.r.t package).
 
     nj = args.nj
     force = False
@@ -72,7 +72,7 @@ if stage <= 1 <= endstage and utils.is_main_training():
             # Generate the extracting config from nnet config where 
             # which position to extract depends on the 'extracted_embedding' parameter of model_creation (by my design).
             model_blueprint, model_creation = utils.read_nnet_config("{0}/config/nnet.config".format(model_dir))
-            model_blueprint = model_dir + '/config/resnet-se-xvector.py'
+            model_blueprint = model_dir + '/config/resnet_se_xvector.py'
             model_creation = model_creation.replace("training=True", "training=False") # To save memory without loading some independent components.
             model_creation = model_creation.replace("extracted_embedding='far'", "extracted_embedding='near'")
             extract_config = "{0}.extract.config".format(position)

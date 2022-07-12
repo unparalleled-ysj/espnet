@@ -89,3 +89,4 @@ egs2/ysj/tts1/synthesis_sentences
 egs2/ysj/tts1/export2onnx.py
 egs2/ysj/tts1/inference.py
 egs2/ysj/tts1/run.sh
+egs2/ysj/tts1/onnx_model

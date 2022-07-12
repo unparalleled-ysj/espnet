@@ -231,7 +231,7 @@ if [ "${cleaner}" != none ]; then
     token_listdir+="_${cleaner}"
 fi
 if [ "${token_type}" = phn ]; then
-    token_listdir+="_${g2p}"
+    token_listdir+="_none"
 fi
 token_list="${token_listdir}/tokens.txt"
 

@@ -18,10 +18,11 @@ class Symbols():
         self.cmu_phoneme = cmu_phoneme
         self.minnan_phoneme = minnan_phoneme
         self.punc_phoneme = ["sp", "np", "lp"]
+        self.prosody = ["#1", "#2", "#3", "#4"]
 
     def get_symbols(self, language="bilingual"):
         if language == "bilingual":
-            symbols = self.punc_phoneme + self.thchs_phoneme + self.cmu_phoneme
+            symbols = self.punc_phoneme + self.thchs_phoneme + self.cmu_phoneme + self.prosody
         elif language == "minnan":
             symbols = self.punc_phoneme + self.minnan_phoneme
         elif language == "multilingual":

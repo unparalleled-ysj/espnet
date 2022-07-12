@@ -9,21 +9,20 @@ from .cn_tn import NSWNormalizer
 split_character = ['，', '。', '？', '！', ' ', '、', '；', '：']
 punctuation = ['！', '、', '（', '）', '，', '。', '：', '；', '“', '”', '？', '《', '》', '-', '.', ',', '!', '?']
 whitespace_re = re.compile(r'\s+')
-# predictor = ProsodyPredictor(model_path='saved_models_pb/prosody/bilstm_crf')
 
 
 def text2pinyin(text):
+    text = prosody_protect(text)
     text = collapse_whitespace(text)
     text = NSWNormalizer(text).normalize()
     text = special_symbol_clean(text)
-    # text = predictor.predict(text, prosody_level=['3'])
-    # print(text)
-    # text = text.replace("#3", " ~ ")
     text = text.upper()
     for p in punctuation:
         text = text.replace(p, f" {p} ")
     text = collapse_whitespace(text)
     pinyin = get_pinyin(text)
+    pinyin = prosody_recover(pinyin)
+    pinyin = collapse_whitespace(pinyin)
     return pinyin
 
 
@@ -61,4 +60,20 @@ def special_symbol_clean(text):
     # text = text.replace('.', '点')
     text = text.replace('@', ' at ')
     # text = text.replace('-', '杠')
+    return text
+
+
+def prosody_protect(text):
+    text = text.replace("#1", " ① ")
+    text = text.replace("#2", " ② ")
+    text = text.replace("#3", " ③ ")
+    text = text.replace("#4", " ④ ")
+    return text
+
+
+def prosody_recover(text):
+    text = text.replace("①", "#1")
+    text = text.replace("②", "#2")
+    text = text.replace("③", "#3")
+    text = text.replace("④", "#4")
     return text

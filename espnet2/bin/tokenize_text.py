@@ -137,7 +137,7 @@ def tokenize(
     # ======= write_vocabulary mode from here =======
     # Sort by the number of occurrences in descending order
     # and filter lower frequency words than cutoff value
-    if token_type == 'phn' and g2p == None:
+    if token_type == 'phn' and g2p == None or g2p == 'add_blank':
         import sys
         sys.path.append("../../../espnet2")
         from text.symbols import Symbols

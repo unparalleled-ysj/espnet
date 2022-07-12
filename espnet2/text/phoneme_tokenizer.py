@@ -38,6 +38,7 @@ g2p_choices = [
     "korean_jaso",
     "korean_jaso_no_space",
     "bilingual",
+    "add_blank",
 ]
 
 
@@ -481,6 +482,8 @@ class PhonemeTokenizer(AbsTokenizer):
             self.g2p = Jaso(no_space=True)
         elif g2p_type == "bilingual":
             self.g2p = BilingualG2P().text2tokens
+        elif g2p_type == "add_blank":
+            self.g2p = BilingualG2P().add_blank
         else:
             raise NotImplementedError(f"Not supported: g2p_type={g2p_type}")
 
