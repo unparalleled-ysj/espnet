@@ -37,8 +37,11 @@ g2p_choices = [
     "g2pk_no_space",
     "korean_jaso",
     "korean_jaso_no_space",
+<<<<<<< HEAD
     "bilingual",
     "add_blank",
+=======
+>>>>>>> 96bd74641ceb463096067223d0734f70bddd8def
     "g2p_is",
 ]
 
@@ -513,10 +516,13 @@ class PhonemeTokenizer(AbsTokenizer):
             self.g2p = Jaso(space_symbol=space_symbol, no_space=False)
         elif g2p_type == "korean_jaso_no_space":
             self.g2p = Jaso(no_space=True)
+<<<<<<< HEAD
         elif g2p_type == "bilingual":
             self.g2p = BilingualG2P().text2tokens
         elif g2p_type == "add_blank":
             self.g2p = BilingualG2P().add_blank
+=======
+>>>>>>> 96bd74641ceb463096067223d0734f70bddd8def
         elif g2p_type == "g2p_is":
             self.g2p = IsG2p()
         elif g2p_type == "g2p_is_north":
