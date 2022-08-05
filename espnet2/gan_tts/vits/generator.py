@@ -64,6 +64,7 @@ class VITSGenerator(torch.nn.Module):
         use_conformer_conv_in_text_encoder: bool = True,
         decoder_kernel_size: int = 7,
         decoder_channels: int = 512,
+        decoder_out_channels: int = 1,
         decoder_upsample_scales: List[int] = [8, 8, 2, 2],
         decoder_upsample_kernel_sizes: List[int] = [16, 16, 4, 4],
         decoder_resblock_kernel_sizes: List[int] = [3, 7, 11],
@@ -190,7 +191,7 @@ class VITSGenerator(torch.nn.Module):
         )
         self.decoder = HiFiGANGenerator(
             in_channels=hidden_channels,
-            out_channels=1,
+            out_channels=decoder_out_channels,
             channels=decoder_channels,
             global_channels=global_channels,
             kernel_size=decoder_kernel_size,

@@ -15,6 +15,9 @@ tts_conf:
     # generator related
     generator_type: jets_generator
     generator_params:
+        spks: -1
+        spk_embed_dim: 256
+        spk_embed_integration_type: add 
         adim: 256                                    # attention dimension
         aheads: 2                                    # number of attention heads
         elayers: 4                                   # number of encoder layers
@@ -61,7 +64,7 @@ tts_conf:
         energy_embed_dropout: 0.0                    # dropout rate after conv embedding layer for energy
         stop_gradient_from_energy_predictor: false   # whether to stop the gradient from energy predictor to encoder
         generator_out_channels: 1
-        generator_channels: 256
+        generator_channels: 512
         generator_global_channels: -1
         generator_kernel_size: 7
         generator_upsample_scales: [8, 8, 2, 2]
@@ -157,10 +160,6 @@ energy_extract_conf:
     use_token_averaged_energy: false
 energy_normalize: global_mvn # normalizer for the energy feature
 
-# init_param:
-# - exp/CS_prosody_16k/tts_jets/latest.pth:tts:tts
-# ignore_init_mismatch: true
-
 ##########################################################
 #            OPTIMIZER & SCHEDULER SETTING               #
 ##########################################################
@@ -189,10 +188,10 @@ generator_first: true # whether to start updating generator first
 ##########################################################
 #                OTHER TRAINING SETTING                  #
 ##########################################################
-num_iters_per_epoch: 1000 # number of iterations per epoch
+num_iters_per_epoch: 500 # number of iterations per epoch
 max_epoch: 1000           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 3000000       # batch bins (feats_type=raw)
+batch_bins: 1000000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

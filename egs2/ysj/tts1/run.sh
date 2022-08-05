@@ -23,16 +23,16 @@ else
     opts="--audio_format flac "
 fi
 
-dataset="gather_bilingual"
+dataset="CS_prosody_16k"
 train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
 
 # train_config=conf/tuning/finetune_joint_conformer_fastspeech2_hifigan.yaml
 # train_config=conf/tuning/train_conformer_fastspeech2.yaml
-train_config=conf/tuning/train_xvector_vits.yaml
+# train_config=conf/tuning/train_xvector_jets.yaml
 # train_config=conf/tuning/finetune_multi_spk_vits.yaml
-# train_config=conf/tuning/train_jets.yaml
+train_config=conf/tuning/train_multiband_vits.yaml
 # train_config=conf/tuning/train_full_band_vits.yaml
 inference_config=conf/tuning/decode_vits.yaml
 
@@ -43,13 +43,13 @@ vits_g2p=add_blank
 # train vits
 ./tts.sh \
     --tts_task gan_tts \
-    --ngpu 2 \
+    --ngpu 1 \
     --dataset $dataset \
     --dumpdir dump/$dataset \
     --expdir exp/$dataset \
     --tts_stats_dir exp/$dataset/tts_stats_vits_add_blank \
-    --tts_exp exp/$dataset/tts_vits_add_blank \
-    --use_xvector true \
+    --tts_exp exp/$dataset/tts_multiband_vits_add_blank \
+    --use_xvector false \
     --use_sid false \
     --use_lid false \
     --lang zh \
@@ -100,7 +100,7 @@ vits_g2p=add_blank
 #     ${opts} "$@"
 
 
-# # train jets
+# train jets
 # ./tts.sh \
 #     --tts_task gan_tts \
 #     --ngpu 2 \
@@ -108,7 +108,7 @@ vits_g2p=add_blank
 #     --dumpdir dump/$dataset \
 #     --expdir exp/$dataset \
 #     --tts_stats_dir exp/$dataset/tts_stats_jets \
-#     --tts_exp exp/$dataset/tts_jets \
+#     --tts_exp exp/$dataset/tts_multiband_jets_stft_loss \
 #     --use_xvector false \
 #     --use_sid false \
 #     --use_lid false \

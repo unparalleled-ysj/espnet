@@ -26,7 +26,9 @@ from espnet2.gan_tts.hifigan.loss import (
 )
 from espnet2.gan_tts.utils import get_segments
 from espnet2.gan_tts.vits.generator import VITSGenerator
+from espnet2.gan_tts.melgan.pqmf import PQMF
 from espnet2.gan_tts.vits.loss import KLDivergenceLoss
+from espnet2.gan_tts.melgan.stft_loss import MultiResolutionSTFTLoss
 from espnet2.torch_utils.device_funcs import force_gatherable
 
 AVAILABLE_GENERATERS = {
@@ -91,6 +93,7 @@ class VITS(AbsGANTTS):
             "use_conformer_conv_in_text_encoder": True,
             "decoder_kernel_size": 7,
             "decoder_channels": 512,
+            "decoder_out_channels": 1,
             "decoder_upsample_scales": [8, 8, 2, 2],
             "decoder_upsample_kernel_sizes": [16, 16, 4, 4],
             "decoder_resblock_kernel_sizes": [3, 7, 11],
@@ -113,6 +116,13 @@ class VITS(AbsGANTTS):
             "stochastic_duration_predictor_dropout_rate": 0.5,
             "stochastic_duration_predictor_flows": 4,
             "stochastic_duration_predictor_dds_conv_layers": 3,
+        },
+        use_pqmf: bool = False,
+        pqmf_params: Dict[str, Any] = {
+            "subbands": 4,
+            "taps": 62,
+            "cutoff_ratio": 0.142,
+            "beta": 9.0,
         },
         # discriminator related
         discriminator_type: str = "hifigan_multi_scale_multi_period_discriminator",
@@ -215,6 +225,7 @@ class VITS(AbsGANTTS):
         """
         assert check_argument_types()
         super().__init__()
+        self.use_pqmf = use_pqmf
 
         # define modules
         generator_class = AVAILABLE_GENERATERS[generator_type]
@@ -227,6 +238,20 @@ class VITS(AbsGANTTS):
         self.generator = generator_class(
             **generator_params,
         )
+        if self.use_pqmf:
+            self.pqmf = PQMF(**pqmf_params)
+            self.stft_loss = MultiResolutionSTFTLoss(
+                fft_sizes=[1024, 2048, 512],
+                hop_sizes=[120, 240, 50],
+                win_lengths=[600, 1200, 240],
+                window="hann_window",
+            )
+            self.sub_stft_loss = MultiResolutionSTFTLoss(
+                fft_sizes=[384, 683, 171],
+                hop_sizes=[30, 60, 10],
+                win_lengths=[150, 300, 60],
+                window="hann_window",
+            )
         discriminator_class = AVAILABLE_DISCRIMINATORS[discriminator_type]
         self.discriminator = discriminator_class(
             **discriminator_params,
@@ -397,10 +422,20 @@ class VITS(AbsGANTTS):
         speech_hat_, dur_nll, _, start_idxs, _, z_mask, outs_ = outs
         _, z_p, m_p, logs_p, _, logs_q = outs_
         speech_ = get_segments(
-            x=speech,
-            start_idxs=start_idxs * self.generator.upsample_factor,
-            segment_size=self.generator.segment_size * self.generator.upsample_factor,
-        )
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor,
+            )
+        if self.use_pqmf:
+            speech_hat_sub_ = speech_hat_
+            speech_hat_ = self.pqmf.synthesis(speech_hat_)
+            speech_ = get_segments(
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor * 4,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
+            )
+            speech_sub_ = self.pqmf.analysis(speech_)
+            
 
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_)
@@ -410,6 +445,13 @@ class VITS(AbsGANTTS):
 
         # calculate losses
         with autocast(enabled=False):
+            if self.use_pqmf:
+                sc_loss, mag_loss = self.stft_loss(speech_hat_, speech_)
+                stft_loss = sc_loss + mag_loss
+                sub_sc_loss, sub_mag_loss = self.sub_stft_loss(speech_hat_sub_, speech_sub_)
+                sub_stft_loss = sub_sc_loss + sub_mag_loss
+                multiband_loss = 0.5 * (stft_loss + sub_stft_loss)
+                multiband_loss = multiband_loss * 5.0      # scale stft loss
             mel_loss = self.mel_loss(speech_hat_, speech_)
             kl_loss = self.kl_loss(z_p, logs_q, m_p, logs_p, z_mask)
             dur_loss = torch.sum(dur_nll.float())
@@ -431,6 +473,11 @@ class VITS(AbsGANTTS):
             generator_adv_loss=adv_loss.item(),
             generator_feat_match_loss=feat_match_loss.item(),
         )
+
+        if self.use_pqmf:
+            loss += multiband_loss
+            stats.update(generator_loss=loss.item())
+            stats.update(generator_multiband_loss=multiband_loss.item())
 
         loss, stats, weight = force_gatherable((loss, stats, batch_size), loss.device)
 
@@ -510,6 +557,13 @@ class VITS(AbsGANTTS):
             start_idxs=start_idxs * self.generator.upsample_factor,
             segment_size=self.generator.segment_size * self.generator.upsample_factor,
         )
+        if self.use_pqmf:
+            speech_hat_ = self.pqmf.synthesis(speech_hat_)
+            speech_ = get_segments(
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor * 4,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
+            )  
 
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_.detach())
@@ -621,4 +675,6 @@ class VITS(AbsGANTTS):
                 alpha=alpha,
                 max_len=max_len,
             )
+        if self.use_pqmf:
+            wav = self.pqmf.synthesis(wav)
         return dict(wav=wav.view(-1), att_w=att_w[0], duration=dur[0])

@@ -23,7 +23,9 @@ from espnet2.gan_tts.hifigan.loss import (
     MelSpectrogramLoss,
 )
 from espnet2.gan_tts.jets.generator import JETSGenerator
+from espnet2.gan_tts.melgan.pqmf import PQMF
 from espnet2.gan_tts.jets.loss import ForwardSumLoss, VarianceLoss
+from espnet2.gan_tts.melgan.stft_loss import MultiResolutionSTFTLoss
 from espnet2.gan_tts.utils import get_segments
 from espnet2.torch_utils.device_funcs import force_gatherable
 
@@ -141,6 +143,13 @@ class JETS(AbsGANTTS):
             "use_masking": False,
             "use_weighted_masking": False,
         },
+        use_pqmf: bool = False,
+        pqmf_params: Dict[str, Any] = {
+            "subbands": 4,
+            "taps": 62,
+            "cutoff_ratio": 0.142,
+            "beta": 9.0,
+        },
         # discriminator related
         discriminator_type: str = "hifigan_multi_scale_multi_period_discriminator",
         discriminator_params: Dict[str, Any] = {
@@ -242,6 +251,7 @@ class JETS(AbsGANTTS):
         """
         assert check_argument_types()
         super().__init__()
+        self.use_pqmf = use_pqmf
 
         # define modules
         generator_class = AVAILABLE_GENERATERS[generator_type]
@@ -249,6 +259,20 @@ class JETS(AbsGANTTS):
         self.generator = generator_class(
             **generator_params,
         )
+        if self.use_pqmf:
+            self.pqmf = PQMF(**pqmf_params)
+            self.stft_loss = MultiResolutionSTFTLoss(
+                fft_sizes=[1024, 2048, 512],
+                hop_sizes=[120, 240, 50],
+                win_lengths=[600, 1200, 240],
+                window="hann_window",
+            )
+            self.sub_stft_loss = MultiResolutionSTFTLoss(
+                fft_sizes=[384, 683, 171],
+                hop_sizes=[30, 60, 10],
+                win_lengths=[150, 300, 60],
+                window="hann_window",
+            )
         discriminator_class = AVAILABLE_DISCRIMINATORS[discriminator_type]
         self.discriminator = discriminator_class(
             **discriminator_params,
@@ -434,11 +458,20 @@ class JETS(AbsGANTTS):
             es,
         ) = outs
         speech_ = get_segments(
-            x=speech,
-            start_idxs=start_idxs * self.generator.upsample_factor,
-            segment_size=self.generator.segment_size * self.generator.upsample_factor,
-        )
-
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor,
+            )
+        if self.use_pqmf:
+            speech_hat_sub_ = speech_hat_
+            speech_hat_ = self.pqmf.synthesis(speech_hat_)
+            speech_ = get_segments(
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor * 4,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
+            )
+            speech_sub_ = self.pqmf.analysis(speech_)
+            
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_)
         with torch.no_grad():
@@ -446,6 +479,14 @@ class JETS(AbsGANTTS):
             p = self.discriminator(speech_)
 
         # calculate losses
+        if self.use_pqmf:
+            sc_loss, mag_loss = self.stft_loss(speech_hat_, speech_)
+            stft_loss = sc_loss + mag_loss
+            sub_sc_loss, sub_mag_loss = self.sub_stft_loss(speech_hat_sub_, speech_sub_)
+            sub_stft_loss = sub_sc_loss + sub_mag_loss
+            multiband_loss = 0.5 * (stft_loss + sub_stft_loss)
+            multiband_loss = multiband_loss * 5.0    # scale stft loss
+
         mel_loss = self.mel_loss(speech_hat_, speech_)
         adv_loss = self.generator_adv_loss(p_hat)
         feat_match_loss = self.feat_match_loss(p_hat, p)
@@ -477,6 +518,11 @@ class JETS(AbsGANTTS):
             generator_align_forwardsum_loss=forwardsum_loss.item(),
             generator_align_bin_loss=bin_loss.item(),
         )
+
+        if self.use_pqmf:
+            loss += multiband_loss
+            stats.update(generator_loss=loss.item())
+            stats.update(generator_multiband_loss=multiband_loss.item())
 
         loss, stats, weight = force_gatherable((loss, stats, batch_size), loss.device)
 
@@ -553,10 +599,17 @@ class JETS(AbsGANTTS):
         # parse outputs
         speech_hat_, _, _, start_idxs, *_ = outs
         speech_ = get_segments(
-            x=speech,
-            start_idxs=start_idxs * self.generator.upsample_factor,
-            segment_size=self.generator.segment_size * self.generator.upsample_factor,
-        )
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor,
+            )
+        if self.use_pqmf:
+            speech_hat_ = self.pqmf.synthesis(speech_hat_)
+            speech_ = get_segments(
+                x=speech,
+                start_idxs=start_idxs * self.generator.upsample_factor * 4,
+                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
+            )     
 
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_.detach())
@@ -648,4 +701,6 @@ class JETS(AbsGANTTS):
                 text_lengths=text_lengths,
                 **kwargs,
             )
+        if self.use_pqmf:
+            wav = self.pqmf.synthesis(wav)
         return dict(wav=wav.view(-1), duration=dur[0])
