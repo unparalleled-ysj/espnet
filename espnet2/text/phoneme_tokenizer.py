@@ -39,6 +39,7 @@ g2p_choices = [
     "korean_jaso_no_space",
     "bilingual",
     "add_blank",
+    "g2p_is",
 ]
 
 
@@ -360,6 +361,38 @@ class Phonemizer:
             return [c.replace(" ", "<space>") for c in tokens]
 
 
+class IsG2p:  # pylint: disable=too-few-public-methods
+    """Minimal wrapper for https://github.com/grammatek/ice-g2p
+
+    The g2p module uses a Bi-LSTM model along with
+    a pronunciation dictionary to generate phonemization
+    Unfortunately does not support multi-thread phonemization as of yet
+    """
+
+    def __init__(
+        self,
+        dialect: str = "standard",
+        syllabify: bool = True,
+        word_sep: str = ",",
+        use_dict: bool = True,
+    ):
+        self.dialect = dialect
+        self.syllabify = syllabify
+        self.use_dict = use_dict
+        from ice_g2p.transcriber import Transcriber
+
+        self.transcriber = Transcriber(
+            use_dict=self.use_dict,
+            syllab_symbol=".",
+            stress_label=True,
+            word_sep=word_sep,
+            lang_detect=True,
+        )
+
+    def __call__(self, text) -> List[str]:
+        return self.transcriber.transcribe(text).split()
+
+
 class PhonemeTokenizer(AbsTokenizer):
     def __init__(
         self,
@@ -484,6 +517,10 @@ class PhonemeTokenizer(AbsTokenizer):
             self.g2p = BilingualG2P().text2tokens
         elif g2p_type == "add_blank":
             self.g2p = BilingualG2P().add_blank
+        elif g2p_type == "g2p_is":
+            self.g2p = IsG2p()
+        elif g2p_type == "g2p_is_north":
+            self.g2p = IsG2p(dialect="north")
         else:
             raise NotImplementedError(f"Not supported: g2p_type={g2p_type}")
 
