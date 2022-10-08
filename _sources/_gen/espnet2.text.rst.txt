@@ -15,45 +15,12 @@ espnet2.text.abs_tokenizer
     :show-inheritance:
 
 
-.. _espnet2.text.sentencepiece_tokenizer:
+.. _espnet2.text.__init__:
 
-espnet2.text.sentencepiece_tokenizer
-------------------------------------
+espnet2.text.__init__
+---------------------
 
-.. automodule:: espnet2.text.sentencepiece_tokenizer
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-.. _espnet2.text.char_tokenizer:
-
-espnet2.text.char_tokenizer
----------------------------
-
-.. automodule:: espnet2.text.char_tokenizer
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-.. _espnet2.text.cleaner:
-
-espnet2.text.cleaner
---------------------
-
-.. automodule:: espnet2.text.cleaner
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-.. _espnet2.text.word_tokenizer:
-
-espnet2.text.word_tokenizer
----------------------------
-
-.. automodule:: espnet2.text.word_tokenizer
+.. automodule:: espnet2.text.__init__
     :members:
     :undoc-members:
     :show-inheritance:
@@ -70,28 +37,6 @@ espnet2.text.token_id_converter
     :show-inheritance:
 
 
-.. _espnet2.text.korean_cleaner:
-
-espnet2.text.korean_cleaner
----------------------------
-
-.. automodule:: espnet2.text.korean_cleaner
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-.. _espnet2.text.symbols:
-
-espnet2.text.symbols
---------------------
-
-.. automodule:: espnet2.text.symbols
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
 .. _espnet2.text.build_tokenizer:
 
 espnet2.text.build_tokenizer
@@ -103,12 +48,34 @@ espnet2.text.build_tokenizer
     :show-inheritance:
 
 
-.. _espnet2.text.__init__:
+.. _espnet2.text.korean_cleaner:
 
-espnet2.text.__init__
----------------------
+espnet2.text.korean_cleaner
+---------------------------
 
-.. automodule:: espnet2.text.__init__
+.. automodule:: espnet2.text.korean_cleaner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+.. _espnet2.text.cleaner:
+
+espnet2.text.cleaner
+--------------------
+
+.. automodule:: espnet2.text.cleaner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+.. _espnet2.text.char_tokenizer:
+
+espnet2.text.char_tokenizer
+---------------------------
+
+.. automodule:: espnet2.text.char_tokenizer
     :members:
     :undoc-members:
     :show-inheritance:
@@ -125,45 +92,45 @@ espnet2.text.phoneme_tokenizer
     :show-inheritance:
 
 
-.. _espnet2.text.minnan.minnandict:
+.. _espnet2.text.symbols:
 
-espnet2.text.minnan.minnandict
-------------------------------
+espnet2.text.symbols
+--------------------
 
-.. automodule:: espnet2.text.minnan.minnandict
+.. automodule:: espnet2.text.symbols
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-.. _espnet2.text.minnan.__init__:
+.. _espnet2.text.sentencepiece_tokenizer:
 
-espnet2.text.minnan.__init__
-----------------------------
+espnet2.text.sentencepiece_tokenizer
+------------------------------------
 
-.. automodule:: espnet2.text.minnan.__init__
+.. automodule:: espnet2.text.sentencepiece_tokenizer
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-.. _espnet2.text.bilingual.g2p:
+.. _espnet2.text.word_tokenizer:
 
-espnet2.text.bilingual.g2p
---------------------------
+espnet2.text.word_tokenizer
+---------------------------
 
-.. automodule:: espnet2.text.bilingual.g2p
+.. automodule:: espnet2.text.word_tokenizer
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-.. _espnet2.text.bilingual.thchsdict:
+.. _espnet2.text.bilingual.__init__:
 
-espnet2.text.bilingual.thchsdict
---------------------------------
+espnet2.text.bilingual.__init__
+-------------------------------
 
-.. automodule:: espnet2.text.bilingual.thchsdict
+.. automodule:: espnet2.text.bilingual.__init__
     :members:
     :undoc-members:
     :show-inheritance:
@@ -180,12 +147,23 @@ espnet2.text.bilingual.cmudict
     :show-inheritance:
 
 
-.. _espnet2.text.bilingual.__init__:
+.. _espnet2.text.bilingual.thchsdict:
 
-espnet2.text.bilingual.__init__
--------------------------------
+espnet2.text.bilingual.thchsdict
+--------------------------------
 
-.. automodule:: espnet2.text.bilingual.__init__
+.. automodule:: espnet2.text.bilingual.thchsdict
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+.. _espnet2.text.bilingual.g2p:
+
+espnet2.text.bilingual.g2p
+--------------------------
+
+.. automodule:: espnet2.text.bilingual.g2p
     :members:
     :undoc-members:
     :show-inheritance:
@@ -208,6 +186,28 @@ espnet2.text.bilingual.text_normalization.cn_tn
 -----------------------------------------------
 
 .. automodule:: espnet2.text.bilingual.text_normalization.cn_tn
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+.. _espnet2.text.minnan.__init__:
+
+espnet2.text.minnan.__init__
+----------------------------
+
+.. automodule:: espnet2.text.minnan.__init__
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+.. _espnet2.text.minnan.minnandict:
+
+espnet2.text.minnan.minnandict
+------------------------------
+
+.. automodule:: espnet2.text.minnan.minnandict
     :members:
     :undoc-members:
     :show-inheritance:
