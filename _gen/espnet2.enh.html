@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.enh package &mdash; ESPnet 202207 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>espnet2.enh package &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202207
+                202209
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -118,7 +118,9 @@
 <li class="toctree-l1"><a class="reference internal" href="espnet2.fileio.html">espnet2.fileio package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.optimizers.html">espnet2.optimizers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.st.html">espnet2.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.asr_transducer.html">espnet2.asr_transducer package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.svs.html">espnet2.svs package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.text.html">espnet2.text package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.hubert.html">espnet2.hubert package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.layers.html">espnet2.layers package</a></li>
@@ -187,6 +189,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-enh-loss-wrappers-abs-wrapper">espnet2.enh.loss.wrappers.abs_wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-enh-loss-wrappers-pit-solver">espnet2.enh.loss.wrappers.pit_solver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-enh-loss-wrappers-multilayer-pit-solver">espnet2.enh.loss.wrappers.multilayer_pit_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-enh-loss-wrappers-mixit-solver">espnet2.enh.loss.wrappers.mixit_solver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-enh-loss-wrappers-dpcl-solver">espnet2.enh.loss.wrappers.dpcl_solver</a></li>
 </ul>
 </li>
@@ -197,6 +200,7 @@
 <li class="toctree-l1"><a class="reference internal" href="espnet2.train.html">espnet2.train package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.mt.html">espnet2.mt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.lm.html">espnet2.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="espnet2.slu.html">espnet2.slu package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.tts.html">espnet2.tts package</a></li>
 </ul>
 <p><span class="caption-text">Tool Reference:</span></p>
@@ -268,6 +272,11 @@
 <dd><p>Bases: <a class="reference internal" href="espnet2.train.html#espnet2.train.abs_espnet_model.AbsESPnetModel" title="espnet2.train.abs_espnet_model.AbsESPnetModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.train.abs_espnet_model.AbsESPnetModel</span></code></a></p>
 <p>Joint model Enhancement and Speech to Text.</p>
 <dl class="method">
+<dt id="espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.asr_pit_loss">
+<code class="sig-name descname">asr_pit_loss</code><span class="sig-paren">(</span><em class="sig-param">speech</em>, <em class="sig-param">speech_lengths</em>, <em class="sig-param">text</em>, <em class="sig-param">text_lengths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.asr_pit_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.asr_pit_loss" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.batchify_nll">
 <code class="sig-name descname">batchify_nll</code><span class="sig-paren">(</span><em class="sig-param">encoder_out: torch.Tensor</em>, <em class="sig-param">encoder_out_lens: torch.Tensor</em>, <em class="sig-param">ys_pad: torch.Tensor</em>, <em class="sig-param">ys_pad_lens: torch.Tensor</em>, <em class="sig-param">batch_size: int = 100</em><span class="sig-paren">)</span><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.batchify_nll" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute negative log likelihood(nll) from transformer-decoder</p>
@@ -286,7 +295,7 @@ GPU memory usage</p>
 
 <dl class="method">
 <dt id="espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.collect_feats">
-<code class="sig-name descname">collect_feats</code><span class="sig-paren">(</span><em class="sig-param">speech: torch.Tensor</em>, <em class="sig-param">speech_lengths: torch.Tensor</em>, <em class="sig-param">text: torch.Tensor</em>, <em class="sig-param">text_lengths: torch.Tensor</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; Dict[str, torch.Tensor]<a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.collect_feats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.collect_feats" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">collect_feats</code><span class="sig-paren">(</span><em class="sig-param">speech: torch.Tensor</em>, <em class="sig-param">speech_lengths: torch.Tensor</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; Dict[str, torch.Tensor]<a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.collect_feats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.collect_feats" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -320,7 +329,7 @@ GPU memory usage</p>
 
 <dl class="method">
 <dt id="espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">speech: torch.Tensor</em>, <em class="sig-param">speech_lengths: torch.Tensor = None</em>, <em class="sig-param">text: torch.Tensor = None</em>, <em class="sig-param">text_lengths: torch.Tensor = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, Dict[str, torch.Tensor], torch.Tensor]<a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">speech: torch.Tensor</em>, <em class="sig-param">speech_lengths: torch.Tensor = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, Dict[str, torch.Tensor], torch.Tensor]<a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Frontend + Encoder + Decoder + Calc loss</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -331,8 +340,18 @@ because the chunk-iterator does not
 have the speech_lengths returned.
 see in
 espnet2/iterators/chunk_iter_factory.py</p></li>
-<li><p><strong>text</strong> – (Batch, Length) default None just to keep the argument order</p></li>
-<li><p><strong>text_lengths</strong> – (Batch,) default None for the same reason as speech_lengths</p></li>
+<li><p><strong>Enh+ASR task</strong> (<em>For</em>) – text_spk1: (Batch, Length)
+text_spk2: (Batch, Length)
+…
+text_spk1_lengths: (Batch,)
+text_spk2_lengths: (Batch,)
+…</p></li>
+<li><p><strong>other tasks</strong> (<em>For</em>) – <p>text: (Batch, Length) default None just to keep the argument order
+text_lengths: (Batch,)</p>
+<blockquote>
+<div><p>default None for the same reason as speech_lengths</p>
+</div></blockquote>
+</p></li>
 </ul>
 </dd>
 </dl>
@@ -356,6 +375,24 @@ espnet2/iterators/chunk_iter_factory.py</p></li>
 <li><p><strong>ys_pad</strong> – (Batch, Length)</p></li>
 <li><p><strong>ys_pad_lens</strong> – (Batch,)</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.permutation_invariant_training">
+<code class="sig-name descname">permutation_invariant_training</code><span class="sig-paren">(</span><em class="sig-param">losses: torch.Tensor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/espnet_enh_s2t_model.html#ESPnetEnhS2TModel.permutation_invariant_training"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_enh_s2t_model.ESPnetEnhS2TModel.permutation_invariant_training" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute  PIT loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>losses</strong> (<em>torch.Tensor</em>) – (batch, nref, nhyp)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list: (batch, n_spk)
+loss: torch.Tensor: (batch)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>perm</p>
 </dd>
 </dl>
 </dd></dl>
@@ -405,6 +442,26 @@ espnet2/iterators/chunk_iter_factory.py</p></li>
 <dt id="espnet2.enh.espnet_model.ESPnetEnhancementModel.forward_loss">
 <code class="sig-name descname">forward_loss</code><span class="sig-paren">(</span><em class="sig-param">speech_pre: torch.Tensor</em>, <em class="sig-param">speech_lengths: torch.Tensor</em>, <em class="sig-param">feature_mix: torch.Tensor</em>, <em class="sig-param">feature_pre: torch.Tensor</em>, <em class="sig-param">others: OrderedDict</em>, <em class="sig-param">speech_ref: torch.Tensor</em>, <em class="sig-param">noise_ref: torch.Tensor = None</em>, <em class="sig-param">dereverb_speech_ref: torch.Tensor = None</em><span class="sig-paren">)</span> &#x2192; Tuple[torch.Tensor, Dict[str, torch.Tensor], torch.Tensor]<a class="reference internal" href="../_modules/espnet2/enh/espnet_model.html#ESPnetEnhancementModel.forward_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_model.ESPnetEnhancementModel.forward_loss" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.enh.espnet_model.ESPnetEnhancementModel.sort_by_perm">
+<em class="property">static </em><code class="sig-name descname">sort_by_perm</code><span class="sig-paren">(</span><em class="sig-param">nn_output</em>, <em class="sig-param">perm</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/espnet_model.html#ESPnetEnhancementModel.sort_by_perm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.espnet_model.ESPnetEnhancementModel.sort_by_perm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the input list of tensors by the specified permutation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nn_output</strong> – List[torch.Tensor(Batch, …)], len(nn_output) == num_spk</p></li>
+<li><p><strong>perm</strong> – (Batch, num_spk) or List[torch.Tensor(num_spk)]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List[torch.Tensor(Batch, …)]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>nn_output_new</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -5213,8 +5270,54 @@ others: dict, in this PIT solver, permutation order will be returned</p>
 </dd></dl>
 
 </section>
+<section id="espnet2-enh-loss-wrappers-mixit-solver">
+<span id="id62"></span><h2>espnet2.enh.loss.wrappers.mixit_solver<a class="headerlink" href="#espnet2-enh-loss-wrappers-mixit-solver" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.enh.loss.wrappers.mixit_solver"></span><dl class="class">
+<dt id="espnet2.enh.loss.wrappers.mixit_solver.MixITSolver">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.enh.loss.wrappers.mixit_solver.</code><code class="sig-name descname">MixITSolver</code><span class="sig-paren">(</span><em class="sig-param">criterion: espnet2.enh.loss.criterions.abs_loss.AbsEnhLoss</em>, <em class="sig-param">weight: float = 1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/loss/wrappers/mixit_solver.html#MixITSolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.loss.wrappers.mixit_solver.MixITSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.enh.loss.wrappers.abs_wrapper.AbsLossWrapper" title="espnet2.enh.loss.wrappers.abs_wrapper.AbsLossWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.enh.loss.wrappers.abs_wrapper.AbsLossWrapper</span></code></a></p>
+<p>Mixture Invariant Training Solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>criterion</strong> (<a class="reference internal" href="#espnet2.enh.loss.criterions.abs_loss.AbsEnhLoss" title="espnet2.enh.loss.criterions.abs_loss.AbsEnhLoss"><em>AbsEnhLoss</em></a>) – an instance of AbsEnhLoss</p></li>
+<li><p><strong>weight</strong> (<em>float</em>) – weight (between 0 and 1) of current loss
+for multi-task learning.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="espnet2.enh.loss.wrappers.mixit_solver.MixITSolver.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">ref: Union[List[torch.Tensor], List[torch_complex.tensor.ComplexTensor]], inf: Union[List[torch.Tensor], List[torch_complex.tensor.ComplexTensor]], others: Dict = {}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/loss/wrappers/mixit_solver.html#MixITSolver.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.loss.wrappers.mixit_solver.MixITSolver.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>MixIT solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ref</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – [(batch, …), …] x n_spk</p></li>
+<li><p><strong>inf</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – [(batch, …), …] x n_est</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(torch.Tensor): minimum loss with the best permutation
+stats: dict, for collecting training status
+others: dict, in this PIT solver, permutation order will be returned</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="espnet2.enh.loss.wrappers.mixit_solver.MixITSolver.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#espnet2.enh.loss.wrappers.mixit_solver.MixITSolver.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="espnet2-enh-loss-wrappers-dpcl-solver">
-<span id="id62"></span><h2>espnet2.enh.loss.wrappers.dpcl_solver<a class="headerlink" href="#espnet2-enh-loss-wrappers-dpcl-solver" title="Permalink to this headline">¶</a></h2>
+<span id="id63"></span><h2>espnet2.enh.loss.wrappers.dpcl_solver<a class="headerlink" href="#espnet2-enh-loss-wrappers-dpcl-solver" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.enh.loss.wrappers.dpcl_solver"></span><dl class="class">
 <dt id="espnet2.enh.loss.wrappers.dpcl_solver.DPCLSolver">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.enh.loss.wrappers.dpcl_solver.</code><code class="sig-name descname">DPCLSolver</code><span class="sig-paren">(</span><em class="sig-param">criterion: espnet2.enh.loss.criterions.abs_loss.AbsEnhLoss</em>, <em class="sig-param">weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/enh/loss/wrappers/dpcl_solver.html#DPCLSolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.enh.loss.wrappers.dpcl_solver.DPCLSolver" title="Permalink to this definition">¶</a></dt>

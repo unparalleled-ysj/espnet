@@ -675,6 +675,17 @@ espnet2.enh.loss.wrappers.multilayer_pit_solver
     :show-inheritance:
 
 
+.. _espnet2.enh.loss.wrappers.mixit_solver:
+
+espnet2.enh.loss.wrappers.mixit_solver
+--------------------------------------
+
+.. automodule:: espnet2.enh.loss.wrappers.mixit_solver
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
 .. _espnet2.enh.loss.wrappers.dpcl_solver:
 
 espnet2.enh.loss.wrappers.dpcl_solver

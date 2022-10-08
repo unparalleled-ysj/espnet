@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview: module code &mdash; ESPnet 202207 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Overview: module code &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -29,7 +29,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202207
+                202209
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -115,7 +115,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.fileio.html">espnet2.fileio package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.optimizers.html">espnet2.optimizers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.st.html">espnet2.st package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.asr_transducer.html">espnet2.asr_transducer package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.torch_utils.html">espnet2.torch_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.svs.html">espnet2.svs package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.text.html">espnet2.text package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.hubert.html">espnet2.hubert package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.layers.html">espnet2.layers package</a></li>
@@ -130,6 +132,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.train.html">espnet2.train package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.mt.html">espnet2.mt package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.lm.html">espnet2.lm package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.slu.html">espnet2.slu package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_gen/espnet2.tts.html">espnet2.tts package</a></li>
 </ul>
 <p><span class="caption-text">Tool Reference:</span></p>
@@ -363,6 +366,7 @@
 <li><a href="espnet2/asr/decoder/abs_decoder.html">espnet2.asr.decoder.abs_decoder</a></li>
 <li><a href="espnet2/asr/decoder/mlm_decoder.html">espnet2.asr.decoder.mlm_decoder</a></li>
 <li><a href="espnet2/asr/decoder/rnn_decoder.html">espnet2.asr.decoder.rnn_decoder</a></li>
+<li><a href="espnet2/asr/decoder/transducer_decoder.html">espnet2.asr.decoder.transducer_decoder</a></li>
 <li><a href="espnet2/asr/decoder/transformer_decoder.html">espnet2.asr.decoder.transformer_decoder</a></li>
 <li><a href="espnet2/asr/encoder/abs_encoder.html">espnet2.asr.encoder.abs_encoder</a></li>
 <li><a href="espnet2/asr/encoder/branchformer_encoder.html">espnet2.asr.encoder.branchformer_encoder</a></li>
@@ -393,9 +397,27 @@
 <li><a href="espnet2/asr/specaug/specaug.html">espnet2.asr.specaug.specaug</a></li>
 <li><a href="espnet2/asr/transducer/beam_search_transducer.html">espnet2.asr.transducer.beam_search_transducer</a></li>
 <li><a href="espnet2/asr/transducer/error_calculator.html">espnet2.asr.transducer.error_calculator</a></li>
-<li><a href="espnet2/asr/transducer/joint_network.html">espnet2.asr.transducer.joint_network</a></li>
-<li><a href="espnet2/asr/transducer/transducer_decoder.html">espnet2.asr.transducer.transducer_decoder</a></li>
-<li><a href="espnet2/asr/transducer/utils.html">espnet2.asr.transducer.utils</a></li>
+<li><a href="espnet2/asr_transducer/activation.html">espnet2.asr_transducer.activation</a></li>
+<li><a href="espnet2/asr_transducer/beam_search_transducer.html">espnet2.asr_transducer.beam_search_transducer</a></li>
+<li><a href="espnet2/asr_transducer/decoder/abs_decoder.html">espnet2.asr_transducer.decoder.abs_decoder</a></li>
+<li><a href="espnet2/asr_transducer/decoder/rnn_decoder.html">espnet2.asr_transducer.decoder.rnn_decoder</a></li>
+<li><a href="espnet2/asr_transducer/decoder/stateless_decoder.html">espnet2.asr_transducer.decoder.stateless_decoder</a></li>
+<li><a href="espnet2/asr_transducer/encoder/blocks/branchformer.html">espnet2.asr_transducer.encoder.blocks.branchformer</a></li>
+<li><a href="espnet2/asr_transducer/encoder/blocks/conformer.html">espnet2.asr_transducer.encoder.blocks.conformer</a></li>
+<li><a href="espnet2/asr_transducer/encoder/blocks/conv1d.html">espnet2.asr_transducer.encoder.blocks.conv1d</a></li>
+<li><a href="espnet2/asr_transducer/encoder/blocks/conv_input.html">espnet2.asr_transducer.encoder.blocks.conv_input</a></li>
+<li><a href="espnet2/asr_transducer/encoder/building.html">espnet2.asr_transducer.encoder.building</a></li>
+<li><a href="espnet2/asr_transducer/encoder/encoder.html">espnet2.asr_transducer.encoder.encoder</a></li>
+<li><a href="espnet2/asr_transducer/encoder/modules/attention.html">espnet2.asr_transducer.encoder.modules.attention</a></li>
+<li><a href="espnet2/asr_transducer/encoder/modules/convolution.html">espnet2.asr_transducer.encoder.modules.convolution</a></li>
+<li><a href="espnet2/asr_transducer/encoder/modules/multi_blocks.html">espnet2.asr_transducer.encoder.modules.multi_blocks</a></li>
+<li><a href="espnet2/asr_transducer/encoder/modules/normalization.html">espnet2.asr_transducer.encoder.modules.normalization</a></li>
+<li><a href="espnet2/asr_transducer/encoder/modules/positional_encoding.html">espnet2.asr_transducer.encoder.modules.positional_encoding</a></li>
+<li><a href="espnet2/asr_transducer/encoder/validation.html">espnet2.asr_transducer.encoder.validation</a></li>
+<li><a href="espnet2/asr_transducer/error_calculator.html">espnet2.asr_transducer.error_calculator</a></li>
+<li><a href="espnet2/asr_transducer/espnet_transducer_model.html">espnet2.asr_transducer.espnet_transducer_model</a></li>
+<li><a href="espnet2/asr_transducer/joint_network.html">espnet2.asr_transducer.joint_network</a></li>
+<li><a href="espnet2/asr_transducer/utils.html">espnet2.asr_transducer.utils</a></li>
 <li><a href="espnet2/bin/aggregate_stats_dirs.html">espnet2.bin.aggregate_stats_dirs</a></li>
 <li><a href="espnet2/bin/enh_scoring.html">espnet2.bin.enh_scoring</a></li>
 <li><a href="espnet2/bin/launch.html">espnet2.bin.launch</a></li>
@@ -446,6 +468,7 @@
 <li><a href="espnet2/enh/loss/wrappers/abs_wrapper.html">espnet2.enh.loss.wrappers.abs_wrapper</a></li>
 <li><a href="espnet2/enh/loss/wrappers/dpcl_solver.html">espnet2.enh.loss.wrappers.dpcl_solver</a></li>
 <li><a href="espnet2/enh/loss/wrappers/fixed_order.html">espnet2.enh.loss.wrappers.fixed_order</a></li>
+<li><a href="espnet2/enh/loss/wrappers/mixit_solver.html">espnet2.enh.loss.wrappers.mixit_solver</a></li>
 <li><a href="espnet2/enh/loss/wrappers/multilayer_pit_solver.html">espnet2.enh.loss.wrappers.multilayer_pit_solver</a></li>
 <li><a href="espnet2/enh/loss/wrappers/pit_solver.html">espnet2.enh.loss.wrappers.pit_solver</a></li>
 <li><a href="espnet2/enh/separator/abs_separator.html">espnet2.enh.separator.abs_separator</a></li>
@@ -472,6 +495,7 @@
 <li><a href="espnet2/fileio/read_text.html">espnet2.fileio.read_text</a></li>
 <li><a href="espnet2/fileio/rttm.html">espnet2.fileio.rttm</a></li>
 <li><a href="espnet2/fileio/sound_scp.html">espnet2.fileio.sound_scp</a></li>
+<li><a href="espnet2/fileio/xml_scp.html">espnet2.fileio.xml_scp</a></li>
 <li><a href="espnet2/gan_tts/abs_gan_tts.html">espnet2.gan_tts.abs_gan_tts</a></li>
 <li><a href="espnet2/gan_tts/bigvgan/bigvgan.html">espnet2.gan_tts.bigvgan.bigvgan</a></li>
 <li><a href="espnet2/gan_tts/espnet_model.html">espnet2.gan_tts.espnet_model</a></li>
@@ -543,7 +567,17 @@
 <li><a href="espnet2/schedulers/noam_lr.html">espnet2.schedulers.noam_lr</a></li>
 <li><a href="espnet2/schedulers/warmup_lr.html">espnet2.schedulers.warmup_lr</a></li>
 <li><a href="espnet2/schedulers/warmup_step_lr.html">espnet2.schedulers.warmup_step_lr</a></li>
+<li><a href="espnet2/slu/espnet_model.html">espnet2.slu.espnet_model</a></li>
+<li><a href="espnet2/slu/postdecoder/abs_postdecoder.html">espnet2.slu.postdecoder.abs_postdecoder</a></li>
+<li><a href="espnet2/slu/postdecoder/hugging_face_transformers_postdecoder.html">espnet2.slu.postdecoder.hugging_face_transformers_postdecoder</a></li>
+<li><a href="espnet2/slu/postencoder/conformer_postencoder.html">espnet2.slu.postencoder.conformer_postencoder</a></li>
+<li><a href="espnet2/slu/postencoder/transformer_postencoder.html">espnet2.slu.postencoder.transformer_postencoder</a></li>
 <li><a href="espnet2/st/espnet_model.html">espnet2.st.espnet_model</a></li>
+<li><a href="espnet2/svs/abs_svs.html">espnet2.svs.abs_svs</a></li>
+<li><a href="espnet2/svs/espnet_model.html">espnet2.svs.espnet_model</a></li>
+<li><a href="espnet2/svs/feats_extract/score_feats_extract.html">espnet2.svs.feats_extract.score_feats_extract</a></li>
+<li><a href="espnet2/svs/naive_rnn/naive_rnn.html">espnet2.svs.naive_rnn.naive_rnn</a></li>
+<li><a href="espnet2/svs/naive_rnn/naive_rnn_dp.html">espnet2.svs.naive_rnn.naive_rnn_dp</a></li>
 <li><a href="espnet2/tasks/abs_task.html">espnet2.tasks.abs_task</a></li>
 <li><a href="espnet2/text/abs_tokenizer.html">espnet2.text.abs_tokenizer</a></li>
 <li><a href="espnet2/text/bilingual/cmudict.html">espnet2.text.bilingual.cmudict</a></li>
@@ -604,7 +638,6 @@
 <li><a href="espnet2/utils/sized_dict.html">espnet2.utils.sized_dict</a></li>
 <li><a href="espnet2/utils/types.html">espnet2.utils.types</a></li>
 <li><a href="espnet2/utils/yaml_no_alias_safe_dump.html">espnet2.utils.yaml_no_alias_safe_dump</a></li>
-<li><a href="torch/utils/data/_typing.html">torch.utils.data._typing</a></li>
 </ul>
 
            </div>
