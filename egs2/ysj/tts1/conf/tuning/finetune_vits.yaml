@@ -130,7 +130,7 @@ tts_conf:
     cache_generator_outputs: true # whether to cache generator outputs in the training
 
 init_param:
-- exp/Originbeat-male/tts_vits/train.total_count.best.pth:tts:tts
+- exp/Originbeat-male/tts_vits_add_blank/latest.pth:tts:tts
 
 ##########################################################
 #            OPTIMIZER & SCHEDULER SETTING               #
@@ -161,9 +161,9 @@ generator_first: false # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000  # number of iterations per epoch
-max_epoch: 500            # number of epochs
+max_epoch: 20            # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 5000000       # batch bins (feats_type=raw)
+batch_bins: 500000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

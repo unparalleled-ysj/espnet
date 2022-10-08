@@ -47,7 +47,8 @@ def calculate_all_attentions(
     outputs = {}
     handles = {}
     for name, modu in model.named_modules():
-
+        if "xv_loss" in name.split('.'):
+            continue
         def hook(module, input, output, name=name):
             if isinstance(module, MultiHeadedAttention):
                 # NOTE(kamo): MultiHeadedAttention doesn't return attention weight

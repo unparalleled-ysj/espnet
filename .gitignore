@@ -86,14 +86,13 @@ tools/._*
 
 #addtional
 espnet2/gan_tts/vits/monotonic_align
+espnet2/text/minnan
 tools/subtools
 tools/extract_xvector_model
 egs2/ysj/tts1/synthesis_sentences
 egs2/ysj/tts1/export2onnx.py
 egs2/ysj/tts1/inference.py
+egs2/ysj/tts1/tools.py
 egs2/ysj/tts1/run.sh
 egs2/ysj/tts1/onnx_model
 egs2/ysj/tts1/onnx_model_with_speed_control
-
-#enh
-egs2/ysj/enh1

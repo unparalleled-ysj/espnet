@@ -16,8 +16,6 @@ tts_conf:
     use_pqmf: true
     generator_type: jets_generator
     generator_params:
-        spks: 8
-        langs: 3
         adim: 256                                    # attention dimension
         aheads: 2                                    # number of attention heads
         elayers: 4                                   # number of encoder layers
@@ -160,8 +158,8 @@ energy_extract_conf:
     use_token_averaged_energy: false
 energy_normalize: global_mvn # normalizer for the energy feature
 
-# init_param:
-# - exp/xmu-boy/tts_multiband_jets/latest.pth:tts:tts
+init_param:
+- exp/minnan-female/tts_multiband_jets/latest.pth:tts:tts
 # ignore_init_mismatch: true
 
 ##########################################################
@@ -170,7 +168,7 @@ energy_normalize: global_mvn # normalizer for the energy feature
 # optimizer setting for generator
 optim: adamw
 optim_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -180,7 +178,7 @@ scheduler_conf:
 # optimizer setting for discriminator
 optim2: adamw
 optim2_conf:
-    lr: 2.0e-4
+    lr: 1.0e-4
     betas: [0.8, 0.99]
     eps: 1.0e-9
     weight_decay: 0.0
@@ -193,9 +191,9 @@ generator_first: true # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 20           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 3000000       # batch bins (feats_type=raw)
+batch_bins: 500000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

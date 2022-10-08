@@ -15,19 +15,19 @@ class BilingualG2P():
         self.pause_punctuation = {
             "？": "np",
             "！": "np",
-            "，": "sp",
+            "，": "np",
             "。": "np",
-            "：": "sp",
-            "、": "sp",
+            "：": "np",
+            "、": "np",
             "；": "np",
-            ",": "sp",
+            ",": "np",
             ".": "np",
             "?": "np",
             "!": "np",
             "~": "sp",
         }
 
-    def text2tokens(self, line: str, add_blank: bool=True) -> List[str]:
+    def text2tokens(self, line: str, add_blank: bool=False) -> List[str]:
         pinyin = self.text2pinyin(line)
         phoneme = [self.get_phoneme(self.thchsdict, cn) for cn in pinyin.split(' ')]
         phoneme = ' '.join([self.get_arpabet(self.cmudict, en) for en in phoneme])

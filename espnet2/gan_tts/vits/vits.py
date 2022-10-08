@@ -24,10 +24,11 @@ from espnet2.gan_tts.hifigan.loss import (
     GeneratorAdversarialLoss,
     MelSpectrogramLoss,
 )
+from espnet2.gan_tts.bigvgan import BigVGANMultiPeriodDiscriminator
 from espnet2.gan_tts.utils import get_segments
 from espnet2.gan_tts.vits.generator import VITSGenerator
 from espnet2.gan_tts.melgan.pqmf import PQMF
-from espnet2.gan_tts.vits.loss import KLDivergenceLoss
+from espnet2.gan_tts.vits.loss import KLDivergenceLoss, XvectorLoss
 from espnet2.gan_tts.melgan.stft_loss import MultiResolutionSTFTLoss
 from espnet2.torch_utils.device_funcs import force_gatherable
 
@@ -40,6 +41,7 @@ AVAILABLE_DISCRIMINATORS = {
     "hifigan_multi_period_discriminator": HiFiGANMultiPeriodDiscriminator,
     "hifigan_multi_scale_discriminator": HiFiGANMultiScaleDiscriminator,
     "hifigan_multi_scale_multi_period_discriminator": HiFiGANMultiScaleMultiPeriodDiscriminator,  # NOQA
+    "bigvgan_multi_period_discriminator": BigVGANMultiPeriodDiscriminator,
 }
 
 if LooseVersion(torch.__version__) >= LooseVersion("1.6.0"):
@@ -91,6 +93,7 @@ class VITS(AbsGANTTS):
             "text_encoder_conformer_kernel_size": 7,
             "use_macaron_style_in_text_encoder": True,
             "use_conformer_conv_in_text_encoder": True,
+            "decoder_type": "hifigan",
             "decoder_kernel_size": 7,
             "decoder_channels": 512,
             "decoder_out_channels": 1,
@@ -165,6 +168,25 @@ class VITS(AbsGANTTS):
             },
         },
         # loss related
+        use_xv_loss: bool = False,
+        xvector_loss_params: Dict[str, Any] = {
+            "model_path": "/work/ysj/espnet/tools/extract_xvector_model/res34se_fbank_81_shard_16k_random/8.pt",
+            "feature_type": "fbank",
+            "kaldi_featset": {
+                "num_mel_bins": 80,
+                "frame_shift": 10,
+                "frame_length": 25,
+                "low_freq": 40,
+                "high_freq": -200,
+                "energy_floor": 0.0,
+                "dither": 0,
+                "use_energy": True,
+            },
+            "mean_var_conf": {
+                "mean_norm": True,
+                "std_norm": False,
+            },
+        },
         generator_adv_loss_params: Dict[str, Any] = {
             "average_by_discriminators": False,
             "loss_type": "mse",
@@ -226,6 +248,7 @@ class VITS(AbsGANTTS):
         assert check_argument_types()
         super().__init__()
         self.use_pqmf = use_pqmf
+        self.use_xv_loss = use_xv_loss
 
         # define modules
         generator_class = AVAILABLE_GENERATERS[generator_type]
@@ -253,6 +276,10 @@ class VITS(AbsGANTTS):
                 window="hann_window",
             )
         discriminator_class = AVAILABLE_DISCRIMINATORS[discriminator_type]
+        if self.use_xv_loss:
+            self.xv_loss = XvectorLoss(
+                **xvector_loss_params,
+            )
         self.discriminator = discriminator_class(
             **discriminator_params,
         )
@@ -452,6 +479,17 @@ class VITS(AbsGANTTS):
                 sub_stft_loss = sub_sc_loss + sub_mag_loss
                 multiband_loss = 0.5 * (stft_loss + sub_stft_loss)
                 multiband_loss = multiband_loss * 5.0      # scale stft loss
+            if self.use_xv_loss:
+                with torch.no_grad():
+                    xv_loss = 0.0
+                    # for i, (waveform, xv_target) in enumerate(zip(speech_hat_, spembs)):
+                    #     xv_loss_ = self.xv_loss(waveform, xv_target)
+                    #     xv_loss += xv_loss_
+                    for i, (waveform, waveform_target) in enumerate(zip(speech_hat_, speech_)):
+                        xv_loss_ = self.xv_loss.wav_wav_loss(waveform, waveform_target)
+                        xv_loss += xv_loss_
+                    xv_loss /= i+1
+                    xv_loss = xv_loss * 5.0      # scale xvector loss
             mel_loss = self.mel_loss(speech_hat_, speech_)
             kl_loss = self.kl_loss(z_p, logs_q, m_p, logs_p, z_mask)
             dur_loss = torch.sum(dur_nll.float())
@@ -478,6 +516,11 @@ class VITS(AbsGANTTS):
             loss += multiband_loss
             stats.update(generator_loss=loss.item())
             stats.update(generator_multiband_loss=multiband_loss.item())
+        
+        if self.use_xv_loss:
+            loss += xv_loss
+            stats.update(generator_loss=loss.item())
+            stats.update(generator_xvector_loss=xv_loss.item())
 
         loss, stats, weight = force_gatherable((loss, stats, batch_size), loss.device)
 

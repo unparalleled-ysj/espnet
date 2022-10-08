@@ -15,6 +15,7 @@ import torch
 import torch.nn.functional as F
 
 from espnet2.gan_tts.hifigan import HiFiGANGenerator
+from espnet2.gan_tts.bigvgan import BigVGANGenerator
 from espnet2.gan_tts.utils import get_random_segments
 from espnet2.gan_tts.vits.duration_predictor import StochasticDurationPredictor
 from espnet2.gan_tts.vits.posterior_encoder import PosteriorEncoder
@@ -62,6 +63,7 @@ class VITSGenerator(torch.nn.Module):
         text_encoder_conformer_kernel_size: int = 7,
         use_macaron_style_in_text_encoder: bool = True,
         use_conformer_conv_in_text_encoder: bool = True,
+        decoder_type: str="hifigan",
         decoder_kernel_size: int = 7,
         decoder_channels: int = 512,
         decoder_out_channels: int = 1,
@@ -189,18 +191,30 @@ class VITSGenerator(torch.nn.Module):
             use_macaron_style=use_macaron_style_in_text_encoder,
             use_conformer_conv=use_conformer_conv_in_text_encoder,
         )
-        self.decoder = HiFiGANGenerator(
-            in_channels=hidden_channels,
-            out_channels=decoder_out_channels,
-            channels=decoder_channels,
-            global_channels=global_channels,
-            kernel_size=decoder_kernel_size,
-            upsample_scales=decoder_upsample_scales,
-            upsample_kernel_sizes=decoder_upsample_kernel_sizes,
-            resblock_kernel_sizes=decoder_resblock_kernel_sizes,
-            resblock_dilations=decoder_resblock_dilations,
-            use_weight_norm=use_weight_norm_in_decoder,
-        )
+        if decoder_type == "hifigan":
+            self.decoder = HiFiGANGenerator(
+                in_channels=hidden_channels,
+                out_channels=decoder_out_channels,
+                channels=decoder_channels,
+                global_channels=global_channels,
+                kernel_size=decoder_kernel_size,
+                upsample_scales=decoder_upsample_scales,
+                upsample_kernel_sizes=decoder_upsample_kernel_sizes,
+                resblock_kernel_sizes=decoder_resblock_kernel_sizes,
+                resblock_dilations=decoder_resblock_dilations,
+                use_weight_norm=use_weight_norm_in_decoder,
+            )
+        elif decoder_type == "bigvgan":
+            self.decoder = BigVGANGenerator(
+                initial_channel=hidden_channels,
+                out_channels=decoder_out_channels,
+                resblock_kernel_sizes=decoder_resblock_kernel_sizes,
+                resblock_dilation_sizes=decoder_resblock_dilations,
+                upsample_rates=decoder_upsample_scales,
+                upsample_initial_channel=decoder_channels,
+                upsample_kernel_sizes=decoder_upsample_kernel_sizes,
+                gin_channels=global_channels,
+            )
         self.posterior_encoder = PosteriorEncoder(
             in_channels=aux_channels,
             out_channels=hidden_channels,

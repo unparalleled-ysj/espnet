@@ -28,7 +28,7 @@ class Symbols():
         elif language == "multilingual":
             decorate_phoneme = lambda x: '@' + x
             minnan_phoneme = [decorate_phoneme(phoneme) for phoneme in self.minnan_phoneme]
-            symbols = self.punc_phoneme + self.thchs_phoneme + self.cmu_phoneme + minnan_phoneme
+            symbols = self.punc_phoneme + self.thchs_phoneme + self.cmu_phoneme + minnan_phoneme + self.prosody
         elif language == "pinyin":
             symbols = self.punc_phoneme + get_pinyin_list()
         else:

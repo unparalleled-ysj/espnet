@@ -23,53 +23,53 @@ else
     opts="--audio_format flac "
 fi
 
-dataset="CS_prosody_16k"
+dataset="TalentedSoft_multilingual_test"
 train_set=tr_no_dev
 valid_set=dev
 test_sets="dev eval1"
 
 # train_config=conf/tuning/finetune_joint_conformer_fastspeech2_hifigan.yaml
 # train_config=conf/tuning/train_conformer_fastspeech2.yaml
-# train_config=conf/tuning/train_xvector_jets.yaml
+# train_config=conf/tuning/train_xvector_vits.yaml
 # train_config=conf/tuning/finetune_multi_spk_vits.yaml
-train_config=conf/tuning/train_multiband_vits.yaml
-# train_config=conf/tuning/train_full_band_vits.yaml
+train_config=conf/tuning/train_multiband_jets.yaml
+# train_config=conf/tuning/finetune_vits.yaml
 inference_config=conf/tuning/decode_vits.yaml
 
 
 g2p=none
 vits_g2p=add_blank
 
-# train vits
-./tts.sh \
-    --tts_task gan_tts \
-    --ngpu 1 \
-    --dataset $dataset \
-    --dumpdir dump/$dataset \
-    --expdir exp/$dataset \
-    --tts_stats_dir exp/$dataset/tts_stats_vits_add_blank \
-    --tts_exp exp/$dataset/tts_multiband_vits_add_blank \
-    --use_xvector false \
-    --use_sid false \
-    --use_lid false \
-    --lang zh \
-    --feats_type raw \
-    --fs "${fs}" \
-    --n_fft "${n_fft}" \
-    --n_shift "${n_shift}" \
-    --win_length "${win_length}" \
-    --feats_extract linear_spectrogram \
-    --feats_normalize none \
-    --cleaner none \
-    --g2p "${vits_g2p}" \
-    --train_config "${train_config}" \
-    --inference_config "${inference_config}" \
-    --inference_model latest.pth \
-    --train_set "${train_set}" \
-    --valid_set "${valid_set}" \
-    --test_sets "${test_sets}" \
-    --srctexts "data/$dataset/${train_set}/text" \
-    ${opts} "$@"
+# # train vits
+# ./tts.sh \
+#     --tts_task gan_tts \
+#     --ngpu 1 \
+#     --dataset $dataset \
+#     --dumpdir dump/$dataset \
+#     --expdir exp/$dataset \
+#     --tts_stats_dir exp/$dataset/tts_stats_vits \
+#     --tts_exp exp/$dataset/tts_multiband_vits \
+#     --use_xvector false \
+#     --use_sid false \
+#     --use_lid false \
+#     --lang zh \
+#     --feats_type raw \
+#     --fs "${fs}" \
+#     --n_fft "${n_fft}" \
+#     --n_shift "${n_shift}" \
+#     --win_length "${win_length}" \
+#     --feats_extract linear_spectrogram \
+#     --feats_normalize none \
+#     --cleaner none \
+#     --g2p "${vits_g2p}" \
+#     --train_config "${train_config}" \
+#     --inference_config "${inference_config}" \
+#     --inference_model latest.pth \
+#     --train_set "${train_set}" \
+#     --valid_set "${valid_set}" \
+#     --test_sets "${test_sets}" \
+#     --srctexts "data/$dataset/${train_set}/text" \
+#     ${opts} "$@"
 
 # train fastspeech2
 
@@ -101,29 +101,29 @@ vits_g2p=add_blank
 
 
 # train jets
-# ./tts.sh \
-#     --tts_task gan_tts \
-#     --ngpu 2 \
-#     --dataset $dataset \
-#     --dumpdir dump/$dataset \
-#     --expdir exp/$dataset \
-#     --tts_stats_dir exp/$dataset/tts_stats_jets \
-#     --tts_exp exp/$dataset/tts_multiband_jets_stft_loss \
-#     --use_xvector false \
-#     --use_sid false \
-#     --use_lid false \
-#     --fmax null \
-#     --fmin 0 \
-#     --fs "${fs}" \
-#     --n_fft "${n_fft}" \
-#     --n_shift "${n_shift}" \
-#     --win_length "${win_length}" \
-#     --cleaner none \
-#     --g2p "${g2p}" \
-#     --train_config "${train_config}" \
-#     --inference_model latest.pth \
-#     --train_set "${train_set}" \
-#     --valid_set "${valid_set}" \
-#     --test_sets "${test_sets}" \
-#     --srctexts "data/$dataset/${train_set}/text" \
-#     ${opts} "$@"
+./tts.sh \
+    --tts_task gan_tts \
+    --ngpu 1 \
+    --dataset $dataset \
+    --dumpdir dump/$dataset \
+    --expdir exp/$dataset \
+    --tts_stats_dir exp/$dataset/tts_stats_jets \
+    --tts_exp exp/$dataset/tts_multiband_jets \
+    --use_xvector false \
+    --use_sid true \
+    --use_lid true \
+    --fmax null \
+    --fmin 0 \
+    --fs "${fs}" \
+    --n_fft "${n_fft}" \
+    --n_shift "${n_shift}" \
+    --win_length "${win_length}" \
+    --cleaner none \
+    --g2p "${g2p}" \
+    --train_config "${train_config}" \
+    --inference_model latest.pth \
+    --train_set "${train_set}" \
+    --valid_set "${valid_set}" \
+    --test_sets "${test_sets}" \
+    --srctexts "data/$dataset/${train_set}/text" \
+    ${opts} "$@"

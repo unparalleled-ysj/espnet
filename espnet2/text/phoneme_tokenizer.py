@@ -10,6 +10,7 @@ from typeguard import check_argument_types
 
 from espnet2.text.abs_tokenizer import AbsTokenizer
 from espnet2.text.bilingual import BilingualG2P
+from espnet2.text.minnan import MinNanG2P
 
 g2p_choices = [
     None,
@@ -38,6 +39,7 @@ g2p_choices = [
     "korean_jaso",
     "korean_jaso_no_space",
     "bilingual",
+    "minnan",
     "add_blank",
     "g2p_is",
 ]
@@ -515,6 +517,8 @@ class PhonemeTokenizer(AbsTokenizer):
             self.g2p = Jaso(no_space=True)
         elif g2p_type == "bilingual":
             self.g2p = BilingualG2P().text2tokens
+        elif g2p_type == "minnan":
+            self.g2p = MinNanG2P().text2tokens
         elif g2p_type == "add_blank":
             self.g2p = BilingualG2P().add_blank
         elif g2p_type == "g2p_is":

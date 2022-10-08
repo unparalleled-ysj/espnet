@@ -78,6 +78,7 @@ def tokenize(
     add_symbol: List[str],
     cleaner: Optional[str],
     g2p: Optional[str],
+    language: Optional[str],
 ):
     assert check_argument_types()
 
@@ -141,7 +142,7 @@ def tokenize(
         import sys
         sys.path.append("../../../espnet2")
         from text.symbols import Symbols
-        words_and_counts = [(symbol, 1) for symbol in Symbols().get_symbols(language="bilingual")]
+        words_and_counts = [(symbol, 1) for symbol in Symbols().get_symbols(language=language)]
     else:
         words_and_counts = list(
             filter(lambda x: x[1] > cutoff, sorted(counter.items(), key=lambda x: -x[1]))
@@ -236,6 +237,13 @@ def get_parser() -> argparse.ArgumentParser:
         choices=g2p_choices,
         default=None,
         help="Specify g2p method if --token_type=phn",
+    )
+    parser.add_argument(
+        "--language",
+        type=str_or_none,
+        choices=["bilingual", "minnan", "multilingual", "pinyin"],
+        default="bilingual",
+        help="phoneme type",
     )
 
     group = parser.add_argument_group("write_vocabulary mode related")

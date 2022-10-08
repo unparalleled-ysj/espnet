@@ -396,10 +396,12 @@ if ! "${skip_data_prep}"; then
 
             for dset in "${train_set}" "${valid_set}" ${test_sets}; do
                 # Copy datadir and resample to 16k
-                utils/copy_data_dir.sh "data/$dataset/${dset}" "${dumpdir}/fbank/${dset}"
+                utils/copy_data_dir.sh "data/$dataset/${dset}" "${dumpdir}/fbank/${dset}_origin"
                 # utils/data/resample_data_dir.sh 16000 "${dumpdir}/fbank/${dset}"
                 # Make features for data
-                _nj=$(min "${nj}" "$(<${dumpdir}/fbank/${dset}/utt2spk wc -l)")
+                _nj=$(min "${nj}" "$(<${dumpdir}/fbank/${dset}_origin/utt2spk wc -l)")
+                subtools/augmentDataByNoise.sh --nj ${_nj} "${dumpdir}/fbank/${dset}_origin" "${dumpdir}/fbank/${dset}"
+                python pyscripts/utils/augmentDataByNoisePostProcess.py --map_dir "${dumpdir}/fbank/${dset}"
                 subtools/makeFeatures.sh --nj ${_nj} ${dumpdir}/fbank/${dset} fbank subtools/conf/sre-fbank-81.conf 
                 utils/fix_data_dir.sh "${dumpdir}/fbank/${dset}"
                 # Compute VAD for data
@@ -407,7 +409,7 @@ if ! "${skip_data_prep}"; then
                 utils/fix_data_dir.sh "${dumpdir}/fbank/${dset}"
                 # Extract X-vector
                 python pyscripts/feats/extracingXvector.py --nj ${_nj} --feats_dir ${dumpdir}/fbank/${dset} --xvectors_dir ${dumpdir}/xvector/${dset}
-                python pyscripts/utils/sort_xvectors.py --feats_dir ${dumpdir}/fbank/${dset} --xvectors_dir ${dumpdir}/xvector/${dset}
+                python pyscripts/utils/sort_xvectors.py --feats_dir ${dumpdir}/fbank/${dset} --xvectors_dir ${dumpdir}/xvector/${dset} --shuffle false
                 ${train_cmd} ${dumpdir}/xvector/${dset}/log/speaker_mean.log \
                     ivector-mean ark:${dumpdir}/fbank/${dset}/spk2utt scp:${dumpdir}/xvector/${dset}/xvector.scp \
                     ark,scp:${dumpdir}/xvector/${dset}/spk_xvector.ark,${dumpdir}/xvector/${dset}/spk_xvector.scp ark,t:${dumpdir}/xvector/${dset}/num_utts.ark || exit 1;
@@ -549,6 +551,7 @@ if ! "${skip_data_prep}"; then
               --non_linguistic_symbols "${nlsyms_txt}" \
               --cleaner "${cleaner}" \
               --g2p "${g2p}" \
+              --language "multilingual" \
               --write_vocabulary true \
               --add_symbol "${blank}:0" \
               --add_symbol "${oov}:1" \
