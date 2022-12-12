@@ -17,9 +17,11 @@ tts_conf:
     generator_type: vits_generator
     generator_params:
         hidden_channels: 192
-        spks: -1
-        global_channels: -1
-        segment_size: 32
+        # spks: 8
+        # langs: 3
+        spk_embed_dim: 256
+        global_channels: 256
+        segment_size: 64
         text_encoder_attention_heads: 2
         text_encoder_ffn_expand: 4
         text_encoder_blocks: 6
@@ -161,9 +163,9 @@ generator_first: false # whether to start updating generator first
 #                OTHER TRAINING SETTING                  #
 ##########################################################
 num_iters_per_epoch: 1000 # number of iterations per epoch
-max_epoch: 1000           # number of epochs
+max_epoch: 2000           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 3000000       # batch bins (feats_type=raw)
+batch_bins: 2500000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

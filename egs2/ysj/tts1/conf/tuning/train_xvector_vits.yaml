@@ -40,7 +40,7 @@ tts_conf:
         #   or different version pytorch may solve this issue.
         use_conformer_conv_in_text_encoder: false
         text_encoder_conformer_kernel_size: -1
-        decoder_type: "bigvgan"
+        decoder_type: "hifigan"
         decoder_kernel_size: 7
         decoder_channels: 512
         decoder_upsample_scales: [8, 8, 2, 2]
@@ -169,7 +169,7 @@ generator_first: false # whether to start updating generator first
 num_iters_per_epoch: 1000 # number of iterations per epoch
 max_epoch: 1000           # number of epochs
 accum_grad: 1             # gradient accumulation
-batch_bins: 800000       # batch bins (feats_type=raw)
+batch_bins: 2000000       # batch bins (feats_type=raw)
 batch_type: numel         # how to make batch
 grad_clip: -1             # gradient clipping norm
 grad_noise: false         # whether to use gradient noise injection

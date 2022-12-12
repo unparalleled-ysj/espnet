@@ -110,6 +110,7 @@ class JETS(AbsGANTTS):
             "pitch_embed_kernel_size": 1,
             "pitch_embed_dropout": 0.5,
             "stop_gradient_from_pitch_predictor": True,
+            "generator_type": "hifigan",
             "generator_out_channels": 1,
             "generator_channels": 512,
             "generator_global_channels": -1,
@@ -465,11 +466,6 @@ class JETS(AbsGANTTS):
         if self.use_pqmf:
             speech_hat_sub_ = speech_hat_
             speech_hat_ = self.pqmf.synthesis(speech_hat_)
-            speech_ = get_segments(
-                x=speech,
-                start_idxs=start_idxs * self.generator.upsample_factor * 4,
-                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
-            )
             speech_sub_ = self.pqmf.analysis(speech_)
             
         # calculate discriminator outputs
@@ -485,7 +481,8 @@ class JETS(AbsGANTTS):
             sub_sc_loss, sub_mag_loss = self.sub_stft_loss(speech_hat_sub_, speech_sub_)
             sub_stft_loss = sub_sc_loss + sub_mag_loss
             multiband_loss = 0.5 * (stft_loss + sub_stft_loss)
-            multiband_loss = multiband_loss * 5.0    # scale stft loss
+            # multiband_loss = sub_stft_loss
+            multiband_loss = multiband_loss * 1.0    # scale stft loss
 
         mel_loss = self.mel_loss(speech_hat_, speech_)
         adv_loss = self.generator_adv_loss(p_hat)
@@ -604,12 +601,7 @@ class JETS(AbsGANTTS):
                 segment_size=self.generator.segment_size * self.generator.upsample_factor,
             )
         if self.use_pqmf:
-            speech_hat_ = self.pqmf.synthesis(speech_hat_)
-            speech_ = get_segments(
-                x=speech,
-                start_idxs=start_idxs * self.generator.upsample_factor * 4,
-                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
-            )     
+            speech_hat_ = self.pqmf.synthesis(speech_hat_) 
 
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_.detach())

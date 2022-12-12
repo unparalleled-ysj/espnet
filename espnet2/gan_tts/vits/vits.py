@@ -24,7 +24,7 @@ from espnet2.gan_tts.hifigan.loss import (
     GeneratorAdversarialLoss,
     MelSpectrogramLoss,
 )
-from espnet2.gan_tts.bigvgan import BigVGANMultiPeriodDiscriminator
+from espnet2.gan_tts.other_vocoder import BigVGANMultiPeriodDiscriminator
 from espnet2.gan_tts.utils import get_segments
 from espnet2.gan_tts.vits.generator import VITSGenerator
 from espnet2.gan_tts.melgan.pqmf import PQMF
@@ -456,11 +456,6 @@ class VITS(AbsGANTTS):
         if self.use_pqmf:
             speech_hat_sub_ = speech_hat_
             speech_hat_ = self.pqmf.synthesis(speech_hat_)
-            speech_ = get_segments(
-                x=speech,
-                start_idxs=start_idxs * self.generator.upsample_factor * 4,
-                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
-            )
             speech_sub_ = self.pqmf.analysis(speech_)
             
 
@@ -478,7 +473,8 @@ class VITS(AbsGANTTS):
                 sub_sc_loss, sub_mag_loss = self.sub_stft_loss(speech_hat_sub_, speech_sub_)
                 sub_stft_loss = sub_sc_loss + sub_mag_loss
                 multiband_loss = 0.5 * (stft_loss + sub_stft_loss)
-                multiband_loss = multiband_loss * 5.0      # scale stft loss
+                # multiband_loss = sub_stft_loss
+                multiband_loss = multiband_loss * 1.0      # scale stft loss
             if self.use_xv_loss:
                 with torch.no_grad():
                     xv_loss = 0.0
@@ -489,7 +485,7 @@ class VITS(AbsGANTTS):
                         xv_loss_ = self.xv_loss.wav_wav_loss(waveform, waveform_target)
                         xv_loss += xv_loss_
                     xv_loss /= i+1
-                    xv_loss = xv_loss * 5.0      # scale xvector loss
+                    xv_loss = xv_loss * 1.0      # scale xvector loss
             mel_loss = self.mel_loss(speech_hat_, speech_)
             kl_loss = self.kl_loss(z_p, logs_q, m_p, logs_p, z_mask)
             dur_loss = torch.sum(dur_nll.float())
@@ -602,11 +598,6 @@ class VITS(AbsGANTTS):
         )
         if self.use_pqmf:
             speech_hat_ = self.pqmf.synthesis(speech_hat_)
-            speech_ = get_segments(
-                x=speech,
-                start_idxs=start_idxs * self.generator.upsample_factor * 4,
-                segment_size=self.generator.segment_size * self.generator.upsample_factor * 4,
-            )  
 
         # calculate discriminator outputs
         p_hat = self.discriminator(speech_hat_.detach())

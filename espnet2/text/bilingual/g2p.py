@@ -34,6 +34,7 @@ class BilingualG2P():
         phoneme = self.punctuation2silence(phoneme)
         if add_blank:
             phoneme = self.add_blank(' '.join(phoneme))
+        # print(' '.join(phoneme))
         return phoneme
 
     def add_blank(self, line: str) -> List[str]:
@@ -70,3 +71,6 @@ class BilingualG2P():
 
         
         
+if __name__ == "__main__":
+    g2p = BilingualG2P()
+    print(g2p.text2tokens("厦门是个美丽的海滨城市，do you agree?"))

@@ -396,18 +396,18 @@ if ! "${skip_data_prep}"; then
 
             for dset in "${train_set}" "${valid_set}" ${test_sets}; do
                 # Copy datadir and resample to 16k
-                utils/copy_data_dir.sh "data/$dataset/${dset}" "${dumpdir}/fbank/${dset}_origin"
+                utils/copy_data_dir.sh "data/$dataset/${dset}" "${dumpdir}/fbank/${dset}"
                 # utils/data/resample_data_dir.sh 16000 "${dumpdir}/fbank/${dset}"
                 # Make features for data
-                _nj=$(min "${nj}" "$(<${dumpdir}/fbank/${dset}_origin/utt2spk wc -l)")
-                subtools/augmentDataByNoise.sh --nj ${_nj} "${dumpdir}/fbank/${dset}_origin" "${dumpdir}/fbank/${dset}"
-                python pyscripts/utils/augmentDataByNoisePostProcess.py --map_dir "${dumpdir}/fbank/${dset}"
+                _nj=$(min "${nj}" "$(<${dumpdir}/fbank/${dset}/utt2spk wc -l)")
+                # subtools/augmentDataByNoise.sh --nj ${_nj} "${dumpdir}/fbank/${dset}_origin" "${dumpdir}/fbank/${dset}"
+                # python pyscripts/utils/augmentDataByNoisePostProcess.py --map_dir "${dumpdir}/fbank/${dset}"
                 subtools/makeFeatures.sh --nj ${_nj} ${dumpdir}/fbank/${dset} fbank subtools/conf/sre-fbank-81.conf 
                 utils/fix_data_dir.sh "${dumpdir}/fbank/${dset}"
                 # Compute VAD for data
                 subtools/computeVad.sh --nj ${_nj} ${dumpdir}/fbank/${dset} subtools/conf/vad-5.0.conf 
                 utils/fix_data_dir.sh "${dumpdir}/fbank/${dset}"
-                # Extract X-vector
+                # # Extract X-vector
                 python pyscripts/feats/extracingXvector.py --nj ${_nj} --feats_dir ${dumpdir}/fbank/${dset} --xvectors_dir ${dumpdir}/xvector/${dset}
                 python pyscripts/utils/sort_xvectors.py --feats_dir ${dumpdir}/fbank/${dset} --xvectors_dir ${dumpdir}/xvector/${dset} --shuffle false
                 ${train_cmd} ${dumpdir}/xvector/${dset}/log/speaker_mean.log \
@@ -514,15 +514,15 @@ if ! "${skip_data_prep}"; then
                 awk ' { if( NF != 1 ) print $0; } ' >"${data_feats}/${dset}/text"
 
             # fix_data_dir.sh leaves only utts which exist in all files
-            _fix_opts=""
+            _utt_extra_files=""
             if [ -e "${data_feats}/org/${dset}/utt2sid" ]; then
-                _fix_opts="--utt_extra_files utt2sid "
+                _utt_extra_files+="utt2sid "
             fi
             if [ -e "${data_feats}/org/${dset}/utt2lid" ]; then
-                _fix_opts="--utt_extra_files utt2lid "
+                _utt_extra_files+="utt2lid "
             fi
             # shellcheck disable=SC2086
-            utils/fix_data_dir.sh ${_fix_opts} "${data_feats}/${dset}"
+            utils/fix_data_dir.sh --utt_extra_files "${_utt_extra_files}" "${data_feats}/${dset}"
 
             # Filter x-vector
             if "${use_xvector}"; then

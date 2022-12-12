@@ -122,7 +122,7 @@ class BigVGANGenerator(torch.nn.Module):
         self.conv_post = Conv1d(ch, out_channels, 7, 1, padding=3, bias=False)
         self.ups.apply(init_weights)
 
-        if gin_channels != 0:
+        if gin_channels > 0:
             self.cond = nn.Conv1d(gin_channels, upsample_initial_channel, 1)
 
     def forward(self, x, g=None):

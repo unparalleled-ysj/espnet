@@ -15,7 +15,7 @@ import torch
 import torch.nn.functional as F
 
 from espnet2.gan_tts.hifigan import HiFiGANGenerator
-from espnet2.gan_tts.bigvgan import BigVGANGenerator
+from espnet2.gan_tts.other_vocoder import BigVGANGenerator, Multiband_iSTFT_Generator, Multistream_iSTFT_Generator
 from espnet2.gan_tts.utils import get_random_segments
 from espnet2.gan_tts.vits.duration_predictor import StochasticDurationPredictor
 from espnet2.gan_tts.vits.posterior_encoder import PosteriorEncoder
@@ -215,6 +215,39 @@ class VITSGenerator(torch.nn.Module):
                 upsample_kernel_sizes=decoder_upsample_kernel_sizes,
                 gin_channels=global_channels,
             )
+        elif decoder_type == "multiband_istft_hifigan":
+            self.decoder = Multiband_iSTFT_Generator(
+                initial_channel=hidden_channels,
+                resblock='1',
+                resblock_kernel_sizes=decoder_resblock_kernel_sizes,
+                resblock_dilation_sizes=decoder_resblock_dilations,
+                upsample_rates=decoder_upsample_scales,
+                upsample_initial_channel=decoder_channels,
+                upsample_kernel_sizes=decoder_upsample_kernel_sizes,
+                gen_istft_n_fft=16,
+                gen_istft_hop_size=4,
+                subbands=4,
+                gin_channels=global_channels,
+            )
+            self.upsample_factor *= 4
+        elif decoder_type == "multistream_istft_hifigan":
+            self.decoder = Multistream_iSTFT_Generator(
+                initial_channel=hidden_channels,
+                resblock='1',
+                resblock_kernel_sizes=decoder_resblock_kernel_sizes,
+                resblock_dilation_sizes=decoder_resblock_dilations,
+                upsample_rates=decoder_upsample_scales,
+                upsample_initial_channel=decoder_channels,
+                upsample_kernel_sizes=decoder_upsample_kernel_sizes,
+                gen_istft_n_fft=16,
+                gen_istft_hop_size=4,
+                subbands=4,
+                gin_channels=global_channels,
+            )
+            self.upsample_factor *= 16
+        else:
+            raise ValueError(f"{decoder_type} type not supported in vits currently.")
+
         self.posterior_encoder = PosteriorEncoder(
             in_channels=aux_channels,
             out_channels=hidden_channels,
@@ -249,7 +282,7 @@ class VITSGenerator(torch.nn.Module):
             global_channels=global_channels,
         )
 
-        self.upsample_factor = int(np.prod(decoder_upsample_scales))
+        self.upsample_factor = int(np.prod(decoder_upsample_scales) * decoder_out_channels)
         self.spks = None
         if spks is not None and spks > 1:
             assert global_channels > 0

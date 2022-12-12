@@ -8,6 +8,7 @@ import torch
 import soundfile as sf
 from espnet2.bin.tts_inference import Text2Speech
 from espnet2.gan_tts.vits.loss import XvectorLoss
+import random
 
 def get_xvector_dict(xv_dir):
     xv_dict = {}
@@ -46,9 +47,9 @@ def cosine_similarity_score(exp_wav_dir, xv_dict, criterion):
 
 
 if __name__ == "__main__":
-    save_dir = "synthesis_sentences/mb_jets/xmu-boy"
+    save_dir = "synthesis_sentences/multilingual/speed_test/istft_onnx"
     os.makedirs(save_dir, exist_ok=True)
-    tts = Text2Speech.from_pretrained(model_file="exp/xmu-boy/tts_multiband_jets/latest.pth", device='cpu')
+    tts = Text2Speech.from_pretrained(model_file="/work/ysj/espnet/egs2/ysj/tts1/exp/TalentedSoft_multilingual/tts_ms_istft_jets_new/latest.pth", device='cpu')
     # criterion = XvectorLoss("/work/ysj/espnet/tools/extract_xvector_model/ecapa_16k_fbank_81_shard_vad50_bt128_valid2048_adam/10.pt")
 
     # lid=1
@@ -63,22 +64,24 @@ if __name__ == "__main__":
         # "fuck #3 what do you wanna to do ?",
         # "二零#1零九#1年时#3号称#1要#1装上#1T#1—九十的#2 LEDS #1—一百#1五十#2主动#1防卫#1系统#3也#1未见#1踪影#4；",
         # "九六#1 B #1使用的#3则是#1先进#1一代的#2液力#1机械#1传动#1系统#3和#1方向盘#1驾驶#4",
-        "基金ABC。",
-        "can you 讲中文吗？",
+        # "基金ABC。",
+        # "can you 讲中文吗？",
+        # "厦门是个美丽的海滨城市，do you agree?",
+        # "不好意思",
         # "飘飘然#2就把#1小时候#2母亲#1一边#1哄他#1睡觉#3一边#1甜蜜#1回忆的#2那段#1秘辛#1说了#1出来#4，",
         # "而#1之前#2疯狂#1攻击的#1变异#1槐树#3却像是#1遇到#1天敌#1一般#2收回#1所有#1树根#2瑟瑟#1发抖#4。",
         # "您有一条开线记录#2 cassette #2已上#1 port #3，机台#3 T #1 H #1 C #1 V #1 D #2幺#1零#1零#3，产品#3 T #1 H #2七#1四#1五#2 A #1三#1 A #1 B #2幺#1零#1零#3，cassette #2 I #1 D维#3 T #1 J #1 A #1 G #2幺#1幺#4。",
         # "很多人都在问我，你对中国的热情是如何产生的？毕竟，上世纪初移民到巴西的意大利人的后代与中国有什么关系呢？我是马可·波罗的远房亲戚吗？当然不是。在童年和青春期，我从未接触过中国文化，但当我成年以后，却爱上了一个如此遥远、与我们的文化如此不同的国家。这大概就是我要讲的故事。我努力搜索自己的记忆，找寻自己对中国感兴趣的始点。翻开我的图书收藏，我找到了第一本有关中国的书。这本书是在1979年得到的，当时我24岁，巴西一家出版社出版了葡萄牙文版的《毛泽东选集》，这是我接触到的第一批中文书籍之一。此外，毛泽东的一些文章和演讲稿我也反复阅读了很多次，基本都能熟记于心。直到今天，我还时不时地拿出来翻阅，并总能在这位令人钦佩的中国领导人的著作中有新的收获。在我看来，中国革命及长征是一部真正的史诗。在历史的伟大时刻，正是由于他们的勇气和坚持，人类历史的进程才得以改变。",
-        "您有一条开线记录~cassette~已上~port，机台~T~H~C~V~D~幺~零~零~，产品~T~H~七~四~五~A~三#~A~B~幺~零~零，cassette~ID~维~T~J~A~G~幺~幺。",
+        # "您有一条开线记录~cassette~已上~port，机台~T~H~C~V~D~幺~零~零~，产品~T~H~七~四~五~A~三#~A~B~幺~零~零，cassette~ID~维~T~J~A~G~幺~幺。",
         "你好，我来自厦门天聪智能软件有限公司。",
-        "又是连续两周的雷暴雨，真是好烦啊！",
-        "很多人都在问我，你对中国的热情是如何产生的？毕竟，上世纪初移民到巴西的意大利人的后代与中国有什么关系呢？",
-        "在童年和青春期，我从未接触过中国文化，但当我成年以后，却爱上了一个如此遥远、与我们的文化如此不同的国家。",
-        "I see nobody but you",
-        "软件园二期望海路二十一号之一三零一。 ",
-        "有一天，森林里的小动物——小兔子捡到了一本好看的童话书。于是小兔子便把它捡到的童话故事书，交给了这里的村长。村长便把森林里的小动物都召集起来，看起了里面的故事。大家都夸小兔子是好样的。",
-        "一天，小动物们要搞聚会了。小猴子拿出一颗豆子，小猴子把豆子放在桌子上，在阳光的照射下，小豆子活蹦乱跳。大家都鼓掌了。大家问小猴子豆子怎么会跳？小猴子掰开豆子里面有两条虫子，大家突然明白了。",
-        "小猴子拿出一颗豆子。小猴子把豆子放在桌子上。",
+        # "又是连续两周的雷暴雨，真是好烦啊！",
+        # "很多人都在问我，你对中国的热情是如何产生的？毕竟，上世纪初移民到巴西的意大利人的后代与中国有什么关系呢？",
+        # "在童年和青春期，我从未接触过中国文化，但当我成年以后，却爱上了一个如此遥远、与我们的文化如此不同的国家。",
+        # "I see nobody but you",
+        # "软件园二期望海路二十一号之一三零一。 ",
+        # "～有一天，森林里的小动物～小兔子捡到了一本好看的童话书。于是小兔子便把它捡到的童话故事书，交给了这里的村长。村长便把森林里的小动物都召集起来，看起了里面的故事。大家都夸小兔子是好样的。",
+        # "一天，小动物们要搞聚会了。小猴子拿出一颗豆子，小猴子把豆子放在桌子上，在阳光的照射下，小豆子活蹦乱跳。大家都鼓掌了。大家问小猴子豆子怎么会跳？小猴子掰开豆子里面有两条虫子，大家突然明白了。",
+        # "小猴子拿出一颗豆子。小猴子把豆子放在桌子上。",
         # "sp z ue5 g u n6 lp bb a ng6 l o k8 sp d ng1 d io ng1 np l ao2 t ua n2 g ui5 z oo3 sp h o np ng6 h o ng2 h ue1 sp l ia p7 iaN3 z o k7 p i n3 sp",
         # "sp i1 h oo6 sp h ua t7 h ia n6 np d i6 h e h7 sp g u6 s ioo ng6 sp e2 g i1 c oo3 d i ng1 bb i n6 np c u t7 h ia n6 s i n1 e2 np a p7 s ioo k7 s i ng5 sp e2 g u t7 z i t7 sp",
         # "同时③，实时①音视频①技术①在①远程①会诊②、远程①协诊②、远程①影像①方面的①应用③，不仅①可以①促进①更加①高效的①医医①协作①模式③，还①可以①推动①医联体①内①医疗①资源的①分级①协同①与①广泛①下沉④。",
@@ -91,6 +94,9 @@ if __name__ == "__main__":
     #     "~厦门风光绮丽，名胜古迹众多。从鼓浪屿~到南普陀寺~再到充满南洋风情的骑楼老街，秀美的自然与人文风光，让这座山海相连的城市~被誉为海上花园、东方威尼斯，每年吸引着不计其数的年轻人前来旅游、消费、生活。涌动的青年力量~令厦门城市活力倍增，城市文化魅力不断增加，商业发展迅速。",
     #     "~多年来，厦门中华城~持续延展商业空间的多元属性，不仅携手青年共创潮流，更深度洞察厦门人的生活方式，调改丰富业态为更多人群需求~提供休闲商业生活提案，让中华城成为厦门的地标~和一扇文化展示窗口，呈现出传统与现代交织，新旧渐次融合，传承与分享厦门的城市趣味灵魂。",
     #     "~传统建筑与时尚潮流的碰撞，让这处百年骑楼老街~形成独具特色的氛围感，走在厦门中华城场内，一场场潮流品牌时尚大秀魅力上演，吸引市民游客观赏，场外的落日晚风城市派对、摇摆邂逅舞会、夏日奇妙手账市集，则聚集了大量潮流青年互动交流。",
+        # "她渐渐地又仿佛看见了雾海之外,有无数红旗在广阔的原野上招展,一眼望不尽的武装的农民，正出没在群山之间。人们垂着头,默哀着，庄严的歌声,渐渐在人丛中升起，胜利的花朵,在烈士的血泊中蓬勃开放。对勇敢的人，泪水会玷污他的名字。人生自古谁无死？可是一个人的生命和无产阶级永葆青春的革命事业联系在一起，那是无上的光荣！",
+        # "中秋吃月饼的习俗，是从明朝才形成的，宋朝的中秋节佳品，是各种瓜果螃蟹，因为秋天到了，瓜果熟了、螃蟹也肥了，正好可以尝鲜。除了瓜果螃蟹，还有一种食品是宋朝的中秋节不可缺少的，那就是新酒。按照宋朝的酿酒习惯，人们在冬至开始酿酒，到明年中秋节前，则开坛上市，各个酒家皆卖新酒，门面装饰一新，甚至邀请女艺人来代言美酒，吸引市民争饮。",
+        # "杏花虽美，可结出的果子极酸，杏仁更是苦涩，若做人做事皆是开头美好，而结局潦倒，又有何意义。倒不如像松柏，终年青翠，无花无果也就罢了。四郎，那年杏花微雨，你说你是果郡王，或许从一开始便都是错的。这凤冠霞帔于我，何尝不是万重枷锁，锁尽我一生欢欣。没有你，这福寿绵长于我而言，不过时万事皆空而已。",
     ]
 
     # xv_dict = get_xvector_dict("exp/gather_bilingual/xvector")
@@ -107,18 +113,32 @@ if __name__ == "__main__":
     # cosine_similarity_score(save_dir, xv_dict, criterion)
 
     # sentence = []
-    # with open("wenben.txt", 'r', encoding='utf-8') as f:
+    # with open("/tsdata/xsp/CJH_LM/minnan/xm_data.tn.txt", 'r', encoding='utf-8') as f:
     #     for line in f.readlines():
     #         if line != "":
-    #             sentence.append(line.strip())
+    #             sentence.append(line.strip() + '。')
 
-    for text in sentence:
-        start = time.time()
-        wav = tts(text=text)["wav"]
-        end = time.time()
-        print(f"{text}\n{end - start} s")
-        text = text.replace("#1", "").replace("#2", "").replace("#3", "").replace("#4", "")  
-        sf.write(os.path.join(save_dir, f"{text[:10]}.wav"), wav.cpu().numpy(), tts.fs, "PCM_16")
+    # for tid, text in enumerate(sentence):
+    #     sid = random.randint(1, 7)
+    #     wav = tts(text=text, sids=np.asarray(sid))["wav"]
+    #     sf.write(os.path.join(save_dir, f"{tid}.wav"), wav.cpu().numpy(), tts.fs, "PCM_16")
+
+    for sid in range(1, 2):
+        save_dir_ = os.path.join(save_dir, "sid_"+str(sid))
+        os.makedirs(save_dir_, exist_ok=True)
+        for text in sentence:
+            start = time.time()
+            wav = tts(text=text, sids=np.asarray(sid))["wav"]
+            end = time.time()
+            print(f"{text}\n{end - start} s") 
+            sf.write(os.path.join(save_dir_, f"{text[:10]}.wav"), wav.cpu().numpy(), tts.fs, "PCM_16")
+
+    # for text in sentence:
+    #     start = time.time()
+    #     wav = tts(text=text)["wav"]
+    #     end = time.time()
+    #     print(f"{text}\n{end - start} s") 
+    #     sf.write(os.path.join(save_dir, f"{text[:10]}.wav"), wav.cpu().numpy(), tts.fs, "PCM_16")
 
 
 
