@@ -83,6 +83,10 @@ tools/anaconda
 tools/ice-g2p
 tools/fairseq
 tools/._*
+tools/anaconda
+tools/ice-g2p*
+tools/fairseq*
+tools/featbin*
 
 #addtional
 espnet2/gan_tts/vits/monotonic_align
@@ -96,3 +100,5 @@ egs2/ysj/tts1/tools.py
 egs2/ysj/tts1/run.sh
 egs2/ysj/tts1/onnx_model
 egs2/ysj/tts1/onnx_model_with_speed_control
+
+
