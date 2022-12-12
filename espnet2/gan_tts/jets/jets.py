@@ -312,6 +312,7 @@ class JETS(AbsGANTTS):
         self.spks = self.generator.spks
         self.langs = self.generator.langs
         self.spk_embed_dim = self.generator.spk_embed_dim
+        self.use_gst = getattr(self.generator, "use_gst", False)
 
     @property
     def require_raw_speech(self):
@@ -662,6 +663,9 @@ class JETS(AbsGANTTS):
         )
         if "spembs" in kwargs:
             kwargs["spembs"] = kwargs["spembs"][None]
+        if self.use_gst and "speech" in kwargs:
+            # NOTE(kan-bayashi): Workaround for the use of GST
+            kwargs.pop("speech")
 
         # inference
         if use_teacher_forcing:
@@ -691,6 +695,7 @@ class JETS(AbsGANTTS):
             wav, dur = self.generator.inference(
                 text=text,
                 text_lengths=text_lengths,
+                feats=feats[None] if self.use_gst else None,
                 **kwargs,
             )
         if self.use_pqmf:
