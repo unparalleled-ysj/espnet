@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.text package &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>espnet2.text package &mdash; ESPnet 202211 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202209
+                202211
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -122,6 +122,7 @@
 <li class="toctree-l1"><a class="reference internal" href="espnet2.optimizers.html">espnet2.optimizers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="espnet2.fst.html">espnet2.fst package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">espnet2.text package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-text-hugging-face-tokenizer">espnet2.text.hugging_face_tokenizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-init">espnet2.text.__init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-symbols">espnet2.text.symbols</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-text-cleaner">espnet2.text.cleaner</a></li>
@@ -217,14 +218,33 @@
 </style>
 <section id="espnet2-text-package">
 <h1>espnet2.text package<a class="headerlink" href="#espnet2-text-package" title="Permalink to this headline">¶</a></h1>
+<section id="espnet2-text-hugging-face-tokenizer">
+<span id="id1"></span><h2>espnet2.text.hugging_face_tokenizer<a class="headerlink" href="#espnet2-text-hugging-face-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.text.hugging_face_tokenizer"></span><dl class="class">
+<dt id="espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.text.hugging_face_tokenizer.</code><code class="sig-name descname">HuggingFaceTokenizer</code><span class="sig-paren">(</span><em class="sig-param">model: Union[pathlib.Path, str]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/hugging_face_tokenizer.html#HuggingFaceTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="espnet2.text.abs_tokenizer.AbsTokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">espnet2.text.abs_tokenizer.AbsTokenizer</span></code></a></p>
+<dl class="method">
+<dt id="espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer.text2tokens">
+<code class="sig-name descname">text2tokens</code><span class="sig-paren">(</span><em class="sig-param">line: str</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="../_modules/espnet2/text/hugging_face_tokenizer.html#HuggingFaceTokenizer.text2tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer.text2tokens" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer.tokens2text">
+<code class="sig-name descname">tokens2text</code><span class="sig-paren">(</span><em class="sig-param">tokens: Iterable[str]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/espnet2/text/hugging_face_tokenizer.html#HuggingFaceTokenizer.tokens2text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.hugging_face_tokenizer.HuggingFaceTokenizer.tokens2text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="espnet2-text-init">
-<span id="id1"></span><h2>espnet2.text.__init__<a class="headerlink" href="#espnet2-text-init" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>espnet2.text.__init__<a class="headerlink" href="#espnet2-text-init" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.__init__"></span></section>
 <section id="espnet2-text-symbols">
-<span id="id2"></span><h2>espnet2.text.symbols<a class="headerlink" href="#espnet2-text-symbols" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>espnet2.text.symbols<a class="headerlink" href="#espnet2-text-symbols" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-text-cleaner">
-<span id="id3"></span><h2>espnet2.text.cleaner<a class="headerlink" href="#espnet2-text-cleaner" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>espnet2.text.cleaner<a class="headerlink" href="#espnet2-text-cleaner" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.cleaner"></span><dl class="class">
 <dt id="espnet2.text.cleaner.TextCleaner">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.cleaner.</code><code class="sig-name descname">TextCleaner</code><span class="sig-paren">(</span><em class="sig-param">cleaner_types: Collection[str] = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/cleaner.html#TextCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.cleaner.TextCleaner" title="Permalink to this definition">¶</a></dt>
@@ -240,10 +260,10 @@
 
 </section>
 <section id="espnet2-text-phoneme-tokenizer">
-<span id="id4"></span><h2>espnet2.text.phoneme_tokenizer<a class="headerlink" href="#espnet2-text-phoneme-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>espnet2.text.phoneme_tokenizer<a class="headerlink" href="#espnet2-text-phoneme-tokenizer" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-text-sentencepiece-tokenizer">
-<span id="id5"></span><h2>espnet2.text.sentencepiece_tokenizer<a class="headerlink" href="#espnet2-text-sentencepiece-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>espnet2.text.sentencepiece_tokenizer<a class="headerlink" href="#espnet2-text-sentencepiece-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.sentencepiece_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.sentencepiece_tokenizer.SentencepiecesTokenizer">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.sentencepiece_tokenizer.</code><code class="sig-name descname">SentencepiecesTokenizer</code><span class="sig-paren">(</span><em class="sig-param">model: Union[pathlib.Path, str]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/sentencepiece_tokenizer.html#SentencepiecesTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.sentencepiece_tokenizer.SentencepiecesTokenizer" title="Permalink to this definition">¶</a></dt>
@@ -262,7 +282,7 @@
 
 </section>
 <section id="espnet2-text-char-tokenizer">
-<span id="id6"></span><h2>espnet2.text.char_tokenizer<a class="headerlink" href="#espnet2-text-char-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>espnet2.text.char_tokenizer<a class="headerlink" href="#espnet2-text-char-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.char_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.char_tokenizer.CharTokenizer">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.char_tokenizer.</code><code class="sig-name descname">CharTokenizer</code><span class="sig-paren">(</span><em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">space_symbol: str = '&lt;space&gt;'</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/char_tokenizer.html#CharTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.char_tokenizer.CharTokenizer" title="Permalink to this definition">¶</a></dt>
@@ -281,7 +301,7 @@
 
 </section>
 <section id="espnet2-text-korean-cleaner">
-<span id="id7"></span><h2>espnet2.text.korean_cleaner<a class="headerlink" href="#espnet2-text-korean-cleaner" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2>espnet2.text.korean_cleaner<a class="headerlink" href="#espnet2-text-korean-cleaner" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.korean_cleaner"></span><dl class="class">
 <dt id="espnet2.text.korean_cleaner.KoreanCleaner">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.korean_cleaner.</code><code class="sig-name descname">KoreanCleaner</code><a class="reference internal" href="../_modules/espnet2/text/korean_cleaner.html#KoreanCleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.korean_cleaner.KoreanCleaner" title="Permalink to this definition">¶</a></dt>
@@ -295,10 +315,10 @@
 
 </section>
 <section id="espnet2-text-build-tokenizer">
-<span id="id8"></span><h2>espnet2.text.build_tokenizer<a class="headerlink" href="#espnet2-text-build-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>espnet2.text.build_tokenizer<a class="headerlink" href="#espnet2-text-build-tokenizer" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-text-abs-tokenizer">
-<span id="id9"></span><h2>espnet2.text.abs_tokenizer<a class="headerlink" href="#espnet2-text-abs-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>espnet2.text.abs_tokenizer<a class="headerlink" href="#espnet2-text-abs-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.abs_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.abs_tokenizer.AbsTokenizer">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.abs_tokenizer.</code><code class="sig-name descname">AbsTokenizer</code><a class="reference internal" href="../_modules/espnet2/text/abs_tokenizer.html#AbsTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.abs_tokenizer.AbsTokenizer" title="Permalink to this definition">¶</a></dt>
@@ -317,7 +337,7 @@
 
 </section>
 <section id="espnet2-text-token-id-converter">
-<span id="id10"></span><h2>espnet2.text.token_id_converter<a class="headerlink" href="#espnet2-text-token-id-converter" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2>espnet2.text.token_id_converter<a class="headerlink" href="#espnet2-text-token-id-converter" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.token_id_converter"></span><dl class="class">
 <dt id="espnet2.text.token_id_converter.TokenIDConverter">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.token_id_converter.</code><code class="sig-name descname">TokenIDConverter</code><span class="sig-paren">(</span><em class="sig-param">token_list: Union[pathlib.Path, str, Iterable[str]], unk_symbol: str = '&lt;unk&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/token_id_converter.html#TokenIDConverter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.token_id_converter.TokenIDConverter" title="Permalink to this definition">¶</a></dt>
@@ -341,7 +361,7 @@
 
 </section>
 <section id="espnet2-text-word-tokenizer">
-<span id="id11"></span><h2>espnet2.text.word_tokenizer<a class="headerlink" href="#espnet2-text-word-tokenizer" title="Permalink to this headline">¶</a></h2>
+<span id="id12"></span><h2>espnet2.text.word_tokenizer<a class="headerlink" href="#espnet2-text-word-tokenizer" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.word_tokenizer"></span><dl class="class">
 <dt id="espnet2.text.word_tokenizer.WordTokenizer">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.word_tokenizer.</code><code class="sig-name descname">WordTokenizer</code><span class="sig-paren">(</span><em class="sig-param">delimiter: str = None</em>, <em class="sig-param">non_linguistic_symbols: Union[pathlib.Path</em>, <em class="sig-param">str</em>, <em class="sig-param">Iterable[str]] = None</em>, <em class="sig-param">remove_non_linguistic_symbols: bool = False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/word_tokenizer.html#WordTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.word_tokenizer.WordTokenizer" title="Permalink to this definition">¶</a></dt>
@@ -360,10 +380,10 @@
 
 </section>
 <section id="espnet2-text-bilingual-init">
-<span id="id12"></span><h2>espnet2.text.bilingual.__init__<a class="headerlink" href="#espnet2-text-bilingual-init" title="Permalink to this headline">¶</a></h2>
+<span id="id13"></span><h2>espnet2.text.bilingual.__init__<a class="headerlink" href="#espnet2-text-bilingual-init" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.__init__"></span></section>
 <section id="espnet2-text-bilingual-thchsdict">
-<span id="id13"></span><h2>espnet2.text.bilingual.thchsdict<a class="headerlink" href="#espnet2-text-bilingual-thchsdict" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h2>espnet2.text.bilingual.thchsdict<a class="headerlink" href="#espnet2-text-bilingual-thchsdict" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.thchsdict"></span><dl class="class">
 <dt id="espnet2.text.bilingual.thchsdict.THCHSDict">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.thchsdict.</code><code class="sig-name descname">THCHSDict</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/thchsdict.html#THCHSDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.thchsdict.THCHSDict" title="Permalink to this definition">¶</a></dt>
@@ -379,7 +399,7 @@
 
 </section>
 <section id="espnet2-text-bilingual-cmudict">
-<span id="id14"></span><h2>espnet2.text.bilingual.cmudict<a class="headerlink" href="#espnet2-text-bilingual-cmudict" title="Permalink to this headline">¶</a></h2>
+<span id="id15"></span><h2>espnet2.text.bilingual.cmudict<a class="headerlink" href="#espnet2-text-bilingual-cmudict" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.cmudict"></span><dl class="class">
 <dt id="espnet2.text.bilingual.cmudict.CMUDict">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.cmudict.</code><code class="sig-name descname">CMUDict</code><span class="sig-paren">(</span><em class="sig-param">file_or_path</em>, <em class="sig-param">keep_ambiguous=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/cmudict.html#CMUDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.cmudict.CMUDict" title="Permalink to this definition">¶</a></dt>
@@ -400,7 +420,7 @@
 
 </section>
 <section id="espnet2-text-bilingual-g2p">
-<span id="id15"></span><h2>espnet2.text.bilingual.g2p<a class="headerlink" href="#espnet2-text-bilingual-g2p" title="Permalink to this headline">¶</a></h2>
+<span id="id16"></span><h2>espnet2.text.bilingual.g2p<a class="headerlink" href="#espnet2-text-bilingual-g2p" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.g2p"></span><dl class="class">
 <dt id="espnet2.text.bilingual.g2p.BilingualG2P">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.bilingual.g2p.</code><code class="sig-name descname">BilingualG2P</code><a class="reference internal" href="../_modules/espnet2/text/bilingual/g2p.html#BilingualG2P"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.g2p.BilingualG2P" title="Permalink to this definition">¶</a></dt>
@@ -444,7 +464,7 @@
 
 </section>
 <section id="espnet2-text-bilingual-text-normalization-normalization">
-<span id="id16"></span><h2>espnet2.text.bilingual.text_normalization.normalization<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-normalization" title="Permalink to this headline">¶</a></h2>
+<span id="id17"></span><h2>espnet2.text.bilingual.text_normalization.normalization<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-normalization" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.text_normalization.normalization"></span><dl class="function">
 <dt id="espnet2.text.bilingual.text_normalization.normalization.collapse_whitespace">
 <code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.normalization.</code><code class="sig-name descname">collapse_whitespace</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/bilingual/text_normalization/normalization.html#collapse_whitespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.normalization.collapse_whitespace" title="Permalink to this definition">¶</a></dt>
@@ -482,7 +502,7 @@
 
 </section>
 <section id="espnet2-text-bilingual-text-normalization-cn-tn">
-<span id="id17"></span><h2>espnet2.text.bilingual.text_normalization.cn_tn<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-cn-tn" title="Permalink to this headline">¶</a></h2>
+<span id="id18"></span><h2>espnet2.text.bilingual.text_normalization.cn_tn<a class="headerlink" href="#espnet2-text-bilingual-text-normalization-cn-tn" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.bilingual.text_normalization.cn_tn"></span><dl class="attribute">
 <dt id="espnet2.text.bilingual.text_normalization.cn_tn.CC">
 <code class="sig-prename descclassname">espnet2.text.bilingual.text_normalization.cn_tn.</code><code class="sig-name descname">CC</code><a class="headerlink" href="#espnet2.text.bilingual.text_normalization.cn_tn.CC" title="Permalink to this definition">¶</a></dt>
@@ -712,10 +732,10 @@ high: ‘兆’ = ‘亿’ * ‘亿’ = $10^{16}$, ‘京’ = ‘兆’ * ‘
 
 </section>
 <section id="espnet2-text-minnan-init">
-<span id="id18"></span><h2>espnet2.text.minnan.__init__<a class="headerlink" href="#espnet2-text-minnan-init" title="Permalink to this headline">¶</a></h2>
+<span id="id19"></span><h2>espnet2.text.minnan.__init__<a class="headerlink" href="#espnet2-text-minnan-init" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-text-minnan-minnandict">
-<span id="id19"></span><h2>espnet2.text.minnan.minnandict<a class="headerlink" href="#espnet2-text-minnan-minnandict" title="Permalink to this headline">¶</a></h2>
+<span id="id20"></span><h2>espnet2.text.minnan.minnandict<a class="headerlink" href="#espnet2-text-minnan-minnandict" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-espnet2.text.minnan.minnandict"></span><dl class="class">
 <dt id="espnet2.text.minnan.minnandict.MinNanDcit">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.text.minnan.minnandict.</code><code class="sig-name descname">MinNanDcit</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/text/minnan/minnandict.html#MinNanDcit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.text.minnan.minnandict.MinNanDcit" title="Permalink to this definition">¶</a></dt>

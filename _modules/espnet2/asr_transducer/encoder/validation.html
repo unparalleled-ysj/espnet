@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.asr_transducer.encoder.validation &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <title>espnet2.asr_transducer.encoder.validation &mdash; ESPnet 202211 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
@@ -29,7 +29,7 @@
             <a href="../../../../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202209
+                202211
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -257,12 +257,18 @@
 
     <span class="k">if</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subsampling_factor&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;subsampling_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">sub_factor</span> <span class="o">=</span> <span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;subsampling_factor&quot;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">vgg_like</span><span class="p">:</span>
         <span class="n">conv_size</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;conv_size&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">conv_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="n">conv_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">conv_size</span><span class="p">,</span> <span class="n">conv_size</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">sub_factor</span> <span class="ow">in</span> <span class="p">{</span>
+            <span class="mi">4</span><span class="p">,</span>
+            <span class="mi">6</span><span class="p">,</span>
+        <span class="p">},</span> <span class="s2">&quot;Subsampling factor for the VGG2L block should be either 4 or 6.&quot;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">conv_size</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;conv_size&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
@@ -275,8 +281,6 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">conv_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">conv_size</span> <span class="o">=</span> <span class="n">body_first_conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;output_size&quot;</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-
-            <span class="n">sub_factor</span> <span class="o">=</span> <span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;subsampling_factor&quot;</span><span class="p">]</span>
 
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">conv_osize</span> <span class="o">=</span> <span class="n">sub_factor_to_params</span><span class="p">(</span><span class="n">sub_factor</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
             <span class="k">assert</span> <span class="p">(</span>

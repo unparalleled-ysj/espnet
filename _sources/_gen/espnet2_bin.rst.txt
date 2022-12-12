@@ -51,6 +51,31 @@ enh_scoring.py
       --key_file KEY_FILE
       --ref_channel REF_CHANNEL
       --flexible_numspk FLEXIBLE_NUMSPK
+.. _hugging_face_export_vocabulary.py:
+
+hugging_face_export_vocabulary.py
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: none
+
+    usage: hugging_face_export_vocabulary.py [-h]
+                                             [--log_level {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}]
+                                             --output OUTPUT --model_name_or_path
+                                             MODEL_NAME_OR_PATH
+                                             [--add_symbol ADD_SYMBOL]
+    
+    Export Hugging Face vocabulary
+    
+    optional arguments:
+      --log_level {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}
+                            The verbose level of logging (default: INFO)
+      --output OUTPUT, -o OUTPUT
+                            Output text. - indicates sys.stdout (default: None)
+      --model_name_or_path MODEL_NAME_OR_PATH
+                            Hugging Face model name or path (default: None)
+      --add_symbol ADD_SYMBOL
+                            Append symbol e.g. --add_symbol '<blank>:0'
+                            --add_symbol '<unk>:1' (default: [])
 .. _launch.py:
 
 launch.py

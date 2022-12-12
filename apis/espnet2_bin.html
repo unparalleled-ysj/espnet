@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>core tools (espnet2) &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>core tools (espnet2) &mdash; ESPnet 202211 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202209
+                202211
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -144,6 +144,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">core tools (espnet2)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#aggregate-stats-dirs-py">aggregate_stats_dirs.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#enh-scoring-py">enh_scoring.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hugging-face-export-vocabulary-py">hugging_face_export_vocabulary.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#launch-py">launch.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pack-py">pack.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#split-scps-py">split_scps.py</a></li>
@@ -253,8 +254,31 @@ Input data related:
 </pre></div>
 </div>
 </section>
+<section id="hugging-face-export-vocabulary-py">
+<span id="id4"></span><h2>hugging_face_export_vocabulary.py<a class="headerlink" href="#hugging-face-export-vocabulary-py" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: hugging_face_export_vocabulary.py [-h]
+                                         [--log_level {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}]
+                                         --output OUTPUT --model_name_or_path
+                                         MODEL_NAME_OR_PATH
+                                         [--add_symbol ADD_SYMBOL]
+
+Export Hugging Face vocabulary
+
+optional arguments:
+  --log_level {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}
+                        The verbose level of logging (default: INFO)
+  --output OUTPUT, -o OUTPUT
+                        Output text. - indicates sys.stdout (default: None)
+  --model_name_or_path MODEL_NAME_OR_PATH
+                        Hugging Face model name or path (default: None)
+  --add_symbol ADD_SYMBOL
+                        Append symbol e.g. --add_symbol &#39;&lt;blank&gt;:0&#39;
+                        --add_symbol &#39;&lt;unk&gt;:1&#39; (default: [])
+</pre></div>
+</div>
+</section>
 <section id="launch-py">
-<span id="id4"></span><h2>launch.py<a class="headerlink" href="#launch-py" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>launch.py<a class="headerlink" href="#launch-py" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: launch.py [-h] [--cmd CMD] [--log LOG]
                  [--max_num_log_files MAX_NUM_LOG_FILES] [--ngpu NGPU]
                  [--num_nodes NUM_NODES | --host HOST] [--envfile ENVFILE]
@@ -306,7 +330,7 @@ optional arguments:
 </div>
 </section>
 <section id="pack-py">
-<span id="id5"></span><h2>pack.py<a class="headerlink" href="#pack-py" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>pack.py<a class="headerlink" href="#pack-py" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: pack.py [-h] {asr,st,tts,enh,diar,svs,enh_s2t} ...
 
 Pack input files to archive format
@@ -319,7 +343,7 @@ optional arguments:
 </div>
 </section>
 <section id="split-scps-py">
-<span id="id6"></span><h2>split_scps.py<a class="headerlink" href="#split-scps-py" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>split_scps.py<a class="headerlink" href="#split-scps-py" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: split_scps.py [-h]
                      [--log_level {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}]
                      --scps SCPS [SCPS ...] [--names NAMES [NAMES ...]]

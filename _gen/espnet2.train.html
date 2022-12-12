@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.train package &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>espnet2.train package &mdash; ESPnet 202211 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202209
+                202211
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -508,23 +508,23 @@ the real Rank is set as (nGPU * NodeID) + LOCAL_RANK in torch.distributed.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="espnet2.train.dataset.AdapterForSingingScoreScpReader">
+<em class="property">class </em><code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">AdapterForSingingScoreScpReader</code><span class="sig-paren">(</span><em class="sig-param">loader</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForSingingScoreScpReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForSingingScoreScpReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Mapping</span></code></p>
+<dl class="method">
+<dt id="espnet2.train.dataset.AdapterForSingingScoreScpReader.keys">
+<code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForSingingScoreScpReader.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForSingingScoreScpReader.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="espnet2.train.dataset.AdapterForSoundScpReader">
 <em class="property">class </em><code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">AdapterForSoundScpReader</code><span class="sig-paren">(</span><em class="sig-param">loader</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForSoundScpReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForSoundScpReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Mapping</span></code></p>
 <dl class="method">
 <dt id="espnet2.train.dataset.AdapterForSoundScpReader.keys">
 <code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForSoundScpReader.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForSoundScpReader.keys" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="espnet2.train.dataset.AdapterForXMLScpReader">
-<em class="property">class </em><code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">AdapterForXMLScpReader</code><span class="sig-paren">(</span><em class="sig-param">loader</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForXMLScpReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForXMLScpReader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Mapping</span></code></p>
-<dl class="method">
-<dt id="espnet2.train.dataset.AdapterForXMLScpReader.keys">
-<code class="sig-name descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; a set-like object providing a view on D's keys<a class="reference internal" href="../_modules/espnet2/train/dataset.html#AdapterForXMLScpReader.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.AdapterForXMLScpReader.keys" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -576,13 +576,13 @@ the real Rank is set as (nGPU * NodeID) + LOCAL_RANK in torch.distributed.</p>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="espnet2.train.dataset.sound_loader">
-<code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">sound_loader</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">float_dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#sound_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.sound_loader" title="Permalink to this definition">¶</a></dt>
+<dt id="espnet2.train.dataset.score_loader">
+<code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">score_loader</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">float_dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#score_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.score_loader" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
-<dt id="espnet2.train.dataset.xml_loader">
-<code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">xml_loader</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">float_dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#xml_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.xml_loader" title="Permalink to this definition">¶</a></dt>
+<dt id="espnet2.train.dataset.sound_loader">
+<code class="sig-prename descclassname">espnet2.train.dataset.</code><code class="sig-name descname">sound_loader</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">float_dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/train/dataset.html#sound_loader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.train.dataset.sound_loader" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>

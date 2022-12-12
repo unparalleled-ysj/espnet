@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>espnet2.bin package &mdash; ESPnet 202209 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>espnet2.bin package &mdash; ESPnet 202211 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
             <a href="../index.html" class="icon icon-home"> ESPnet
           </a>
               <div class="version">
-                202209
+                202211
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -157,6 +157,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-enh-s2t-train">espnet2.bin.enh_s2t_train</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-mt-train">espnet2.bin.mt_train</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-asr-train">espnet2.bin.asr_train</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-hugging-face-export-vocabulary">espnet2.bin.hugging_face_export_vocabulary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-slu-train">espnet2.bin.slu_train</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-mt-inference">espnet2.bin.mt_inference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#espnet2-bin-lm-calc-perplexity">espnet2.bin.lm_calc_perplexity</a></li>
@@ -524,17 +525,35 @@
 <section id="espnet2-bin-asr-train">
 <span id="id31"></span><h2>espnet2.bin.asr_train<a class="headerlink" href="#espnet2-bin-asr-train" title="Permalink to this headline">¶</a></h2>
 </section>
+<section id="espnet2-bin-hugging-face-export-vocabulary">
+<span id="id32"></span><h2>espnet2.bin.hugging_face_export_vocabulary<a class="headerlink" href="#espnet2-bin-hugging-face-export-vocabulary" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-espnet2.bin.hugging_face_export_vocabulary"></span><dl class="function">
+<dt id="espnet2.bin.hugging_face_export_vocabulary.export_vocabulary">
+<code class="sig-prename descclassname">espnet2.bin.hugging_face_export_vocabulary.</code><code class="sig-name descname">export_vocabulary</code><span class="sig-paren">(</span><em class="sig-param">output: str, model_name_or_path: str, log_level: str, add_symbol: List[str]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/bin/hugging_face_export_vocabulary.html#export_vocabulary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.bin.hugging_face_export_vocabulary.export_vocabulary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.bin.hugging_face_export_vocabulary.get_parser">
+<code class="sig-prename descclassname">espnet2.bin.hugging_face_export_vocabulary.</code><code class="sig-name descname">get_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; argparse.ArgumentParser<a class="reference internal" href="../_modules/espnet2/bin/hugging_face_export_vocabulary.html#get_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.bin.hugging_face_export_vocabulary.get_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="espnet2.bin.hugging_face_export_vocabulary.main">
+<code class="sig-prename descclassname">espnet2.bin.hugging_face_export_vocabulary.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param">cmd=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/espnet2/bin/hugging_face_export_vocabulary.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#espnet2.bin.hugging_face_export_vocabulary.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="espnet2-bin-slu-train">
-<span id="id32"></span><h2>espnet2.bin.slu_train<a class="headerlink" href="#espnet2-bin-slu-train" title="Permalink to this headline">¶</a></h2>
+<span id="id33"></span><h2>espnet2.bin.slu_train<a class="headerlink" href="#espnet2-bin-slu-train" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-bin-mt-inference">
-<span id="id33"></span><h2>espnet2.bin.mt_inference<a class="headerlink" href="#espnet2-bin-mt-inference" title="Permalink to this headline">¶</a></h2>
+<span id="id34"></span><h2>espnet2.bin.mt_inference<a class="headerlink" href="#espnet2-bin-mt-inference" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-bin-lm-calc-perplexity">
-<span id="id34"></span><h2>espnet2.bin.lm_calc_perplexity<a class="headerlink" href="#espnet2-bin-lm-calc-perplexity" title="Permalink to this headline">¶</a></h2>
+<span id="id35"></span><h2>espnet2.bin.lm_calc_perplexity<a class="headerlink" href="#espnet2-bin-lm-calc-perplexity" title="Permalink to this headline">¶</a></h2>
 </section>
 <section id="espnet2-bin-gan-tts-train">
-<span id="id35"></span><h2>espnet2.bin.gan_tts_train<a class="headerlink" href="#espnet2-bin-gan-tts-train" title="Permalink to this headline">¶</a></h2>
+<span id="id36"></span><h2>espnet2.bin.gan_tts_train<a class="headerlink" href="#espnet2-bin-gan-tts-train" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 
